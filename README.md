@@ -14,13 +14,13 @@
 </p>
 <h4 align="center">ROCKET TEAM</h4>
 
-* Maria Soledad Fornasier
-* Marcos Alejandro Barey
-* Ariel Ricardo Mícoli
-* Joana Gisela Martinez
-* Leonel Ezequiel Casi
-* Lautaro Palacio
-* Valeriya Lysikova
+* [Maria Soledad Fornasier](https://github.com/soleforna)
+* [Marcos Alejandro Barey](https://github.com/Marquitos280419)
+* [Ariel Ricardo Mícoli](https://github.com/Ari-07x)
+* [Joana Gisela Martinez](https://github.com/JoanaGM44)
+* [Leonel Ezequiel Casi](https://github.com/leocas1)
+* [Lautaro Palacio](https://github.com/Pala797)
+* [Valeriya Lysikova](https://github.com/vlysi)
 * [Adrian Edgardo Camus](https://github.com/acamus79)
 
 
