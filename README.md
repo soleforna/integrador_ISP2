@@ -21,7 +21,8 @@
 * Leonel Ezequiel Casi
 * Lautaro Palacio
 * Valeriya Lysikova
-* Adrian Edgardo Camus
+* [Adrian Edgardo Camus](https://github.com/acamus79)
+
 
 #
 
