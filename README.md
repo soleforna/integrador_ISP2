@@ -35,7 +35,7 @@ En general, el aplicativo web es para una feria americana para mejorar la experi
 ### Tecnologias Utilizadas
 
 * Angular
-* Python 3.1
+* Python 3.11.3
 * Django 
 * Django Restframework
 * PostgresSQL
