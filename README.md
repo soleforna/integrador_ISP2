@@ -63,14 +63,9 @@ python -m virtualenv venv
 ```
 Activamos el entorno virtual, en windows ```.\venv\Scripts\activate```, en linux ```./venv/Scripts/activate```
 
-Con el entorno virtual activado, se debe instalar DJANGO
+Con el entorno virtual activado, debemos intalar DJANGO y las librerias necesarias para el proyecto
 ```
-pip install django
-```
-
-y tambien tenemos que instalar el modulo rest framework 
-```
-pip install djangorestframework
+pip install django djangorestframework psycopg2 django-cors-headers
 ```
 
 Ejecutamos el server
