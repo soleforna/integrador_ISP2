@@ -109,3 +109,4 @@ Para instalar bootstrap el comando a ejecutar sería el siguiente:
 ```
 npm install bootstrap
 ```
+Si todo funcionó correctamente, deberías ver la carpeta bootstrap en el directorio node_modules y, en el archivo package.json la entrada "bootstrap" en el tag “dependencies”
