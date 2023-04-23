@@ -95,8 +95,12 @@ Cuando traemos cambios a nuestro django hay que utilizar el siguiente comando pa
 ```
 py manage.py makemigrations
 ```
+### FrontEnd:
 
+Para ejecutar la app de angular debemos entrar a la carpeta ng_feria y luego:
 
-
+```
+ng serve -o
+```
 
 
