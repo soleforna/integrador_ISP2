@@ -104,3 +104,8 @@ ng serve -o
 ```
 
 Luego hacemos ctrl + clic en la dirección que sale por consola para ver que está corriendo angular
+
+Para instalar bootstrap el comando a ejecutar sería el siguiente:
+```
+npm install bootstrap
+```
