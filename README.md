@@ -67,9 +67,36 @@ Con el entorno virtual activado, debemos intalar DJANGO y las librerias necesari
 ```
 pip install django djangorestframework psycopg2 django-cors-headers
 ```
+Luego de instalar lo anterior nos pedira que instalamos una libreria llamada pillow que sirve para muchos formatos de imagenes en python
+```
+python -m pip install pillow
+```
 
 Ejecutamos el server
 
 ```
-python manage.py runserver
+py manage.py runserver
 ```
+Luego de eso paramos el servidor con ctr + c y ejecutamos el siguiente comando para hacer las migraciones
+```
+py manage.py migrate
+```
+Luego de haber hecho las migraciones pasaremos a crear un superusuario con el siguiente comando
+
+```py manage.py createsuperuser```, Nos pedira un usuario un password, la confirmación del password y un correo
+
+Una ves creado el usuario volvemos a activar el servidor, ``` py manage.py runserver```, nos dejara una ip con un puerto por defecto y es  ```http://127.0.0.1:8000/```, la copiamos y pegamos en el navegador
+
+Cuando accedemos a la ip por defecto ```http://127.0.0.1:8000/ ``` veremos que django esta corriendo correctamente
+
+Para acceder al panel de django agregamos  ```/admin ``` a la ip quedaria así,  ```http://127.0.0.1:8000/admin ```, nos logueamos con el usuario y el password recientemente creados
+
+Cuando traemos cambios a nuestro django hay que utilizar el siguiente comando para hacer las migraciones
+```
+py manage.py makemigrations
+```
+
+
+
+
+
