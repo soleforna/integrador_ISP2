@@ -65,11 +65,7 @@ Activamos el entorno virtual, en windows ```.\venv\Scripts\activate```, en linux
 
 Con el entorno virtual activado, debemos intalar DJANGO y las librerias necesarias para el proyecto
 ```
-pip install django djangorestframework psycopg2 django-cors-headers
-```
-Luego de instalar lo anterior nos pedira que instalamos una libreria llamada pillow que sirve para muchos formatos de imagenes en python
-```
-python -m pip install pillow
+pip install django djangorestframework psycopg2 django-cors-headers pillow
 ```
 
 Ejecutamos el server
