@@ -90,16 +90,28 @@ WSGI_APPLICATION = 'drf_feriaonline.wsgi.application'
 #}
 
 # PostgreSQL
+#DATABASES = {
+#    'default': {
+#    'ENGINE': 'django.db.backends.postgresql',
+#    'NAME': 'dbferia',
+#		'HOST': 'localhost',
+#		'USER': 'postgres',
+#		'PASSWORD': 'root',   
+#    }
+#}
+
+# MySQL
 DATABASES = {
     'default': {
-    'ENGINE': 'django.db.backends.postgresql',
+    'ENGINE': 'django.db.backends.mysql',	
     'NAME': 'dbferia',
-		'HOST': 'localhost',
-		'USER': 'postgres',
-		'PASSWORD': 'root',   
+        'USER': 'root',
+        'PASSWORD':'root',
+        'HOST': 'localhost',
+        'PORT': '3306',
+        'OPTIONS': {'init_command': "SET sql_mode = 'STRICT_TRANS_TABLES'"}
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
