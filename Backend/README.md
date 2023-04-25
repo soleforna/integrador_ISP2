@@ -23,11 +23,22 @@ Activamos el entorno virtual, en windows ```.\venv\Scripts\activate```, en linux
 
 Con el entorno virtual activado, debemos intalar DJANGO y las librerias necesarias para el proyecto
 ```
-pip install django djangorestframework psycopg2 django-cors-headers
+pip install django djangorestframework django-cors-headers mysqlclient pillow
 ```
-Luego de instalar lo anterior nos pedira que instalamos una libreria llamada pillow que sirve para muchos formatos de imagenes en python
+Hoara podemos habrir una nueva terminal y ejecutar los siguientes comandos para ingresar a la base de datos desde docker
 ```
-python -m pip install pillow
+docker exec -it mysql-db bash
+```
+```
+mysql -u root -p 
+```
+Y ahora nos deberia pedir la contraseña
+
+
+
+Luego de eso ejecutamos el siguiente comando para hacer las migraciones para crear la estructura de la base de datos
+```
+py manage.py migrate
 ```
 
 Ejecutamos el server
