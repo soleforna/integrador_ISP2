@@ -21,12 +21,12 @@ pip install django djangorestframework django-cors-headers mysqlclient pillow
 Para poder ejecutar el stack de backend, ademas de contar con Python instalado, es necesario una base de datos MySQL corriendo de nombre "dbferia". Una manera sencilla de tener una base de datos Postgres es mediante Docker, que una vez instaldo solo sera necesario ejecutar el siguiente comandos
 
 ```
-docker run -d --name postgres-server -p 5432:5432 -v postgres-data:/var/lib/postgresql/data -e "POSTGRES_PASSWORD=root" postgres
+docker run -itd --name mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=root mysql
 ```
 
 Ahora podemos abrir una nueva terminal y ejecutar los siguientes comandos para ingresar a la base de datos desde docker
 ```
-docker exec -it mysql-db bash
+docker exec -it mysql bash
 ```
 ```
 mysql -u root -p 
