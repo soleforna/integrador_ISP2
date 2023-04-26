@@ -55,6 +55,7 @@ py manage.py migrate
 ![image](https://user-images.githubusercontent.com/85143329/234153185-17f9d91d-dc76-4646-a7af-70005fa67b79.png)
 
 Podemos volver al Bash de MySQL y ejecutar `show tables;` y deberiamos obtener algo similar a lo siguiente que confirman la estructura de la base de datos
+
 ![image](https://user-images.githubusercontent.com/85143329/234153380-fbe92bc0-6d77-43dd-a3d7-ebaf7e6cddf6.png)
 
 Nuevamente en nuestro entorno virtual pasaremos a crear un superusuario con el siguiente comando
