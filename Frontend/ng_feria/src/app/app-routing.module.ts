@@ -6,13 +6,16 @@ import { NavComponent } from './components/shared/nav/nav.component';
 import { FooterComponent } from './components/shared/footer/footer.component';
 import { ShopComponent } from './components/shop/shop.component';
 import { CheckoutComponent } from './components/shop/checkout/checkout.component';
+import { ProductsComponent } from './components/shop/products/products.component';
 
 //import { LoginComponent } from './components/login/login.component';
 //import { RegisterComponent } from './components/register/register.component';
 //import { ProfileComponent } from './components/profile/profile.component';
 
 
-const routes: Routes = [];
+const routes: Routes = [
+  {path:'products', component:ProductsComponent}
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
