@@ -1,0 +1,24 @@
+*{
+font-family: 'Indie Flower', cursive;
+}
+
+.banner{
+    background-image: linear-gradient(45deg, #F8C1CC 70%, #B2DCEA 30%);  
+    height: 80vh;
+}
+
+.title{
+    font-size: 4rem;
+}
+
+polygon {
+    fill: yellow;
+    stroke: orange;
+    stroke-width: 2;
+}
+
+.btn-orden{
+    background-color: #f0e68c;
+    border-color: #f1e681;
+    color: rgb(29, 20, 20);
+}
