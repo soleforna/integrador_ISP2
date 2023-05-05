@@ -11,7 +11,7 @@ body{
   flex-direction: column;
   justify-content: center;
   min-height: 100vh;
-  background-image:url(https://cdn.pixabay.com/photo/2023/03/22/13/28/polka-dots-7869569_1280.jpg);
+  background-image:url(../../../../assets/img/polka.jpg);
   background-size:cover;
 }
 ::selection{

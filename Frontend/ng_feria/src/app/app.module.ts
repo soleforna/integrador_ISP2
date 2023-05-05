@@ -11,6 +11,7 @@ import { ProductsContainerComponent } from './components/shop/products-container
 import { CheckoutComponent } from './components/shop/checkout/checkout.component';
 import { CheckoutCardComponent } from './components/shop/checkout-card/checkout-card.component';
 import { DetailsComponent } from './components/shop/details/details.component';
+import { ShopComponent } from './components/shop/shop.component';
 import { LoginComponent } from './components/auth/login/login.component';
 
 @NgModule({
@@ -24,6 +25,7 @@ import { LoginComponent } from './components/auth/login/login.component';
     CheckoutComponent,
     CheckoutCardComponent,
     DetailsComponent,
+    ShopComponent,
     LoginComponent
   ],
   imports: [
