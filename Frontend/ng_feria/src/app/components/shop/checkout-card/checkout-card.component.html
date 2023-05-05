@@ -1,0 +1,64 @@
+
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script rel="stylesheet" src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+  
+  </head>
+  
+  <body>
+  
+    <div class="container">
+      <h1>Pagar con tarjeta de crédito/débito</h1>
+  <div class="container-table">
+      <h2>Datos de la tarjeta</h2>
+              <label for="cars">Seleccione tipo de tarjeta  </label>
+  
+              <select name="tarjeta" id="tarjeta">
+                <option value="volvo">Tarjeta de credito</option>
+                <option value="saab">Tarjeta de debito</option>
+              </select>
+              <br>
+              <label for="cars">Seleccione marca tarjeta  </label>
+              <select name="marcaTarjeta" id="marcaTarjeta">
+                  <option value="volvo">Mastercard</option>
+                  <option value="saab">Visa</option>
+                  <option value="saab">American Express</option>
+                </select>
+                <br>
+             <label for="name"> Nombre en la tarjeta  </label>
+                  <input type="text" id="name" name="name" required
+                  minlength="8" maxlength="20" size="29">
+                  <br>
+              <label for="numero"> Numero de la tarjeta </label>
+                   <input type="text" id="numero" name="numero" required
+                   minlength="8" maxlength="20" size="30">
+                   <br>
+              <label for="expiracion">   Fecha expiracion   </label>
+                   <input type="month" id="expiracion" name="expiracion" required>
+          
+              <label for="cvv"> CVV </label>
+                   <input type="text" id="cvv" name="cvv" required
+                   minlength="3" maxlength="3"size="10" >
+  
+  
+      </div>
+       <div class="container-2 ">
+              <h2>Realizar Pago</h2>
+              <tr>
+                  <th data-monto="total" scope="col">Monto Total</th>
+                </tr>
+                <tr>
+                  <td data-monto="total">$1099</td>
+                </tr>
+              
+              <button class="bt-comprar"> pagar</button>
+          </div>
+          
+       
+    </div>
+  
+  
+  </body>
+  
+
+  
