@@ -6,7 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./products.component.css']
 })
 export class ProductsComponent {
-correo : String = ""; 
-
 
 }
