@@ -1,7 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-
-const routes: Routes = [];
+import { CheckoutComponent } from './components/shop/checkout/checkout.component';
+const routes: Routes = [
+   { path: 'checkout', component:CheckoutComponent }
+   ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
