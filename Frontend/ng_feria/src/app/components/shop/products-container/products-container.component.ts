@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./products-container.component.css']
 })
 export class ProductsContainerComponent {
-
+  correo : String = ""; 
 }
