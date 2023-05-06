@@ -17,7 +17,17 @@ import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    LandingComponent,
+    FooterComponent,
+    NavComponent,
+    ProductsComponent,
+    ProductsContainerComponent,
+    CheckoutComponent,
+    CheckoutCardComponent,
+    DetailsComponent,
+    ShopComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

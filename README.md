@@ -38,38 +38,7 @@ En general, el aplicativo web es para una feria americana para mejorar la experi
 * Python 3.11.3
 * Django 
 * Django Restframework
-* PostgresSQL
+* MySQL
 
 #
-### BackEnd:
 
-Para poder ejecutar el stack de backend, es necesario contar con Python instalado, una base de datos PostgresSQL corriendo de nombre `dbferia`
-
-Una manera sencilla de tener una base de datos Postgres es mediante Docker, que una vez instaldo solo sera necesario ejecutar el siguiente comandos
-
-```
-docker run -d --name postgres-server -p 5432:5432 -v postgres-data:/var/lib/postgresql/data -e "POSTGRES_PASSWORD=root" postgres
-```
-
-
-Luego de clonar el repositorio sera necesario crear un entorno virtual, por lo que es necesario instalar virtualenv con el siguiente comando
-
-```
-pip install virtualenv
-```
-Le decimos a Python que vamos ausar un entorno virtual y que cree la carpeta “venv“ para contenerlo
-```
-python -m virtualenv venv
-```
-Activamos el entorno virtual, en windows ```.\venv\Scripts\activate```, en linux ```./venv/Scripts/activate```
-
-Con el entorno virtual activado, debemos intalar DJANGO y las librerias necesarias para el proyecto
-```
-pip install django djangorestframework psycopg2 django-cors-headers
-```
-
-Ejecutamos el server
-
-```
-python manage.py runserver
-```
