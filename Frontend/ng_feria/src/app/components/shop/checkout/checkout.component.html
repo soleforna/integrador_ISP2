@@ -1,11 +1,5 @@
 <app-nav></app-nav>
 
-<head>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <script rel="stylesheet" src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
-
-</head>
-
 <body>
 
   <div class="container">
@@ -22,25 +16,11 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td data-productos="imagen"><img src="../../../../assets/img/remerahombre.jpg" alt=""></td>
-          <td data-productos="codigo">00254</td>
-          <td data-productos="nombre">Remera Hombre</td>
-          <td data-productos="precio">500$</td>
-          <td data-productos="accion"><i class="fa-solid fa-trash-can"></i></td>
-        </tr>
-        <tr>
-          <td data-productos="imagen"><img src="../../../../assets/img/zapatoshombre.jpg" alt=""></td>
-          <td data-productos="codigo">00452</td>
-          <td data-productos="nombre">Zapatos Hombre</td>
-          <td data-productos="precio">800$</td>
-          <td data-productos="accion"><i class="fa-solid fa-trash-can"></i></td>
-        </tr>
-        <tr>
-          <td data-productos="imagen"><img src="../../../../assets/img/camisahombre.jpg" alt=""></td>
-          <td data-productos="codigo">002030</td>
-          <td data-productos="nombre">Camisa Hombre</td>
-          <td data-productos="precio">600$</td>
+        <tr *ngFor="let product of products">
+          <td data-productos="imagen"><img src={{product.imagen}} alt=""></td>
+          <td data-productos="codigo">{{product.codigo}}</td>
+          <td data-productos="nombre">{{product.nombre}}</td>
+          <td data-productos="precio">{{product.precio}}$</td>
           <td data-productos="accion"><i class="fa-solid fa-trash-can"></i></td>
         </tr>
       </tbody>
@@ -59,17 +39,20 @@
           </thead>
           <tbody>
             <tr>
-              <td data-monto="monto">1900$</td>
-              <td data-monto="iva">21%</td>
-              <td data-monto="precio">200$</td>
-              <td data-monto="total">1099$</td>
+              <td data-monto="monto">{{Calculo()}}$</td>
+              <td data-monto="iva">{{iva}}%</td>
+              <td data-monto="precio">{{descuento}}$</td>
+              <td data-monto="total">{{CalculoFinal()}}$</td>
             </tr>
           </tbody>
         </table>
         </div>
         <div class="container-2 comp">
-          <h2>Comprar Productos</h2>
-        <button class="bt-comprar">Comprar</button>
+
+
+
+        <button class="bt-comprar" (click)="comprarProducts()">Comprar</button>
+
         </div>
       </div>
   </div>
