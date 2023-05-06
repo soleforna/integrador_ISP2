@@ -14,8 +14,10 @@ import { ProductsContainerComponent } from './components/shop/products-container
 
 
 const routes: Routes = [
+
   { path: 'products', component: ProductsComponent}, 
   { path: 'Productos', component: ProductsContainerComponent},
+
 ];
 
 @NgModule({
