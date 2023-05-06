@@ -19,7 +19,7 @@ body{
   background: #d43f8d;
 }
 .container{
-  margin-top: 20px;
+  margin-top: 10px;
   width: 1050px;
   background: #fff;
   text-align: center;
@@ -30,6 +30,7 @@ body{
   flex-direction: column;
   align-items: center;
   gap: 20px;
+  
 
 }
 
@@ -54,36 +55,33 @@ body{
   background: #fff;
   border-radius: 10px;
   border:2px solid #000;
+  max-height:550px;
 }
 
 .container-monto{
   position: relative;
   width:100%;
-  background: none;
+  background: #fff;
   border-radius: 10px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-
 }
 .container-2{
-  margin-top: 20px;
-  width: 450px;
+  width: 480px;
   background: #fff;
   text-align: center;
   border-radius: 10px;
-  padding: 50px 35px 70px 35px;
+  padding: 8px 35px 5px 35px;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  justify-content:center;
+  align-items:center;
   border:2px solid #000;
   box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
   -webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
   -moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
-
-
 }
-
 th,td{
 border:none;
 }
@@ -112,25 +110,33 @@ color:#fff;
 
 
 }
-.comp{
-  justify-content: space-between;
-}
+
 @media screen and (max-width:1205px) {
   .container-monto{
     flex-direction: column;
-
+    justify-content:space-around;
+    min-height:250px;
   }
+  .container-2{
+  width:100%;
+  }
+  .comp{
+    padding:15px 0 30px 0;
+  
+  }
+  
+}
+
+ 
 
 @media screen and (max-width:775px) {
   .container-monto{
     flex-direction: column;
-
   }
 }
 @media screen and (max-width:576px) {
   .container{
    width:100%;
-
   }
 }
 @media screen and (max-width:547px) {
@@ -139,11 +145,15 @@ color:#fff;
  height: 40px;
 
  }
- @media screen and (max-width:490px) {
+}
+ @media screen and (max-width:530px) {
+  .container-table{
+    overflow-y:scroll;
+  }
  .container-table .table tr{
   display:flex;
   flex-direction:column;
-  margin-bottom:1em;
+  margin-bottom:3em;
 
  }
 /*  .container-table .table thead{
@@ -160,11 +170,11 @@ color:#fff;
  .container-monto .table tr{
   display:flex;
   flex-direction:column;
-  margin-bottom:1em;
+  margin-bottom:2em;
 
  }
 
- .container-table .table thead{
+ .container-monto .table thead{
   display:none;
  }
  .container-monto .table thead{
@@ -179,12 +189,12 @@ color:#fff;
   width:90px;
  }
 
-}
+
 
  .container-table tr{
   flex-direction: column;
  }
-}
+
   .container-2{
     width: 100%;
 
@@ -192,5 +202,6 @@ color:#fff;
   h1{
     min-width: 400px auto;
   }
+
 
 }

@@ -16,8 +16,9 @@ import { DetailsComponent } from './components/shop/details/details.component';
 
 const routes: Routes = [
 
-  { path: 'products', component: ProductsComponent}, 
+  { path: 'products', component: ProductsComponent},
   { path: 'Productos', component: ProductsContainerComponent},
+  {path: 'checkout', component: CheckoutComponent},
   {path:'details', component:DetailsComponent},
 
 ];
