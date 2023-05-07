@@ -18,7 +18,7 @@ const routes: Routes = [
   {path:'inicio', component:LandingComponent},
   {path:'iniciar-sesion',component:LoginComponent},
   {path:'tienda',component:ShopComponent},
-  {path:'productos', component:ProductsComponent}
+  {path:'productos', component:ProductsComponent},
   {path: 'producto', component: ProductsContainerComponent},
   {path: 'checkout', component: CheckoutComponent},
   {path:'detalle', component:DetailsComponent},
