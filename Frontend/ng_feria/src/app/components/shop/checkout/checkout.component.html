@@ -1,1 +1,63 @@
-<p>checkout works!</p>
+<app-nav></app-nav>
+
+<body>
+
+  <div class="container">
+    <h1>Productos</h1>
+<div class="container-table">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col" data-productos="imagen">imagen</th>
+          <th scope="col" data-productos="codigo">Codigo</th>
+          <th scope="col" data-productos="nombre">Nombre</th>
+          <th scope="col" data-productos="precio">Precio</th>
+          <th scope="col" data-productos="accion">Accion</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let product of products">
+          <td data-productos="imagen"><img src={{product.imagen}} alt=""></td>
+          <td data-productos="codigo">{{product.codigo}}</td>
+          <td data-productos="nombre">{{product.nombre}}</td>
+          <td data-productos="precio">{{product.precio}}$</td>
+          <td data-productos="accion"><i class="fa-solid fa-trash-can"></i></td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+    <div class="container-monto">
+      <div class="container-2">
+        <table class="table">
+          <thead>
+            <tr>
+              <th data-monto="monto" scope="col">Monto</th>
+              <th data-monto="iva" scope="col">Iva</th>
+              <th data-monts="descuento" scope="col">Descuento</th>
+              <th data-monto="total" scope="col">Monto Total</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td data-monto="monto">{{Calculo()}}$</td>
+              <td data-monto="iva">{{iva}}%</td>
+              <td data-monto="precio">{{descuento}}$</td>
+              <td data-monto="total">{{CalculoFinal()}}$</td>
+            </tr>
+          </tbody>
+        </table>
+        </div>
+        <div class="container-2 comp">
+
+
+
+        <button class="bt-comprar" (click)="comprarProducts()">Comprar</button>
+
+        </div>
+      </div>
+  </div>
+
+
+</body>
+<app-footer></app-footer>
+

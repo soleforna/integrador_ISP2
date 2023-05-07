@@ -6,7 +6,16 @@ Para ejecutar la app de angular debemos entrar a la carpeta ng_feria y luego:
 ```
 ng serve -o
 ```
+Luego...
 
+```
+npm install
+```
+y finalmente: 
+
+```
+npm install -g @angular/cli
+```
 Luego hacemos ctrl + clic en la dirección que sale por consola para ver que está corriendo angular
 
 Para instalar bootstrap el comando a ejecutar sería el siguiente:
