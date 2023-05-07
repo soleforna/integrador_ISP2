@@ -1,26 +1,33 @@
+
+.nav-link:hover {
+  color:#B01E68;
+}
+
 .cart-no {
   position: absolute;
   min-height: 25px;
   min-width: 25px;
   border-radius: 50%;
   font-size: 1em;
-  background: violet;
+  background: #B01E68;
   color: white;
   text-align: center;
   top: -12px;
   right: 32px ;
 }
 
-.logo {
-  font-size: 2em;
-  font-weight: 500;
-  text-shadow: -2px -3px 4px #aaa;
+.btn-outline-secondary{
+  background-color: #F49D1A;
+  color: #fff;
+  border: none;
 }
 
-.res {
-  color: violet;
-  font-weight: 720;
-  font-style: italic;
+.btn-outline-secondary:active{
+  background-color: #F49D1A;
+}
+
+.btn-outline-secondary:hover{
+  transform: scale(1.1);
 }
 
 @media screen and (max-width: 990px) {
