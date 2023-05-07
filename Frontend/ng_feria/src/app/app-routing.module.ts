@@ -13,14 +13,12 @@ import { DetailsComponent } from './components/shop/details/details.component';
 //import { RegisterComponent } from './components/register/register.component';
 //import { ProfileComponent } from './components/profile/profile.component';
 
-
 const routes: Routes = [
-
+  {path:'products', component:ProductsComponent}
   { path: 'products', component: ProductsComponent},
   { path: 'Productos', component: ProductsContainerComponent},
   {path: 'checkout', component: CheckoutComponent},
   {path:'details', component:DetailsComponent},
-
 ];
 
 @NgModule({
