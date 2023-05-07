@@ -1,14 +1,52 @@
+.btn.btn-primary.btn-lg {
+  color: black;
+  background-color: #AF1E67;
+  border-radius: 14vh;
+  border-style: groove;
+  border-color: #AF1E67;
+  transition: transform 2ms ease-in-out;
+  }
+  .btn.btn-primary.btn-lg:hover {
+    transform: scale(1.1);
+  }
+  .btn.btn-primary.btn-lg:active {
+    transform: scale(1.1);
+  }
+
+.btn.btn-primary.btn-lg:visited {
+  transform: scale(1.1);
+}
+
+a {
+  text-decoration: none;
+  color: #fd680e;
+}
+
+a:hover {
+  color: #ff8f4c;
+  text-decoration: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.font-primary {
+  font-family: "Raleway", sans-serif;
+}
 .hero-section {
-  margin-top: 80px; /* ajusta el valor según sea necesario */
+  margin-top: 80px;
 }
 
 .img-fluid {
   max-width: 100%;
-  height:47vh;
+  height: 70vh;
 }
 
 .benefits-section {
-  margin-top: 80px; /* ajusta el valor según sea necesario */
+  margin-top: 159px;
 }
 
 .faq {
@@ -67,4 +105,47 @@
 
 .faq .faq-list a.collapsed .icon-close {
   display: none;
+}
+
+.container h2 {
+   font-size: 50px;
+   margin-top: 14vh;
+    margin-bottom: 49px;
+    display: flex;
+    justify-content: center;
+}
+
+#arrow-icon {
+  font-size: 24px;
+  cursor: pointer;
+  position:absolute;
+  right: 50px;
+}
+
+#garantia
+#envio
+#soporte {
+  background-color: #fff;
+  border: 1px dotted  black;
+  border-radius: 50%;
+}
+
+.card-body.text-center:hover {
+    transform: scale(1.1);
+
+}
+.card-body.text-center {
+    transition: transform 0.2s ease;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: space-around;
+    flex-direction: column;
+    align-items: center;;
+
+}
+
+#garantia
+#envio
+#soporte:hover {
+  transform: scale(1.1);
 }

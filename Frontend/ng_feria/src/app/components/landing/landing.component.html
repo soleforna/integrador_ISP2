@@ -1,5 +1,5 @@
 <app-nav></app-nav>
-<!-- aca contruir la land
+
 <main>
 <section class="hero-section">
   <div class="container">
@@ -8,10 +8,10 @@
         <img src="../../../../assets/img/camperon niño.jpg" class="img-fluid" alt="Imagen de héroe">
       </div>
       <div class="col-md-6">
-        <h1>Bievenido a tienda online</h1>
+        <h1>Bievenido a feria online</h1>
         <p>Encuentra prendas únicas y apoya la moda sostenible. Gran variedad de ropa de diferentes marcas, estilos y tallas. Promociones especiales durante toda la feria, incluyendo descuentos y envío gratuito.
           Regístrate ahora y recibe un cupón de descuento en tu primera compra. ¡Renueva tu armario de manera sostenible!.</p>
-        <a href="#" class="btn btn-primary btn-lg">Regístrate</a>
+        <a routerLink="/registro" class="btn btn-primary btn-lg">Regístrate</a>
       </div>
     </div>
   </div>
@@ -21,7 +21,7 @@
   <div class="container">
     <h2 class="text-center mb-5">Beneficios de nuestra página</h2>
     <div class="row">
-      <div class="col-md-4 mb-4">
+      <div class="col-md-4 mb-4" id="envio">
         <div class="card h-100">
           <div class="card-body text-center">
             <i class="fas fa-shipping-fast fa-3x mb-3"></i>
@@ -30,7 +30,7 @@
           </div>
         </div>
       </div>
-      <div class="col-md-4 mb-4">
+      <div class="col-md-4 mb-4" id="soporte">
         <div class="card h-100">
           <div class="card-body text-center">
             <i class="fas fa-headphones-alt fa-3x mb-3"></i>
@@ -39,7 +39,7 @@
           </div>
         </div>
       </div>
-      <div class="col-md-4 mb-4">
+      <div class="col-md-4 mb-4 " id="garantia">
         <div class="card h-100">
           <div class="card-body text-center">
             <i class="fas fa-money-bill-alt fa-3x mb-3"></i>
@@ -56,61 +56,62 @@
   <div class="container">
 
     <div class="section-title">
-      <h2>Frequenty Asked Questions</h2>
+      <h2>Preguntas Frecuentes</h2>
     </div>
 
     <ul class="faq-list">
 
       <li>
-        <a data-bs-toggle="collapse" class="collapsed" data-bs-target="#faq1">Non consectetur a erat nam at lectus urna duis? <i class="bx bx-down-arrow-alt icon-show"></i><i class="bx bx-x icon-close"></i></a>
+        <a data-bs-toggle="collapse" class="collapsed" data-bs-target="#faq1">¿Tienen descuentos o promociones especiales para clientes frecuentes? <i id="arrow-icon" class="fas fa-arrow-down"></i></a>
         <div id="faq1" class="collapse" data-bs-parent=".faq-list">
           <p>
-            Feugiat pretium nibh ipsum consequat. Tempus iaculis urna id volutpat lacus laoreet non curabitur gravida. Venenatis lectus magna fringilla urna porttitor rhoncus dolor purus non.
+            Sí, ofrecemos descuentos y promociones especiales para clientes frecuentes. Mantente al tanto de nuestras redes sociales y suscríbete a nuestro boletín para obtener las últimas promociones y descuentos.
           </p>
         </div>
       </li>
 
       <li>
-        <a data-bs-toggle="collapse" data-bs-target="#faq2" class="collapsed">Feugiat scelerisque varius morbi enim nunc faucibus a pellentesque? <i class="bx bx-down-arrow-alt icon-show"></i><i class="bx bx-x icon-close"></i></a>
+        <a data-bs-toggle="collapse" data-bs-target="#faq2" class="collapsed">¿Cómo puedo saber si la prenda que quiero comprar me quedará bien? <i id="arrow-icon" class="fas fa-arrow-down"></i></a>
         <div id="faq2" class="collapse" data-bs-parent=".faq-list">
           <p>
-            Dolor sit amet consectetur adipiscing elit pellentesque habitant morbi. Id interdum velit laoreet id donec ultrices. Fringilla phasellus faucibus scelerisque eleifend donec pretium. Est pellentesque elit ullamcorper dignissim. Mauris ultrices eros in cursus turpis massa tincidunt dui.
+            En nuestra tienda en línea, puedes encontrar una guía de tallas para ayudarte a encontrar el tamaño adecuado para ti. También puedes contactarnos si tienes alguna pregunta sobre el tamaño o la forma de la prenda.
           </p>
         </div>
       </li>
 
       <li>
-        <a data-bs-toggle="collapse" data-bs-target="#faq3" class="collapsed">Dolor sit amet consectetur adipiscing elit pellentesque habitant morbi? <i class="bx bx-down-arrow-alt icon-show"></i><i class="bx bx-x icon-close"></i></a>
+        <a data-bs-toggle="collapse" data-bs-target="#faq3" class="collapsed">¿Puedo devolver o cambiar una prenda? <i id="arrow-icon" class="fas fa-arrow-down"></i></a>
         <div id="faq3" class="collapse" data-bs-parent=".faq-list">
           <p>
-            Eleifend mi in nulla posuere sollicitudin aliquam ultrices sagittis orci. Faucibus pulvinar elementum integer enim. Sem nulla pharetra diam sit amet nisl suscipit. Rutrum tellus pellentesque eu tincidunt. Lectus urna duis convallis convallis tellus. Urna molestie at elementum eu facilisis sed odio morbi quis
+            Sí, ofrecemos devoluciones y cambios en la mayoría de los productos. Por favor, revisa nuestras políticas de devolución y cambio para obtener más información.
           </p>
         </div>
       </li>
 
       <li>
-        <a data-bs-toggle="collapse" data-bs-target="#faq4" class="collapsed">Ac odio tempor orci dapibus. Aliquam eleifend mi in nulla? <i class="bx bx-down-arrow-alt icon-show"></i><i class="bx bx-x icon-close"></i></a>
+        <a data-bs-toggle="collapse" data-bs-target="#faq4" class="collapsed">¿Qué medidas toman para proteger la privacidad y la seguridad de mis datos personales?<i id="arrow-icon" class="fas fa-arrow-down"></i></a>
         <div id="faq4" class="collapse" data-bs-parent=".faq-list">
           <p>
-            Dolor sit amet consectetur adipiscing elit pellentesque habitant morbi. Id interdum velit laoreet id donec ultrices. Fringilla phasellus faucibus scelerisque eleifend donec pretium. Est pellentesque elit ullamcorper dignissim. Mauris ultrices eros in cursus turpis massa tincidunt dui.
+            Nos tomamos muy en serio la privacidad y seguridad de los datos personales de nuestros clientes. Utilizamos medidas de seguridad de última generación para proteger tu información y nunca compartimos tus datos con terceros sin tu consentimiento. Consulta nuestra política de privacidad para obtener más información.
           </p>
         </div>
       </li>
 
       <li>
-        <a data-bs-toggle="collapse" data-bs-target="#faq5" class="collapsed">Tempus quam pellentesque nec nam aliquam sem et tortor consequat? <i class="bx bx-down-arrow-alt icon-show"></i><i class="bx bx-x icon-close"></i></a>
+        <a data-bs-toggle="collapse" data-bs-target="#faq5" class="collapsed">¿Cómo puedo hacer un seguimiento de mi pedido? <i id="arrow-icon" class="fas fa-arrow-down"></i></a>
         <div id="faq5" class="collapse" data-bs-parent=".faq-list">
           <p>
-            Molestie a iaculis at erat pellentesque adipiscing commodo. Dignissim suspendisse in est ante in. Nunc vel risus commodo viverra maecenas accumsan. Sit amet nisl suscipit adipiscing bibendum est. Purus gravida quis blandit turpis cursus in
+            Una vez que realizas un pedido, te enviaremos un correo electrónico de confirmación con los detalles de tu pedido y un número de seguimiento. Puedes utilizar este número de seguimiento para hacer un seguimiento de tu pedido en línea.
+
           </p>
         </div>
       </li>
 
       <li>
-        <a data-bs-toggle="collapse" data-bs-target="#faq6" class="collapsed">Tortor vitae purus faucibus ornare. Varius vel pharetra vel turpis nunc eget lorem dolor? <i class="bx bx-down-arrow-alt icon-show"></i><i class="bx bx-x icon-close"></i></a>
+        <a data-bs-toggle="collapse" data-bs-target="#faq6" class="collapsed">¿Cómo puedo contactar con ustedes si tengo alguna pregunta o inquietud? <i id="arrow-icon" class="fas fa-arrow-down"></i></a>
         <div id="faq6" class="collapse" data-bs-parent=".faq-list">
           <p>
-            Laoreet sit amet cursus sit amet dictum sit amet justo. Mauris vitae ultricies leo integer malesuada nunc vel. Tincidunt eget nullam non nisi est sit amet. Turpis nunc eget lorem dolor sed. Ut venenatis tellus in metus vulputate eu scelerisque. Pellentesque diam volutpat commodo sed egestas egestas fringilla phasellus faucibus. Nibh tellus molestie nunc non blandit massa enim nec.
+            LPuedes contactar con nosotros en cualquier momento utilizando nuestro formulario de contacto en línea o enviándonos un correo electrónico a la dirección proporcionada en nuestro sitio web.
           </p>
         </div>
       </li>
@@ -123,4 +124,4 @@
 </main>
 
 
-<app-footer></app-footer>
+<app-footer> </app-footer>
