@@ -9,16 +9,19 @@ import { CheckoutComponent } from './components/shop/checkout/checkout.component
 import { ProductsComponent } from './components/shop/products/products.component';
 import { ProductsContainerComponent } from './components/shop/products-container/products-container.component';
 import { DetailsComponent } from './components/shop/details/details.component';
-//import { LoginComponent } from './components/login/login.component';
+import { LoginComponent } from './components/auth/login/login.component';
 //import { RegisterComponent } from './components/register/register.component';
 //import { ProfileComponent } from './components/profile/profile.component';
 
 const routes: Routes = [
-  {path:'products', component:ProductsComponent}
-  { path: 'products', component: ProductsComponent},
-  { path: 'Productos', component: ProductsContainerComponent},
+  {path:'', redirectTo:'/inicio', pathMatch:'full'},
+  {path:'inicio', component:LandingComponent},
+  {path:'iniciar-sesion',component:LoginComponent},
+  {path:'tienda',component:ShopComponent},
+  {path:'productos', component:ProductsComponent}
+  {path: 'producto', component: ProductsContainerComponent},
   {path: 'checkout', component: CheckoutComponent},
-  {path:'details', component:DetailsComponent},
+  {path:'detalle', component:DetailsComponent},
 ];
 
 @NgModule({
