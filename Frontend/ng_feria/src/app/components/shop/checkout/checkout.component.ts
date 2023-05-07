@@ -8,13 +8,8 @@ import { CommonModule } from '@angular/common';
   templateUrl: './checkout.component.html',
   styleUrls: ['./checkout.component.css']
 
-})
-export class CheckoutComponent {
-
 }
-
-
-})
+)
 export class CheckoutComponent {
      iva=21;
      descuento=200;
@@ -75,4 +70,5 @@ export class CheckoutComponent {
     }
   }
 }
+
 
