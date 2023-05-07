@@ -13,17 +13,15 @@ import { LoginComponent } from './components/auth/login/login.component';
 //import { RegisterComponent } from './components/register/register.component';
 //import { ProfileComponent } from './components/profile/profile.component';
 
-
 const routes: Routes = [
   {path:'', redirectTo:'/inicio', pathMatch:'full'},
   {path:'inicio', component:LandingComponent},
   {path:'iniciar-sesion',component:LoginComponent},
   {path:'tienda',component:ShopComponent},
-  { path: 'products', component: ProductsComponent},
-  { path: 'Productos', component: ProductsContainerComponent},
+  {path:'productos', component:ProductsComponent}
+  {path: 'producto', component: ProductsContainerComponent},
   {path: 'checkout', component: CheckoutComponent},
-  {path:'details', component:DetailsComponent},
-
+  {path:'detalle', component:DetailsComponent},
 ];
 
 @NgModule({

@@ -23,5 +23,3 @@ export class FooterComponent implements OnInit {
     this.esCorreoValido = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(this.correoElectronico.trim());
   }
 }
-
-
