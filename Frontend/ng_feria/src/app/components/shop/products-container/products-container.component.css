@@ -1,7 +1,7 @@
 *{
-    font-family: 'Indie Flower', cursive;
+font-family: "Raleway", sans-serif;
     }
-    
+
     /* CONTENIDO DE ENCABEZADO O BANNER */
     .banner{
         background-image: linear-gradient(45deg, #F8C1CC 70%, #B2DCEA 30%);  
@@ -21,6 +21,9 @@
         color: rgb(29, 20, 20);
     }
     
+    .btn-orden:hover{
+        transform: scale(1.1)
+    }
     
     /* Estrella para resuloción mobile */
     .star-mobile{
