@@ -1,10 +1,11 @@
 .btn.btn-primary.btn-lg {
-  color: black;
+  color: #fff;
   background-color: #AF1E67;
   border-radius: 14vh;
   border-style: groove;
   border-color: #AF1E67;
   transition: transform 2ms ease-in-out;
+  cursor: pointer;
   }
   .btn.btn-primary.btn-lg:hover {
     transform: scale(1.1);
@@ -149,3 +150,173 @@ h6,
 #soporte:hover {
   transform: scale(1.1);
 }
+.testionios{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+}
+.testimonios_header{
+margin:50px 0;
+padding:10px 20px;
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+}
+.testimonios_header h1{
+  font-size: 2.9rem;
+  font-weight: 500;
+  background-color: #202020;
+  color: white;
+  padding: 10px 20px;
+}
+.testimonios_header span{
+  font-size: 2.2rem;
+  color:#252525;
+  margin-bottom: 25px;
+ text-transform: uppercase;
+}
+
+.testimonios_contenedor{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 100%;
+}
+.contenedor-tb{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 100%;
+  flex-direction: column;
+  position: relative;
+}
+.input-group-btn{
+  display: flex;
+  justify-content: flex-end;
+  width: 68%;
+}
+.input-btn-modal{
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.testimonios_caja{
+  width: 500px;
+  box-shadow: 2px 2px 30px rgb(0, 0, 0, 0.1);
+  background-color: white;
+  padding:20px;
+  margin: 15px;
+  cursor:pointer;
+  margin-top: 30px;
+}
+.perfil_img{
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin: 30px;
+}
+.perfil_img img{
+  width: 100%;
+  height: 100%;
+  object-fit: center;
+}
+.perfil{
+  display: flex;
+  align-items: center;
+}
+.name_user{
+  display: flex;
+  flex-direction: column;
+}
+.name_user strong{
+  color: #3d3d3d;
+  font-size: 1.3rem;
+}
+.name_user span{
+  color: #979797;
+  font-size: 1.1rem;
+}
+.reseñas{
+  color: #f9d71c;
+}
+.fa-gray{
+  color: grey;
+}
+.caja-top{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+.comentarios_clientes p{
+  color:#4b4b4b;
+}
+.btn-color{
+  background: linear-gradient(45deg,#AF1E67,#f0a636, #F49D1A 100%);
+}
+.btn-color-transparent{
+  background:#AF1E67;
+}
+.btn-color-transparent:hover{
+  background:#d92d83;
+}
+.btn{
+  display: inline-block;
+  font-weight: 800;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  user-select: none;
+  border: 0 solid transparent;
+  padding: 0.37rem 0.75rem;
+  cursor: pointer;
+}
+
+.btn-notify{
+    font-family: "Source Sans Pro", sans-serif;
+    display: inline-block;
+    font-size: .9rem;
+    padding: .6rem 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: .03rem;
+    color: #FFF;
+}
+.btn {
+    display: inline-block;
+    font-weight: 600;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    user-select: none;
+    border: 0 solid transparent;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    line-height: 1.4;
+    border-radius: 50rem;
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+@media screen and (max-width:1024px) {
+  .input-group-btn{
+    justify-content: center;
+  }
+
+}
+input[type = "radio"]{ display:none;}
+.clasificacion{
+  direction: rtl;/* right to left */
+  unicode-bidi: bidi-override;/* bidi de bidireccional */
+ font-size: 25px;
+}
+label{ color:grey;}
+input[type = "radio"]{ display:none;}
+label:hover{color:orange;}
+label:hover ~ label{color:orange;}
+input[type = "radio"]:checked ~ label{color:orange;}
