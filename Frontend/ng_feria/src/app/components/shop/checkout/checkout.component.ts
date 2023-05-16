@@ -13,7 +13,6 @@ import { CommonModule } from '@angular/common';
 export class CheckoutComponent {
      iva=21;
      descuento=200;
-
      products = [
     {
       imagen:"../../../../assets/img/remerahombre.jpg",
@@ -34,32 +33,31 @@ export class CheckoutComponent {
       precio:600
     }
   ];
+
+  //Funcion para calcular el monto de los productos
   Calculo(): number {
     let montoProducts = 0;
-
     for (let product of this.products) {
       montoProducts += product.precio;
-
     }
-
     return montoProducts;
   }
+
+  //Funcion para calcular el monto final con IVA y descuento
   CalculoFinal() {
     let IVA = 0;
     let montoFinal = 0;
     IVA = (this.Calculo() * this.iva) /100;
     if(this.Calculo()>0){
-
     montoFinal = this.Calculo() + IVA - this.descuento;
   }
   else{
     montoFinal = 0;
   }
-
     return montoFinal;
   }
 
-
+//Funcion para redireccionar a la pagina de pago
   comprarProducts(){
     if(this.products.length === 0){
      window.location.replace("/products");
