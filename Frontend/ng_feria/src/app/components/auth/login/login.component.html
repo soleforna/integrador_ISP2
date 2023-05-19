@@ -1,4 +1,4 @@
-<nav class="wrapper">
+<form class="wrapper" [formGroup]="loginForm">
   <div class="container main">
     <div class="row">
       <div class="col-md-6 side-image"></div>
@@ -6,13 +6,14 @@
         <div class="input-box">
           <p>Iniciar Sesión</p>
           <div class="input-field">
-            <input type="text" class="input" id="email" placeholder="Email">
+            <input formControlName="email" type="text" class="input" id="email" placeholder="Email">
+          </div>
+    
+          <div class="input-field">
+            <input formControlName="password" type="password" class="input" id="password" placeholder="Contraseña">
           </div>
           <div class="input-field">
-            <input type="password" class="input" id="password" placeholder="Contraseña">
-          </div>
-          <div class="input-field">
-            <button type="submit" class="submit">Iniciar Sesión</button>
+            <button type="submit" class="submit" >Iniciar Sesión</button>
           </div>
           <div class="signup">
             <span>¿Eres nuevo en este sitio? <a routerLink="/registro">Regístrate</a></span>
@@ -24,4 +25,4 @@
       </div>
     </div>
   </div>
-</nav>
+</form>
