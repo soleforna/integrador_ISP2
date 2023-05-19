@@ -1,4 +1,8 @@
-
+*main {
+padding: 0px;
+margin: 0px;
+border-spacing: 0px;
+}
 .nav-link:hover {
   color:#B01E68;
   cursor: pointer;
@@ -82,12 +86,13 @@ h6,
 
 /* Estilos sección principal */
 .hero-section {
-  margin-top: 9vh;
+  margin-top: 0vh;
   height: 100vh;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  padding: 0vh;
 
 
 }
@@ -133,7 +138,10 @@ h6,
 }
 
 .slider-section{
-  margin-top: 120px;
+  margin-right: 5rem;
+  margin-left: 5rem;
+  margin-top: 0rem;
+  margin-bottom: 5rem;
   display: flex;
   justify-content: center;
 }
@@ -144,16 +152,18 @@ h6,
 .container-slider{
   width: 100%; /* ancho definido */
   position: relative; /* posición relativa */
+  padding: 0rem;
+  margin: 0rem;
 
 }
 .carousel{
   margin-top:60px;
-  
- 
+
+
 }
 .carousel-item img {
   width: 100%; /* ocupar todo el ancho de la imagen */
-  height: 600px; /* altura automática proporcional */
+  height: auto; /* altura automática proporcional */
 }
 
 .imagen{
@@ -162,12 +172,16 @@ h6,
 
 }
 
-.benefits-section {
-  margin-top: 159px;
+/*seccion beneficios*/
+#beneficios {
+  margin:10px;
 }
 
+/*seccion de preguntas frecuentes*/
 .faq {
-  padding-bottom: 60px;
+    position: relative;
+    margin: 0rem;
+
 }
 
 .faq .faq-list {
@@ -235,8 +249,7 @@ h6,
 #arrow-icon {
   font-size: 24px;
   cursor: pointer;
-  position: absolute;
-  right: 50px;
+  position: static;
 }
 
 #garantia #envio #soporte {
@@ -413,6 +426,44 @@ h6,
   transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
     border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 } */
+
+@media only screen and  (max-width: 1024px) {
+  .carousel-item img{
+    height:18rem;
+    font-size: 5rem;
+  }
+
+  h2
+  ,h1
+  ,span {
+    font-size: 2,5rem!important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    padding: auto;
+
+  }
+}
+
+@media only screen and  (max-width: 480px) {
+  .carousel-item img{
+    height:18rem;
+    font-size: 5rem;
+  }
+
+  h2
+  ,h1
+  ,span {
+    font-size: 2,5rem!important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    padding: auto;
+
+  }
+}
 
 @media screen and (max-width: 1024px) {
   .input-group-btn {
