@@ -1,0 +1,463 @@
+<a #inicio></a>
+<nav class="navbar navbar-expand-md navbar-light bg-white fixed-top border-bottom shadow-sm">
+  <div class="container-fluid">
+    <div>
+      <img src="../../../../assets/img/logo.webp" style="max-height: 60px" alt="logo" />
+      <img src="../../../../assets/img/Logo-texto.webp" style="max-height: 60px" alt="logo" />
+    </div>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-center justify-content-md-end" id="navbarNav">
+      <ul class="navbar-nav mb-2 mx-auto mb-md-0 text-uppercase text-center">
+        <li class="nav-item">
+          <a class="nav-link"  (click)='scroll(inicio)'>Inicio</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" (click)='scroll(ofertas)'>Ofertas</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" (click)='scroll(beneficios)'>Beneficios</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" (click)='scroll(preguntas)'>Preguntas</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" (click)='scroll(comentarios)'>Comentarios</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" (click)='scroll(contactos)'>Contactos</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/producto']" routerLinkActive="router-link-active" >Tienda</a>
+        </li>
+      </ul>
+      <div class="d-flex align-items-center justify-content-center">
+        <a class="btn btn-outline-secondary me-2" routerLink="/iniciar-sesion">Ingresar</a>
+        <a class="btn btn-outline-secondary" routerLink="/registro">Registrarse</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<div id="icon-menu">
+  <i class="fa-sharp fa-solid fa-arrow-up"></i>
+</div>
+
+<main>
+  <section class="hero-section">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-md-6">
+          <img
+            src="../../../assets/img/camperon.jpg"
+            class="img-fluid imagen"
+            alt="Imagen de héroe"
+          />
+        </div>
+        <div class="col-md-6">
+          <h1 class="typewriter">Bienvenidos a FeriaOnline</h1>
+          <p class="texto">
+            Encontrá prendas únicas y apoyá la moda sostenible.
+            Gran variedad de marcas, estilos y tallas para todos los gustos. <br/>
+            Promociones especiales durante toda la feria, incluyendo descuentos y envío
+            gratuito. Regístrate ahora y recibe un cupón de descuento para tu
+            primera compra. <br/> <strong>¡Renová tu armario de manera sostenible!</strong>
+          </p>
+          <a class="btn btn-outline-secondary" routerLink="/registro"
+            >Registrarse</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="slider-section"#ofertas>
+    <div class="container-slider">
+      <h1 class="h1-ofertas">Ofertas</h1>
+    <div id="carouselExampleIndicators" class="carousel slide">
+      <div class="carousel-indicators">
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+      </div>
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img src="../../../../assets/img/bulldog.jpg" class="d-block w-100" alt="...">
+        </div>
+        <div class="carousel-item">
+          <img src="../../../../assets/img/bulldog.jpg" class="d-block w-100" alt="...">
+        </div>
+        <div class="carousel-item">
+          <img src="../../../../assets/img/bulldog.jpg" class="d-block w-100" alt="...">
+        </div>
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <a #beneficios></a>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+    </div>
+  </section>
+
+  <section id="beneficios" class="hero-section benefits-section" #beneficios>
+    <div class="container">
+      <h2 class="text-center mb-5">Beneficios de nuestra página</h2>
+      <div class="row">
+        <div class="col-md-4 mb-4" id="envio">
+          <div class="card h-100">
+            <div class="card-body text-center">
+              <i class="fas fa-shipping-fast fa-3x mb-3"></i>
+              <h4 class="card-title">Envío gratuito</h4>
+              <p class="card-text">
+                Ofrecemos envío gratuito en todos nuestros productos para que
+                puedas ahorrar aún más.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 mb-4" id="soporte">
+          <div class="card h-100">
+            <div class="card-body text-center">
+              <i class="fas fa-headphones-alt fa-3x mb-3"></i>
+              <h4 class="card-title">Soporte 24/7</h4>
+              <p class="card-text">
+                Nuestro equipo de soporte está disponible las 24 horas del día,
+                los 7 días de la semana para ayudarte con cualquier problema.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 mb-4" id="garantia">
+          <div class="card h-100">
+            <div class="card-body text-center">
+              <i class="fas fa-money-bill-alt fa-3x mb-3"></i>
+              <h4 class="card-title">Garantía de devolución de dinero</h4>
+              <p class="card-text">
+                Ofrecemos una garantía de devolución de dinero de 30 días para
+                que puedas comprar con confianza.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <a #preguntas></a>
+  <section class="faq">
+    <div class="container">
+      <div class="section-title">
+        <h2>Preguntas Frecuentes</h2>
+      </div>
+
+      <ul class="faq-list">
+        <li>
+          <a data-bs-toggle="collapse" class="collapsed" data-bs-target="#faq1"
+            >¿Tienen descuentos o promociones especiales para clientes
+            frecuentes? <i id="arrow-icon" class="fas fa-arrow-down"></i
+          ></a>
+          <div id="faq1" class="collapse" data-bs-parent=".faq-list">
+            <p>
+              Sí, ofrecemos descuentos y promociones especiales para clientes
+              frecuentes. Mantente al tanto de nuestras redes sociales y
+              suscríbete a nuestro boletín para obtener las últimas promociones
+              y descuentos.
+            </p>
+          </div>
+        </li>
+
+        <li>
+          <a data-bs-toggle="collapse" data-bs-target="#faq2" class="collapsed"
+            >¿Cómo puedo saber si la prenda que quiero comprar me quedará bien?
+            <i id="arrow-icon" class="fas fa-arrow-down"></i
+          ></a>
+          <div id="faq2" class="collapse" data-bs-parent=".faq-list">
+            <p>
+              En nuestra tienda en línea, puedes encontrar una guía de tallas
+              para ayudarte a encontrar el tamaño adecuado para ti. También
+              puedes contactarnos si tienes alguna pregunta sobre el tamaño o la
+              forma de la prenda.
+            </p>
+          </div>
+        </li>
+
+        <li>
+          <a data-bs-toggle="collapse" data-bs-target="#faq3" class="collapsed"
+            >¿Puedo devolver o cambiar una prenda?
+            <i id="arrow-icon" class="fas fa-arrow-down"></i
+          ></a>
+          <div id="faq3" class="collapse" data-bs-parent=".faq-list">
+            <p>
+              Sí, ofrecemos devoluciones y cambios en la mayoría de los
+              productos. Por favor, revisa nuestras políticas de devolución y
+              cambio para obtener más información.
+            </p>
+          </div>
+        </li>
+
+        <li>
+          <a data-bs-toggle="collapse" data-bs-target="#faq4" class="collapsed"
+            >¿Qué medidas toman para proteger la privacidad y la seguridad de
+            mis datos personales?<i
+              id="arrow-icon"
+              class="fas fa-arrow-down"
+            ></i
+          ></a>
+          <div id="faq4" class="collapse" data-bs-parent=".faq-list">
+            <p>
+              Nos tomamos muy en serio la privacidad y seguridad de los datos
+              personales de nuestros clientes. Utilizamos medidas de seguridad
+              de última generación para proteger tu información y nunca
+              compartimos tus datos con terceros sin tu consentimiento. Consulta
+              nuestra política de privacidad para obtener más información.
+            </p>
+          </div>
+        </li>
+
+        <li>
+          <a data-bs-toggle="collapse" data-bs-target="#faq5" class="collapsed"
+            >¿Cómo puedo hacer un seguimiento de mi pedido?
+            <i id="arrow-icon" class="fas fa-arrow-down"></i
+          ></a>
+          <div id="faq5" class="collapse" data-bs-parent=".faq-list">
+            <p>
+              Una vez que realizas un pedido, te enviaremos un correo
+              electrónico de confirmación con los detalles de tu pedido y un
+              número de seguimiento. Puedes utilizar este número de seguimiento
+              para hacer un seguimiento de tu pedido en línea.
+            </p>
+          </div>
+        </li>
+
+        <li>
+          <a data-bs-toggle="collapse" data-bs-target="#faq6" class="collapsed"
+            >¿Cómo puedo contactar con ustedes si tengo alguna pregunta o
+            inquietud? <i id="arrow-icon" class="fas fa-arrow-down"></i
+          ></a>
+          <div id="faq6" class="collapse" data-bs-parent=".faq-list">
+            <p>
+              LPuedes contactar con nosotros en cualquier momento utilizando
+              nuestro formulario de contacto en línea o enviándonos un correo
+              electrónico a la dirección proporcionada en nuestro sitio web.
+            </p>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </section>
+  <section class="testimonios">
+    <div class="testimonios_header">
+      <span>comentarios</span>
+      <h1>Clientes dicen</h1>
+    </div>
+    <div class="contenedor-tb" #comentarios>
+      <div class="input-group-btn">
+        <button
+          type="submit"
+          name="button"
+          class="btn-color btn-notify btn"
+          data-bs-toggle="modal"
+          data-bs-target="#exampleModal"
+        >
+          <i class="fas fa-sun"></i> Agregar Comentario
+          <i class="fas fa-sun"></i>
+        </button>
+      </div>
+      <!-- testimonios contenedor-->
+      <div class="testimonios_contenedor">
+        <!--BOX 1-->
+        <div class="testimonios_caja">
+          <div class="caja-top">
+            <div class="perfil">
+              <div class="perfil_img">
+                <img
+                  src="../../../../assets/img/couple.jpg"
+                  alt="imagen_usuario"
+                />
+              </div>
+              <!--NOMBRE USUARIO-->
+              <div class="name_user">
+                <strong>Martin Suarez</strong>
+                <span>@tinchosuarez12</span>
+              </div>
+            </div>
+            <!--RESEÑAS-->
+            <div class="reseñas">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+            </div>
+          </div>
+          <!--COMENTARIOS-->
+          <div class="comentarios_clientes">
+            <p>Muy lindo todo y buen precio, sigan así!</p>
+          </div>
+        </div>
+        <!--end box 1-->
+        <!--BOX 2-->
+        <div class="testimonios_caja">
+          <div class="caja-top">
+            <div class="perfil">
+              <div class="perfil_img">
+                <img
+                  src="../../../../assets/img/bulldog.jpg"
+                  alt="imagen_usuario"
+                />
+              </div>
+              <!--NOMBRE USUARIO-->
+              <div class="name_user">
+                <strong>Liliana Sosa</strong>
+                <span>@lilysosa</span>
+              </div>
+            </div>
+            <!--RESEÑAS-->
+            <div class="reseñas">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+            </div>
+          </div>
+          <!--COMENTARIOS-->
+          <div class="comentarios_clientes">
+            <p>Muy buena atención me encanto todo.</p>
+          </div>
+        </div>
+        <!--end box 2-->
+        <!--BOX 3-->
+        <div class="testimonios_caja">
+          <div class="caja-top">
+            <div class="perfil">
+              <div class="perfil_img">
+                <img
+                  src="../../../../assets/img/fashion.jpg"
+                  alt="imagen_usuario"
+                />
+              </div>
+              <!--NOMBRE USUARIO-->
+              <div class="name_user">
+                <strong>Laura palacio</strong>
+                <span>@laura797</span>
+              </div>
+            </div>
+            <!--RESEÑAS-->
+            <div class="reseñas">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+            </div>
+          </div>
+          <!--COMENTARIOS-->
+          <div class="comentarios_clientes">
+            <p>
+              Que decir de esta maravillosa tienda, 5 estrellas.
+            </p>
+          </div>
+        </div>
+        <!--end box 3-->
+        <!--BOX 4-->
+        <div class="testimonios_caja">
+          <div class="caja-top">
+            <div class="perfil">
+              <div class="perfil_img">
+                <img
+                  src="../../../../assets/img/cat.jpg"
+                  alt="imagen_usuario"
+                />
+              </div>
+              <!--NOMBRE USUARIO-->
+              <div class="name_user">
+                <strong>Juan Lopez</strong>
+                <span>@perezado</span>
+              </div>
+            </div>
+            <!--RESEÑAS-->
+            <div class="reseñas">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star fa-gray"></i>
+            </div>
+          </div>
+          <!--COMENTARIOS-->
+          <div class="comentarios_clientes">
+            <p>Exelente precio y buenos productos!</p>
+          </div>
+        </div>
+        <!--end box 4-->
+      </div>
+      <br />
+      <br />
+      <button class="btn-color-transparent btn-notify btn">
+        Cargar mas comentarios
+      </button>
+    </div>
+  </section>
+</main>
+<div
+  class="modal fade"
+  id="exampleModal"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">
+          Agregar Comentario
+        </h1>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <label for="message-text" class="col-form-label">Comentario:</label>
+        <p class="clasificacion">
+          <input id="radio1" type="radio" name="estrellas" value="5" /><!--
+            --><label for="radio1">★</label
+          ><!--
+            --><input id="radio2" type="radio" name="estrellas" value="4" /><!--
+            --><label for="radio2">★</label
+          ><!--
+            --><input id="radio3" type="radio" name="estrellas" value="3" /><!--
+            --><label for="radio3">★</label
+          ><!--
+            --><input id="radio4" type="radio" name="estrellas" value="2" /><!--
+            --><label for="radio4">★</label
+          ><!--
+            --><input id="radio5" type="radio" name="estrellas" value="1" /><!--
+            --><label for="radio5">★</label>
+        </p>
+
+        <textarea
+          class="form-control"
+          id="message-text"
+          placeholder="Ingrese un comentario"
+        ></textarea>
+        <br />
+        <div class="input-btn-modal">
+          <button type="submit" name="button" class="btn-color btn-notify btn">
+            Agregar
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<br />
+<app-footer></app-footer>
+<a #contactos></a>

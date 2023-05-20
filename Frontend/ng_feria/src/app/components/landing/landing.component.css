@@ -1,0 +1,485 @@
+*main {
+padding: 0px;
+margin: 0px;
+border-spacing: 0px;
+}
+.nav-link:hover {
+  color:#B01E68;
+  cursor: pointer;
+}
+.nav-link {
+  color:gray;
+}
+.hidden-nav {
+  display: none;
+}
+.cart-no {
+  position: absolute;
+  min-height: 25px;
+  min-width: 25px;
+  border-radius: 50%;
+  font-size: 1em;
+  background: #B01E68;
+  color: white;
+  text-align: center;
+  top: -12px;
+  right: 32px ;
+}
+
+.btn-outline-secondary{
+  background-color: #F49D1A;
+  color: #fff;
+  border: none;
+}
+
+.btn-outline-secondary:active{
+  background-color: #F49D1A;
+}
+
+.btn-outline-secondary:hover{
+  transform: scale(1.1);
+  color: #fff;
+}
+
+@media screen and (max-width: 990px) {
+  .fa-shopping-cart {
+    font-size: 1.5rem;
+  }
+  .btn {
+    font-size: 0.8rem;
+    padding: 0.25rem 0.5rem;
+  }
+}
+
+.btn.btn-primary.btn-lg {
+  color: #fff;
+  border: none;
+}
+
+.btn-outline-secondary:active{
+  background-color: #F49D1A;
+}
+
+.btn-outline-secondary:hover{
+  transform: scale(1.1);
+}
+
+@media screen and (max-width: 990px) {
+
+  .btn {
+    font-size: 0.8rem;
+    padding: 0.25rem 0.5rem;
+  }
+}
+
+/* Fin estilos de botón */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.font-primary {
+  font-family: "Raleway", sans-serif;
+}
+
+/* Estilos sección principal */
+.hero-section {
+  margin-top: 0vh;
+  height: 100vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 0vh;
+
+
+}
+
+
+@media screen and (max-width: 768px) {
+
+  .row {
+    gap: 10px;
+  }
+}
+.title-container {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  height: 100px;
+}
+.typewriter {
+  display: inline-block;
+  font-size: 3rem;
+  font-weight: bold;
+  color: #333;
+  border-right: 0.15em solid #333;
+  white-space: nowrap;
+  overflow: hidden;
+  animation: typing 4s steps(30, end), blink-caret 0.5s step-end infinite;
+}
+
+@keyframes typing {
+  from { width: 0 }
+  to { width: 100% }
+}
+
+@keyframes blink-caret {
+  from, to { border-color: transparent }
+  50% { border-color: #333; }
+}
+
+@media only screen and (max-width: 1224px) {
+  .typewriter {
+    font-size: 2rem;
+  }
+}
+
+.slider-section{
+  margin-right: 5rem;
+  margin-left: 5rem;
+  margin-top: 0rem;
+  margin-bottom: 5rem;
+  display: flex;
+  justify-content: center;
+}
+.h1-ofertas{
+  text-align: center;
+  font-size: 50px;
+}
+.container-slider{
+  width: 100%; /* ancho definido */
+  position: relative; /* posición relativa */
+  padding: 0rem;
+  margin: 0rem;
+
+}
+.carousel{
+  margin-top:60px;
+
+
+}
+.carousel-item img {
+  width: 100%; /* ocupar todo el ancho de la imagen */
+  height: auto; /* altura automática proporcional */
+}
+
+.imagen{
+  width: 60%;
+  align-self: center;
+
+}
+
+/*seccion beneficios*/
+#beneficios {
+  margin:10px;
+}
+
+/*seccion de preguntas frecuentes*/
+.faq {
+    position: relative;
+    margin: 0rem;
+
+}
+
+.faq .faq-list {
+  padding: 0;
+  list-style: none;
+}
+
+.faq .faq-list li {
+  border-bottom: 1px solid #eee;
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+}
+
+.faq .faq-list a {
+  display: block;
+  position: relative;
+  font-family: #fd680e;
+  font-size: 18px;
+  line-height: 24px;
+  font-weight: 400;
+  padding-right: 25px;
+  cursor: pointer;
+}
+
+.faq .faq-list i {
+  font-size: 24px;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.faq .faq-list p {
+  margin-bottom: 0;
+  padding: 10px 0 0 0;
+}
+
+.faq .faq-list .icon-show {
+  display: none;
+}
+
+.faq .faq-list a.collapsed {
+  color: #343a40;
+}
+
+.faq .faq-list a.collapsed:hover {
+  color: #fd680e;
+}
+
+.faq .faq-list a.collapsed .icon-show {
+  display: inline-block;
+}
+
+.faq .faq-list a.collapsed .icon-close {
+  display: none;
+}
+
+.container h2 {
+  font-size: 50px;
+  margin-top: 14vh;
+  margin-bottom: 49px;
+  display: flex;
+  justify-content: center;
+}
+
+#arrow-icon {
+  font-size: 24px;
+  cursor: pointer;
+  position: static;
+}
+
+#garantia #envio #soporte {
+  background-color: #fff;
+  border: 1px dotted black;
+  border-radius: 50%;
+}
+
+.card-body.text-center:hover {
+  transform: scale(1.1);
+}
+.card-body.text-center {
+  transition: transform 0.2s ease;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: space-around;
+  flex-direction: column;
+  align-items: center;
+}
+
+#garantia #envio #soporte:hover {
+  transform: scale(1.1);
+}
+.testionios {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+}
+.testimonios_header {
+  margin: 50px 0;
+  padding: 10px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.testimonios_header h1 {
+  font-size: 2.9rem;
+  font-weight: 500;
+  background-color: #202020;
+  color: white;
+  padding: 10px 20px;
+}
+.testimonios_header span {
+  font-size: 2.2rem;
+  color: #252525;
+  margin-bottom: 25px;
+  text-transform: uppercase;
+}
+
+.testimonios_contenedor {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 100%;
+}
+.contenedor-tb {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 100%;
+  flex-direction: column;
+  position: relative;
+}
+.input-group-btn {
+  display: flex;
+  justify-content: flex-end;
+  width: 68%;
+}
+.input-btn-modal {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.testimonios_caja {
+  width: 500px;
+  box-shadow: 2px 2px 30px rgb(0, 0, 0, 0.1);
+  background-color: white;
+  padding: 20px;
+  margin: 15px;
+  cursor: pointer;
+  margin-top: 30px;
+}
+.perfil_img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin: 30px;
+}
+.perfil_img img {
+  width: 100%;
+  height: 100%;
+  object-fit: center;
+}
+.perfil {
+  display: flex;
+  align-items: center;
+}
+.name_user {
+  display: flex;
+  flex-direction: column;
+}
+.name_user strong {
+  color: #3d3d3d;
+  font-size: 1.3rem;
+}
+.name_user span {
+  color: #979797;
+  font-size: 1.1rem;
+}
+.reseñas {
+  color: #f9d71c;
+}
+.fa-gray {
+  color: grey;
+}
+.caja-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+.comentarios_clientes p {
+  color: #4b4b4b;
+}
+.btn-color {
+  background: linear-gradient(45deg, #af1e67, #f0a636, #f49d1a 100%);
+}
+.btn-color-transparent {
+  background: #af1e67;
+}
+.btn-color-transparent:hover {
+  background: #d92d83;
+}
+/* .btn {
+  display: inline-block;
+  font-weight: 800;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  user-select: none;
+  border: 0 solid transparent;
+  padding: 0.37rem 0.75rem;
+  cursor: pointer;
+} */
+
+.btn-notify {
+  font-family: "Source Sans Pro", sans-serif;
+  display: inline-block;
+  font-size: 0.9rem;
+  padding: 0.6rem 1.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03rem;
+  color: #fff;
+}
+/* .btn {
+  display: inline-block;
+  font-weight: 600;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  user-select: none;
+  border: 0 solid transparent;
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  line-height: 1.4;
+
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
+    border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+} */
+
+@media only screen and  (max-width: 1024px) {
+  .carousel-item img{
+    height:18rem;
+    font-size: 5rem;
+  }
+
+  h2
+  ,h1
+  ,span {
+    font-size: 2,5rem!important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    padding: auto;
+
+  }
+}
+
+@media only screen and  (max-width: 480px) {
+  .carousel-item img{
+    height:18rem;
+    font-size: 5rem;
+  }
+
+  h2
+  ,h1
+  ,span {
+    font-size: 2,5rem!important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    padding: auto;
+
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .input-group-btn {
+    justify-content: center;
+  }
+}
+input[type="radio"] {
+  display: none;
+}
+.clasificacion {
+  direction: rtl; /* right to left */
+  unicode-bidi: bidi-override; /* bidi de bidireccional */
+  font-size: 25px;
+}
+label{ color:grey;}
+input[type = "radio"]{ display:none;}
+label:hover{color:orange;}
+label:hover ~ label{color:orange;}
+input[type = "radio"]:checked ~ label{color:orange;}

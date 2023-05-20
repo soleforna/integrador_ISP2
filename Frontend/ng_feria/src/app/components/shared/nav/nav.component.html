@@ -1,0 +1,33 @@
+<nav class="navbar navbar-expand-md navbar-light bg-white fixed-top border-bottom shadow-sm">
+  <div class="container-fluid">
+    <div>
+      <img src="../../../../assets/img/logo.webp" style="max-height: 60px" alt="logo" />
+      <img src="../../../../assets/img/Logo-texto.webp" style="max-height: 60px" alt="logo" />
+    </div>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-center justify-content-md-end" id="navbarNav">
+      <ul class="navbar-nav mb-2 mx-auto mb-md-0 text-uppercase text-center">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/">Inicio</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/producto">Tienda</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="#contacto">Contacto</a>
+        </li>
+      </ul>
+      <div class="d-flex align-items-center justify-content-center">
+        <a class="position-relative">
+          <a href="/checkout">  <i class="fa fa-shopping-cart me-5 fa-2x text-dark"></i></a>
+          <div class="cart-no">2</div>
+        </a>
+        <a class="btn btn-outline-secondary me-2" routerLink="/iniciar-sesion">Ingresar</a>
+        <a class="btn btn-outline-secondary" routerLink="/registro">Registrarse</a>
+      </div>
+    </div>
+  </div>
+</nav>

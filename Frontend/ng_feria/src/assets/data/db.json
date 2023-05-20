@@ -1,0 +1,34 @@
+{
+  "products": [
+    {
+      "name": "Campera De Jean",
+      "description": "Campera De Jean  Color Negro Talle S Poco Uso-Impecable estado",
+      "category": "Mujer",
+      "id": 1,
+      "price": 3000,
+      "identifier": "VM-001",
+      "img": "../../assets/img/campera1.webp",
+      "qty": 1
+    },
+    {
+      "name": "Botas De Gamuza",
+      "description": "Botas De Gamuza Color Negro Talle 36 AR Excelente Estado",
+      "category": "Mujer",
+      "id": 2,
+      "price": 7000,
+      "identifier": "WM-002",
+      "img": "../../assets/img/botas-gamuza.webp",
+      "qty": 1
+    },
+    {
+      "name": "Botas de Cuero",
+      "description": "Botas de Cuero color marrón Talle 40 AR Excelente Estado",
+      "category": "Mujer",
+      "id": 3,
+      "price": 8000,
+      "identifier": "WM-003",
+      "img": "../../assets/img/botMarrones.webp",
+      "qty": 1
+    }
+  ]
+}
