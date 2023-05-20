@@ -19,6 +19,16 @@
       "identifier": "WM-002",
       "img": "../../assets/img/botas-gamuza.webp",
       "qty": 1
+    },
+    {
+      "name": "Botas de Cuero",
+      "description": "Botas de Cuero color marrón Talle 40 AR Excelente Estado",
+      "category": "Mujer",
+      "id": 3,
+      "price": 8000,
+      "identifier": "WM-003",
+      "img": "../../assets/img/botMarrones.webp",
+      "qty": 1
     }
   ]
 }
