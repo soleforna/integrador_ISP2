@@ -13,7 +13,7 @@ import { CheckoutCardComponent } from './components/shop/checkout-card/checkout-
 import { DetailsComponent } from './components/shop/details/details.component';
 import { ShopComponent } from './components/shop/shop.component';
 import { LoginComponent } from './components/auth/login/login.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RegisterComponent } from './components/auth/register/register.component';
 
 @NgModule({
@@ -34,7 +34,8 @@ import { RegisterComponent } from './components/auth/register/register.component
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule //importe el módulo de formularios
+    FormsModule, //importe el módulo de formularios
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

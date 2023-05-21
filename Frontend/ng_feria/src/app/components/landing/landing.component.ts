@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component} from '@angular/core';
 
 @Component({
   selector: 'app-landing',
@@ -7,4 +7,11 @@ import { Component } from '@angular/core';
 })
 export class LandingComponent {
 
+  isScrolled = false;
+
+
+  scroll(el:HTMLElement){
+    el.scrollIntoView()
+  }
+  
 }

@@ -101,13 +101,13 @@
     transform: scale(1.1);
   }
   
-  .signup {
+  .signup, .ppal, .login {
     text-align: center;
     font-size: small;
     margin-top: 25px;
   }
   
-  .signup a {
+  .signup a, .ppal a, .login a{
     text-decoration: none;
     font-weight: 700;
     color: #B01E68;
