@@ -21,24 +21,6 @@ export class ProductsComponent implements OnInit{
   })
 }
 
-  /*
-  hoy = new Date(); 
-  mostrarMovimientos: boolean=true; 
-  movimientos: any; 
-
-constructor(public loadProducts: ProductsService){
-  this.loadProducts.obtenerProductos().subscribe({
-    next: (productos) =>{
-      this.movimientos = productos 
-    }, 
-    error: (errorData) =>{
-      console.error(errorData); 
-    }
-  })
-}
-
-products: Product[] = db.products;
-*/
 }
 
 

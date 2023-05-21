@@ -18,8 +18,5 @@ export class ProductsService {
   obtenerProductos(): Observable <any>{
     return this.http.get(this.url+"products")
   }
-
-
-
   
 }

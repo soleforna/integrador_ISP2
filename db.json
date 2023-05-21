@@ -39,6 +39,16 @@
       "identifier": "D2-178",
       "img": "../../assets/img/remerahombre.jpg",
       "qty": 1
+    },
+    {
+      "name": "Remera Niño",
+      "description": "Remeras para esas pequeñas criaturitas del hogar",
+      "category": "Hombre",
+      "id": 5,
+      "price": 15000,
+      "identifier": "UT-070",
+      "img": "../../assets/img/remeranino.jpg",
+      "qty": 1
     }
 
   ]
