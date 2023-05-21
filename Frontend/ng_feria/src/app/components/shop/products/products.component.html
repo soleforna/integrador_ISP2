@@ -1,104 +1,23 @@
 <app-nav></app-nav>
-<div class="d-flex justify-content-center text-center flex-wrap" id="fondo">
 
+
+<div class="d-flex justify-content-center text-center flex-wrap" id="fondo">
+  <div *ngFor="let product of products">  
   <div class="card mx-2 my-2" style="width: 18rem;">
-    <div class="card-header p-0">
-        <img src="../../../../assets/img/tapadobotones1.jpg" class="card-img-top" alt="..." height="350px">
-    </div>
-    <div class="card-body">
-        <h5 class="card-title">Tapado</h5>
-        <p class="card-text">$4000</p>
-   </div>
-    <div class="card-footer">
-      <a href="#" class="btn btn-outline-secondary" >Agregar</a>
-      <a href="http://localhost:4200/detalle" class="btn btn-outline-secondary">Detalles</a>
+       
+      <div class="card-header p-0">
+      <img [src]="product.img" alt="{{ product.name }}" class="card-img-top"  height="350px"/>
+      </div>
+      <div class="card-body">
+        <h5 class="card-title">{{ product.name }}</h5>
+        <p class="card-text">Price: {{ product.price }}</p>
+      </div>  
+      <div class="card-footer">
+        <a href="#" class="btn btn-primary mx-2 my-2">Agegar</a>
+        <a href="/detalle" class="btn btn-primary mx-2 my-2">Detalles</a>
     </div>
   </div>
-
-
-  <div class="card mx-2 my-2" style="width: 18rem;">
-      <div class="card-header p-0">
-          <img src="../../../../assets/img/camisahombre.jpg" class="card-img-top" alt="..." height="350px">
-      </div>
-      <div class="card-body">
-          <h5 class="card-title">Camisa</h5>
-          <p class="card-text">$400</p>
-     </div>
-      <div class="card-footer">
-         <a href="#" class="btn btn-outline-secondary"> Agregar </a>
-         <a href="#" class="btn btn-outline-secondary">Detalles</a>
-      </div>
-    </div>
-
-    <div class="card mx-2 my-2" style="width: 18rem;">
-      <div class="card-header p-0">
-          <img src="../../../../assets/img/camperarosa.jpg" class="card-img-top" alt="..." height="350px">
-      </div>
-      <div class="card-body">
-          <h5 class="card-title">Campera</h5>
-          <p class="card-text">$600</p>
-     </div>
-      <div class="card-footer">
-        <a href="#" class="btn btn-outline-secondary"> Agregar </a>
-        <a href="#" class="btn btn-outline-secondary">Detalles</a>
-      </div>
-    </div>
-
-    <div class="card mx-2 my-2" style="width: 18rem;">
-      <div class="card-header p-0">
-          <img src="../../../../assets/img/camperon.jpg" class="card-img-top" alt="..." height="350px">
-      </div>
-      <div class="card-body">
-          <h5 class="card-title">Camperon</h5>
-          <p class="card-text">$2000</p>
-     </div>
-      <div class="card-footer">
-        <a href="#" class="btn btn-outline-secondary"> Agregar </a>
-        <a href="#" class="btn btn-outline-secondary">Detalles</a>
-      </div>
-    </div>
-
-    <div class="card mx-2 my-2" style="width: 18rem;">
-      <div class="card-header p-0">
-          <img src="../../../../assets/img/zapatoshombre.jpg" class="card-img-top" alt="..." height="350px">
-      </div>
-      <div class="card-body">
-          <h5 class="card-title">Zapatos</h5>
-          <p class="card-text">$900</p>
-     </div>
-      <div class="card-footer">
-         <a href="#" class="btn btn-outline-secondary">  Agregar </a>
-         <a href="#" class="btn btn-outline-secondary">Detalles</a>
-      </div>
-    </div>
-
-    <div class="card mx-2 my-2" style="width: 18rem;">
-      <div class="card-header p-0">
-          <img src="../../../../assets/img/pantalonnino.jpg" class="card-img-top" alt="..." height="350px">
-      </div>
-      <div class="card-body">
-          <h5 class="card-title">Pantalon</h5>
-          <p class="card-text">$1000</p>
-     </div>
-      <div class="card-footer">
-        <a href="#" class="btn btn-outline-secondary">  Agregar </a>
-        <a href="#" class="btn btn-outline-secondary">Detalles</a>
-      </div>
-    </div>
-
-    <div class="card mx-2 my-2" style="width: 18rem;">
-      <div class="card-header p-0">
-          <img src="../../../../assets/img/remerahombre.jpg" class="card-img-top" alt="..." height="350px">
-      </div>
-      <div class="card-body">
-          <h5 class="card-title"> Remera</h5>
-          <p class="card-text">$800</p>
-     </div>
-      <div class="card-footer " >
-        <a href="#" class="btn btn-outline-secondary">  Agregar </a>
-        <a href="#" class="btn btn-outline-secondary">Detalles</a>
-      </div>
-    </div>
-
 </div>
 
+  
+</div>
