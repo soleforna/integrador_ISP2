@@ -49,6 +49,26 @@
       "identifier": "UT-070",
       "img": "../../assets/img/remeranino.jpg",
       "qty": 1
+    },
+    {
+      "name": "Camperon",
+      "description": "Hermoso camperon abrigado",
+      "category": "Niño",
+      "id": 6,
+      "price": 10000,
+      "identifier": "UT-071",
+      "img": "../../assets/img/camperon.jpg",
+      "qty": 1
+    },
+    {
+      "name": "Campera",
+      "description": "Delicada campera de hilo",
+      "category": "Niño",
+      "id": 7,
+      "price": 7000,
+      "identifier": "UT-072",
+      "img": "../../assets/img/camperarosa.jpg",
+      "qty": 1
     }
 
   ]
