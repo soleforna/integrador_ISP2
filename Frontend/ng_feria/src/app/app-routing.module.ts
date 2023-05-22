@@ -23,7 +23,7 @@ const routes: Routes = [
   {path: 'producto', component: ProductsContainerComponent},
   {path: 'checkout', component: CheckoutComponent},
   {path: 'checkout-card', component: CheckoutCardComponent},
-  {path:'detalle', component:DetailsComponent},
+  {path:'detalle/:category/:id', component:DetailsComponent},
   {path: 'registro', component:RegisterComponent}
 ];
 
