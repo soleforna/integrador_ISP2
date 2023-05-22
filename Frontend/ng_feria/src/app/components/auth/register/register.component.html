@@ -1,4 +1,4 @@
-<nav class="wrapper">
+<form class="wrapper" [formGroup]="forma" (ngSubmit)="guardar()">
   <div class="container main">
     <div class="row">
       <div class="col-md-6 side-image"></div>
@@ -6,18 +6,26 @@
         <div class="input-box">
           <h4>Regístrate!</h4>
           <div class="input-field">
-            <input type="text" class="input" id="email" placeholder="Nombre">
+            <input type="text" formControlName="nombre" [class.is-invalid]="nombreNoValido" class="input" id="email" placeholder="Nombre">
+            <small *ngIf="nombreNoValido" class="text-danger">Ingrese el nombre con el mínimo de 3 letras</small>
           </div>
           <div class="input-field">
-            <input type="password" class="input" id="password" placeholder="Apellido">
+            <input type="text" formControlName="apellido" [class.is-invalid]="apellidoNoValido" class="input" id="password" placeholder="Apellido">
+            <small *ngIf="apellidoNoValido" class="text-danger">El apellido es un campo requerido</small>
           </div>
           <div class="input-field">
-            <input type="text" class="input" id="email" placeholder="Email">
+            <input type="text" formControlName="correo" [class.is-invalid]="correoNoValido" class="input" id="email" placeholder="Email">
+            <small *ngIf="correoNoValido" class="text-danger">Ingrese un email válido</small>
           </div>
           <div class="input-field">
-            <input type="password" class="input" id="password" placeholder="Contraseña">
+            <input type="password" formControlName="password1" [class.is-invalid]="password1NoValido" class="input" id="password" placeholder="Contraseña">
+            <small *ngIf="password1NoValido" class="text-danger"> 6 caracteres como mínimo</small>
           </div>
           <div class="input-field">
+            <input type="password" formControlName="password2" [class.is-invalid]="password2NoValido" class="input" id="password" placeholder="Confirmar contraseña">
+            <small *ngIf="password2NoValido" class="text-danger">Las contraseñas no coinciden</small>
+          </div>
+          <div class="input-field mt-5">
             <button type="submit" class="submit">Regístrate</button>
           </div>
           <div class="login">
@@ -30,4 +38,4 @@
       </div>
     </div>
   </div>
-</nav>
+</form>
