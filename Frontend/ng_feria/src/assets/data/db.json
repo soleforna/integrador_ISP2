@@ -2,10 +2,10 @@
   "products": [
     {
       "name": "Campera De Jean",
-      "description": "Campera De Jean  Color Negro Talle S Poco Uso-Impecable estado",
+      "description": "Campera De Jean Color Negro Talle S Poco Uso-Impecable estado",
       "category": "Mujer",
       "id": 1,
-      "price": 3000,
+      "price": 8000,
       "identifier": "VM-001",
       "img": "../../assets/img/campera1.webp",
       "qty": 1
@@ -49,7 +49,18 @@
       "identifier": "UT-070",
       "img": "../../assets/img/remeranino.jpg",
       "qty": 1
+    },
+    {
+      "name": "Buzo Nike ",
+      "description": "Buzo Celeste Verde Agua Talle S",
+      "category": "Mujer",
+      "id": 6,
+      "price": 4000,
+      "identifier": "UM-025",
+      "img": "../../assets/img/buzo-nike.webp",
+      "qty": 1
     }
+
 
   ]
 }
