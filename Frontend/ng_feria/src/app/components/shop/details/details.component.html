@@ -1,46 +1,24 @@
 <app-nav></app-nav>
-    <div class= "abs-center">
-        <div class="card mb-3" style="max-width: 900px;">
-            <div class="row g-0">
-              <div class="col-md-7">
-                <!-- <img src="..." class="img-fluid rounded-start" alt="..."> -->
-                <div id="carouselExampleIndicators" class="carousel slide">
-                    <div class="carousel-indicators">
-                      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
-                    </div>
-                    <div class="carousel-inner">
-                      <div class="carousel-item active">
-                        <img src="../../../../assets/img/tapadobotones1.jpg" class="d-block w-100" alt="...">
-                      </div>
-                      <div class="carousel-item">
-                        <img src="../../../../assets/img/tapadpbotones2.jpg" class="d-block w-100" alt="...">
-                      </div>
-                    </div>
-                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-                      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                      <span class="visually-hidden">Previous</span>
-                    </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-                      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                      <span class="visually-hidden">Next</span>
-                    </button>
-                  </div>
-              </div>
-              <div class="col-md-4">
-                <div class="card-body">
-                  <h5 class="card-title text-center"> Tapado</h5>
-                  <p class="card-text ">$4000</p>
-                  <p class="card-text ">Talle 2</p>
-                  <p class="card-text ">Fino tapado de paño</p>
-                  <p class="card-text text-center"><small class="text-body-secondary">Actualizado hace 3 minutos</small></p>
-                  <a href="#" class="btn btn-outline-secondary">  Agregar </a>
-                </div>
-              </div>
-            </div>
+
+  <div class= "abs-center details-main-container d-flex flex-column justify-content-center align-items-center ">
+    <div class="container shadow-lg detail-conteiner d-flex justify-content-around align-items-center">
+      
+        <div class="img-card-detail">
+          <img [src]="product?.img" alt="{{ product?.name }}" class="img-detail pt-4">
+                
+        </div>
+        <div class="d-flex justify-content-around flex-column align-items-start detail-text">
+          <div class=" pb-4">
+            <h5 class="card-title text-center mb-4">{{ product?.name }}</h5>
+            <p class="card-text ">{{ product?.description }}</p>
+            <p class="card-text ">$ {{ product?.price }}</p>
+            <p class="card-text text-center"><small class="text-body-secondary">Actualizado hace 3 minutos</small></p>
+            <booton  class="btn btn-outline-secondary" routerLink="">  Agregar </booton>
           </div>
+        </div>
+      
     </div>
+  </div>
 
 <app-footer></app-footer>
 
