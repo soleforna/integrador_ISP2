@@ -26,5 +26,8 @@ Si todo funcionó correctamente, deberías ver la carpeta bootstrap en el direct
 
 
 
-
+Para iniciar el Json server hacerlo posicionado desde la carpeta: 
+```
+ISPC 2\integrador_ISP2>
+```
 
