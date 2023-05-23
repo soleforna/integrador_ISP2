@@ -14,6 +14,12 @@ python -m virtualenv venv
 Activamos el entorno virtual, en windows ```.\venv\Scripts\activate```, en linux ```./venv/Scripts/activate```
 
 Con el entorno virtual activado, debemos intalar DJANGO y las librerias necesarias para el proyecto
+
+Pueden instalar todo con el siguiente comando 
+```
+pip install -r requirements.txt
+```
+O también pueden instalarlos de la siguiente forma
 ```
 pip install django djangorestframework django-cors-headers mysqlclient pillow django-allauth
 ```
