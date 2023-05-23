@@ -15,7 +15,7 @@ Activamos el entorno virtual, en windows ```.\venv\Scripts\activate```, en linux
 
 Con el entorno virtual activado, debemos intalar DJANGO y las librerias necesarias para el proyecto
 ```
-pip install django djangorestframework django-cors-headers mysqlclient pillow
+pip install django djangorestframework django-cors-headers mysqlclient pillow django-allauth
 ```
 
 Para poder ejecutar el stack de backend, ademas de contar con Python instalado, es necesario una base de datos MySQL corriendo de nombre "dbferia". Una manera sencilla de tener una base de datos mySQL es mediante Docker, que una vez instaldo solo sera necesario ejecutar el siguiente comandos
