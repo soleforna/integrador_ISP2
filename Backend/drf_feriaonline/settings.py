@@ -33,6 +33,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
+    'django.contrib.sites',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
@@ -40,6 +41,11 @@ INSTALLED_APPS = [
         'feria', #add App_name
         'rest_framework', #add REST
         'corsheaders',  #add CORS
+        'allauth',
+        'allauth.account',
+        'allauth.socialaccount',
+        'allauth.socialaccount.providers.google',
+        
 ]
 
 MIDDLEWARE = [
@@ -106,7 +112,7 @@ DATABASES = {
     'ENGINE': 'django.db.backends.mysql',	
     'NAME': 'dbferia',
         'USER': 'root',
-        'PASSWORD':'root',
+        'PASSWORD':'',
         'HOST': 'localhost',
         'PORT': '3306',
         'OPTIONS': {'init_command': "SET sql_mode = 'STRICT_TRANS_TABLES'"}
@@ -153,3 +159,15 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+#django all auth settings
+
+AUTHENTICATION_BACKENDS = {
+    #Needed to login username in Django admin, regardless of 'allauth'
+    'django.contrib.auth.backends.ModelBackend',
+    
+    # allauth specific authentication methods, such as login by e-mail 
+    'allauth.account.auth_backends.AuthenticationBackend',
+}
+
+
+SITE_ID = 1 # Le decimos a django que utilice el primer sitio como predeterminado
