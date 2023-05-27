@@ -12,11 +12,11 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./products.component.css']
 })
 export class ProductsComponent implements OnInit{
-  products: Product[] = []; 
+  products: Product[] = [];
 
   constructor(private http: HttpClient) {}
   ngOnInit(): void {
-    this.http.get<Product[]>('http://localhost:3000/products').subscribe(data => {
+    this.http.get<Product[]>('http://localhost:8000/api/articles/').subscribe(data => {
       this.products = data;
   })
 }
