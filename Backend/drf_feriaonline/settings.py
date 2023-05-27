@@ -61,7 +61,7 @@ MIDDLEWARE = [
 
 
 CORS_ORIGIN_ALLOW_ALL = False
-CORS_ORIGIN_WHITELIST = ('http://localhost:8081',)
+CORS_ORIGIN_WHITELIST = ('http://localhost:4200',)
 
 ROOT_URLCONF = 'drf_feriaonline.urls'
 
