@@ -1,6 +1,6 @@
 .wrapper {
   background: #ececec;
-  padding: 60px 20px 0 20px;  
+  padding: 60px 20px 0 20px;
 }
 
 .main {
@@ -61,7 +61,19 @@ img {
   position: relative;
   padding: 0 10px 0 10px;
 }
+button{
+  border:none;
+  padding: 10px;
+  border-radius: 3px;
+  color: #40414a;
 
+}
+button:hover{
+ background: rgb(190, 187, 187) ;
+}
+.fa-google{
+  margin-right: 20px;
+}
 .input {
   height: 45px;
   width: 100%;

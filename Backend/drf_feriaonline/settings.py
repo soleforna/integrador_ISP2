@@ -171,3 +171,18 @@ AUTHENTICATION_BACKENDS = {
 
 
 SITE_ID = 1 # Le decimos a django que utilice el primer sitio como predeterminado
+
+LOGIN_REDIRECT_URL ='https://localhost:4200/producto'
+
+SOCIALACCOUNT_PROVIDERS = {
+    'google': {
+        'SCOPE': [
+            'profile',
+            'email',
+        ],
+        'AUTH_PARAMS': {
+            'access_type': 'online',
+        },
+        'OAUTH_PKCE_ENABLED': True,
+    }
+}

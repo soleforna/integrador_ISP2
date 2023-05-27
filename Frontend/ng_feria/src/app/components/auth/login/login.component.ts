@@ -1,21 +1,20 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder,Validators } from '@angular/forms';
-import {Router} from '@angular/router';
+import { Component } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit{
-  loginForm = this.formBuilder.group({
-    email:['usuario@gmail.com',[Validators.required, Validators.email]],
-    password:['',Validators.required]
-  })
-  constructor(private formBuilder:FormBuilder, private router:Router){}
+export class LoginComponent {
+ 
+ 
 
-  ngOnInit(): void {
+  constructor(private http: HttpClient) { }
 
+
+  loginWithGoogle(provider: string) {
+    window.location.href = `http://127.0.0.1:8000/accounts${provider}/login/`;
   }
-
 }

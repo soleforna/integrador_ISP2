@@ -10,13 +10,17 @@ import { Product } from '../Interfaces/product.interface';
 })
 export class ProductsService {
   url:String = "http://localhost:3000/"
-  constructor(private http:HttpClient) { 
+  constructor(private http:HttpClient) {
     console.log("Servicio corriendo");
-    
+
   }
 
   obtenerProductos(): Observable <any>{
     return this.http.get(this.url+"products")
   }
-  
+
+
+
+
 }
+
