@@ -54,3 +54,21 @@ class CartDetailSerializer(ModelSerializer):
         cartdetail = CartDetail.objects.create(**validated_data)
         cartdetail.save()
         return cartdetail
+    
+class ConfirmCartSerializer(ModelSerializer):
+    class Meta:
+        model = Cart
+        fields = 'confirm'
+    
+    def validate(self, data):
+        if data['confirm'] == True: #si el carrito se confirma, se resta el stock de los articulos
+            self.set_confirm(self)
+            return data #se retorna el carrito con los articulos actualizados
+
+#    def validate(self, data):
+#        if data['confirm'] == True: #si el carrito se confirma, se resta el stock de los articulos
+#            for item in data['products']: #se recorre cada articulo del carrito
+#                article = Article.objects.get(id=item.id) #se obtiene el articulo
+#                article.stock -= item.quantity #se resta el stock del articulo
+#                article.save() #se guarda el articulo
+#        return data #se retorna el carrito con los articulos actualizados
