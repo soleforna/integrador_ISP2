@@ -1,6 +1,7 @@
 
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { Observable } from "rxjs";
 
 
 @Injectable({
@@ -17,14 +18,19 @@ export class UsersService {
     });
   }
 
-  register(user: any) {
-    return this.http.post("http://localhost:8000/api/auth/register/", {
-      first_name: user.first_name,
-      last_name: user.last_name,
-      email: user.email,
-      password1: user.password1,
-      password2: user.password2,
-    });
+ // register(formData: any) {
+    //return this.http.post("http://localhost:8000/api/auth/register/", {
+
+    //});
+  //}
+  register(username: string, email: string, password1: string, password2: string): Observable<any> {
+    const formData = new FormData();
+    formData.append('username', username);
+    formData.append('email', email);
+    formData.append('password1', password1);
+    formData.append('password2', password2);
+
+    return this.http.post('http://localhost:8000/api/auth/register/', formData);
   }
 
   logout() {

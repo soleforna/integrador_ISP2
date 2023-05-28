@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UsersService } from "src/app/services/users.service";
+import { Router } from "@angular/router";
+
 
 @Component({
   selector: 'app-register',
@@ -9,7 +12,14 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class RegisterComponent {
 
   forma!: FormGroup;
-  constructor(private fb: FormBuilder) {
+  username: any;
+  apellido: any;
+  email: any;
+  password1: any;
+  password2: any;
+  loginError: boolean = false;
+
+  constructor(private fb: FormBuilder, public userService: UsersService, public router:Router) {
     this.crearFormulario();
   }
 
@@ -47,7 +57,11 @@ export class RegisterComponent {
       apellido: ['', Validators.required],
       correo: ['', [Validators.required, Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$')]],
       password1: ['', [Validators.required, Validators.minLength(6)]],
-      password2: ['', Validators.required]
+      password2: ['', Validators.required],
+
+
+
+
 
     }, {
 
@@ -99,6 +113,18 @@ export class RegisterComponent {
         pass2Control?.setErrors({ noEsIgual: true })
       }
     }
+  }
+  register(){
+
+
+    this.userService.register(this.username, this.email, this.password1,  this.password2)
+      .subscribe(response => {
+        console.log(response);
+        this.router.navigate(["/iniciar-sesion"]); // Redirecciona a login.
+      }, error => {
+        this.loginError = true;
+      });
+
   }
 
 }
