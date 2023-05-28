@@ -16,9 +16,19 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from dj_rest_auth.registration.views import RegisterView
+from dj_rest_auth.views import LoginView, LogoutView, UserDetailsView
+from allauth.socialaccount.views import signup
+from feria.views import GoogleLogin
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('feria.urls')),
-    path('accounts', include('allauth.urls')),
+    path('api/auth/register/', RegisterView.as_view(), name="rest_register"),
+    path('api/auth/login/', LoginView.as_view(), name="rest_login"),
+    path('api/auth/logout/', LogoutView.as_view(), name="rest_logout"),
+    path('api/auth/user/', UserDetailsView.as_view(), name="rest_user_details"),
+    path('api/auth/signup/', signup, name="socialaccount_signup"),
+    path('api/auth/google/', GoogleLogin.as_view(), name="google_login")
+    #path('accounts', include('allauth.urls')),
 ]
