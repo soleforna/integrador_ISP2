@@ -1,8 +1,10 @@
 from django.shortcuts import render
-from django.shortcuts import redirect
-from social_django.utils import psa
+from dj_rest_auth.registration.views import SocialLoginView
+from allauth.socialaccount.providers.google.views import GoogleOAuth2Adapter
+from allauth.socialaccount.providers.oauth2.client import OAuth2Client
 
-@psa('social:complete')
-def google_login(request, backend):
-    return do_auth(request.backend, redirect_name='social:complete')
-# Create your views here.
+
+class GoogleLogin(SocialLoginView):
+    adapter_class = GoogleOAuth2Adapter
+    callback_url = "http://localhost:4200/"
+    client_class = OAuth2Client
