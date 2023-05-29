@@ -1,5 +1,12 @@
+from django.contrib.auth.models import User
 from rest_framework.serializers import ModelSerializer
 from .models import *
+
+class UserSerializer(ModelSerializer):
+    class Meta:
+        model = User
+        fields = ['first_name', 'last_name', 'username', 'email']
+
 
 class CategorySerializer(ModelSerializer):
     class Meta:
@@ -22,7 +29,7 @@ class ReviewSerializer(ModelSerializer):
 class ClientSerializer(ModelSerializer):
     class Meta:
         model = Client
-        fields = '__all__'
+        fields = ['id', 'phone', 'address', 'avatar']
         read_only_fields = ('created_at',)
 
 class CartSerializer(ModelSerializer):
