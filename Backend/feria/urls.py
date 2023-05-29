@@ -1,3 +1,5 @@
+
+from django.urls import include, path
 from rest_framework import routers
 from .api import *
 
@@ -11,4 +13,8 @@ routers.register('api/cart', CartViewSet, 'cart')
 routers.register('api/cartdetails', CartDetailsViewSet, 'cartdetails')
 
 
-urlpatterns = routers.urls
+
+urlpatterns = [
+        path('', include(routers.urls)),
+        path('api/client/<int:pk>/',ClientViewSet.as_view({'put': 'update'}), name='cliente-update'),
+    ] 
