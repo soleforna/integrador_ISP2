@@ -12,11 +12,14 @@ import { Router } from "@angular/router";
 export class RegisterComponent {
 
   forma!: FormGroup;
+  first_name: any;
+  last_name: any;
   username: any;
-  apellido: any;
   email: any;
   password1: any;
   password2: any;
+  phone:any;
+  adress:any;
   loginError: boolean = false;
 
   constructor(private fb: FormBuilder, public userService: UsersService, public router:Router) {
@@ -117,7 +120,7 @@ export class RegisterComponent {
   register(){
 
 
-    this.userService.register(this.username, this.email, this.password1,  this.password2)
+    this.userService.register(this.first_name,this.last_name,this.username, this.email, this.password1,this.phone,this.adress)
       .subscribe(response => {
         console.log(response);
         this.router.navigate(["/iniciar-sesion"]); // Redirecciona a login.

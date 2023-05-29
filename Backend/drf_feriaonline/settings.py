@@ -48,6 +48,7 @@ INSTALLED_APPS = [
         'allauth.socialaccount.providers.google', #add allauth
         'dj_rest_auth',
         'dj_rest_auth.registration',
+        'django_rest_passwordreset',
 
 ]
 
@@ -153,7 +154,7 @@ TIME_ZONE = 'America/Argentina/Buenos_Aires'
 
 USE_I18N = True
 
-USE_TZ = True
+USE_TZ = False
 
 
 # Static files (CSS, JavaScript, Images)
@@ -223,3 +224,10 @@ REST_FRAMEWORK = {
         "rest_framework.authentication.TokenAuthentication",
     ]
 }
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.googlemail.com'  # Dirección del servidor SMTP
+EMAIL_PORT = 587  # Puerto del servidor SMTP
+EMAIL_USE_TLS = True  # Utiliza TLS para una conexión segura
+EMAIL_HOST_USER = 'feriaonlineispc@gmail.com'  # Nombre de usuario del servidor SMTP (si es necesario)
+EMAIL_HOST_PASSWORD = ''  # Contraseña del servidor SMTP (si es necesario)
+#EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

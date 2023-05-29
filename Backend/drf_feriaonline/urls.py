@@ -31,7 +31,9 @@ urlpatterns = [
     path('api/auth/logout/', LogoutView.as_view(), name="rest_logout"),
     path('api/auth/user/', UserDetailsView.as_view(), name="rest_user_details"),
     path('api/auth/signup/', signup, name="socialaccount_signup"),
-    path('api/auth/google/', GoogleLogin.as_view(), name="google_login")
+    path('api/auth/google/', GoogleLogin.as_view(), name="google_login"),
+    path('api/password_reset/', include('django_rest_passwordreset.urls', namespace='password_reset')),
+
     #path('accounts', include('allauth.urls')),
 ]
 
