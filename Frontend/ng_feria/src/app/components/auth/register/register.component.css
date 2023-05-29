@@ -1,15 +1,15 @@
 .wrapper {
     background: #ececec;
-    padding: 60px 20px 0 20px;  
+    padding: 60px 20px 0 20px;
   }
-  
+
   .main {
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
   }
-  
+
   .row {
     width: 900px;
     height: 550px;
@@ -17,7 +17,7 @@
     background: #fff;
     box-shadow: 5px 5px 10px 1px rgba(0, 0, 0, 0.2);
   }
-  
+
   .side-image {
     background-image: url("../../../../assets/img/clothes.jpg");
     background-position: center;
@@ -25,28 +25,28 @@
     background-repeat: no-repeat;
     position: relative;
     border-radius: 10px 0 0 10px;
-  
+
   }
-  
+
   img {
     width: 35px;
     position: absolute;
     top: 30px;
     left: 30px;
   }
-  
+
   .right {
     display: flex;
     justify-content: center;
     align-items: center;
     position: relative;
   }
-  
+
   .input-box {
     width: 330px;
     box-sizing: border-box;
   }
-  
+
   .input-box h4 {
     font-weight: 700;
     text-align: center;
@@ -54,14 +54,14 @@
     color: #B01E68;
     font-size: 1.5rem;
   }
-  
+
   .input-field {
     display: flex;
     flex-direction: column;
     position: relative;
     padding: 0 10px 0 10px;
   }
-  
+
   .input {
     height: 45px;
     width: 100%;
@@ -72,7 +72,7 @@
     margin-bottom: 20px;
     color: #40414a;
   }
-  
+
   .input-box .input-field label {
     position: absolute;
     top: 10px;
@@ -80,12 +80,12 @@
     pointer-events: none;
     transition: .5s;
   }
-  
+
   .input-field .input:focus~label {
     top: -10px;
     font-size: 13px;
   }
-  
+
   .submit {
     border: none;
     outline: none;
@@ -96,41 +96,45 @@
     border-radius: 5px;
     transition: .4s;
   }
-  
+
   .submit:hover {
     transform: scale(1.1);
   }
-  
+
   .signup, .ppal, .login {
     text-align: center;
     font-size: small;
     margin-top: 25px;
   }
-  
+
   .signup a, .ppal a, .login a{
     text-decoration: none;
     font-weight: 700;
     color: #B01E68;
     transition: .5s;
   }
-  
+
   span a:hover {
     text-decoration: underline;
   }
-  
+
   @media only screen and (max-width: 768px) {
     .side-image {
       border-radius: 10px 10px 0 0;
     }
-  
+
     img {
       width: 35px;
       position: absolute;
       top: 20px;
       left: 47%;
     }
-  
+
     .row {
       max-width: 420px;
     }
+  }
+  .ng-error{
+    background:rgb(252, 95, 95);
+    color:#fff;
   }
