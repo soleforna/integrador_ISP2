@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User 
 
 # Create your models here.
 class Category(models.Model):
@@ -8,6 +9,7 @@ class Category(models.Model):
 
     def __str__(self):
         return self.name
+    
 class Article(models.Model):
     name = models.CharField(max_length=50)
     description = models.CharField(max_length=100)
@@ -23,13 +25,16 @@ class Article(models.Model):
 class Client(models.Model):
     name = models.CharField(max_length=50)
     lastname = models.CharField(max_length=50)
-    email = models.CharField(max_length=50)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     phone = models.CharField(max_length=50)
     address = models.CharField(max_length=100)
     created_at = models.DateTimeField(auto_now_add=True)
 
+    def getEmail(self):
+        return f"{self.user.email}"
+       
     def __str__(self):
-        return self.email
+        return self.name
 
 class Review(models.Model):
     article = models.ForeignKey(Article, on_delete=models.CASCADE)
@@ -39,6 +44,7 @@ class Review(models.Model):
 
     def __str__(self):
         return str(self.id)
+    
 class Cart(models.Model):
     client = models.ForeignKey(Client, on_delete=models.DO_NOTHING, null=True, blank=True)
     products = models.ManyToManyField(Article, through='CartDetail') #relacion muchos a muchos con la tabla CartDetail

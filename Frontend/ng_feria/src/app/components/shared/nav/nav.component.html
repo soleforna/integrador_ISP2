@@ -25,9 +25,26 @@
           <a href="/checkout">  <i class="fa fa-shopping-cart me-5 fa-2x text-dark"></i></a>
           <div class="cart-no">2</div>
         </a>
-        <a class="btn btn-outline-secondary me-2" routerLink="/iniciar-sesion">Ingresar</a>
-        <a class="btn btn-outline-secondary" routerLink="/registro">Registrarse</a>
+        <a class="btn btn-outline-secondary me-2" *ngIf="!isLoggedIn" routerLink="/iniciar-sesion">Ingresar</a>
+        <img *ngIf="isLoggedIn" src="../../../../assets/img/user.png" alt="imagen-perfil" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
       </div>
     </div>
   </div>
 </nav>
+<div class=" offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+  <div class="close">
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="container-2">
+<div class="perfil">
+  <img src="../../../../assets/img/user.png" alt="imagen-perfil">
+  <h3>{{name}}</h3>
+</div>
+<div class="container-botones">
+  <button class="btn-btn">Perfil <i class="fa-solid fa-user"></i></button>
+  <button class="btn-btn">Compras <i class="fa fa-shopping-cart"></i></button>
+  <button (click)="logout()" class="btn-btn">Cerrar Session <i class="fa-solid fa-sign-out"></i></button>
+</div>
+
+</div>
+</div>

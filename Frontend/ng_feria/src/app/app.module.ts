@@ -39,7 +39,7 @@ import { HttpClientModule } from '@angular/common/http';
     FormsModule, //importe el módulo de formularios
     ReactiveFormsModule,
     HttpClientModule,
-    
+
   ],
   providers: [],
   bootstrap: [AppComponent]

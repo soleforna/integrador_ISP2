@@ -11,16 +11,24 @@ import { HttpClient } from '@angular/common/http';
   templateUrl: './products.component.html',
   styleUrls: ['./products.component.css']
 })
+
 export class ProductsComponent implements OnInit{
-  products: Product[] = []; 
+  products: any[] = [];
 
-  constructor(private http: HttpClient) {}
+  constructor(private ps:ProductsService) {}
+
   ngOnInit(): void {
-    this.http.get<Product[]>('http://localhost:3000/products').subscribe(data => {
+    this.ps.obtenerProductos().subscribe(data=> {
       this.products = data;
-  })
+      console.log(this.products)
+    },error =>{
+      console.log(error)
+    });
+
+    }
 }
 
-}
+
+
 
 

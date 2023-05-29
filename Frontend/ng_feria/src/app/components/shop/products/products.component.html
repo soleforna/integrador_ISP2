@@ -6,11 +6,12 @@
   <div class="card mx-2 my-2" style="width: 18rem;">
 
       <div class="card-header p-0">
-      <img [src]="product.img" alt="{{ product.name }}" class="card-img-top"  height="350px"/>
+      <img [src]="product.image" alt="{{ product.name }}" class="card-img-top"  height="350px"/>
       </div>
       <div class="card-body">
         <h5 class="card-title">{{ product.name }}</h5>
-        <p class="card-text">Price: {{ product.price }}</p>
+        <h5 class="card-title">{{ product.description }}</h5>
+        <p class="card-text">Precio: $ {{ product.price }}</p>
       </div>
       <div class="card-footer">
         <button  class="btn btn-primary mx-2 my-2 btn-outline-secondary" routerLink="" >Agregar</button>

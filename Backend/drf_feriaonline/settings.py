@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -27,7 +28,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -40,12 +40,15 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
         'feria', #add App_name
         'rest_framework', #add REST
+        'rest_framework.authtoken', #add Token Authentication
         'corsheaders',  #add CORS
-        'allauth',
-        'allauth.account',
-        'allauth.socialaccount',
-        'allauth.socialaccount.providers.google',
-        
+        'allauth', #add allauth
+        'allauth.account', #add allauth
+        'allauth.socialaccount', #add allauth
+        'allauth.socialaccount.providers.google', #add allauth
+        'dj_rest_auth',
+        'dj_rest_auth.registration',
+
 ]
 
 MIDDLEWARE = [
@@ -61,9 +64,12 @@ MIDDLEWARE = [
 
 
 CORS_ORIGIN_ALLOW_ALL = False
-CORS_ORIGIN_WHITELIST = ('http://localhost:8081',)
+CORS_ORIGIN_WHITELIST = ('http://localhost:4200',)
 
 ROOT_URLCONF = 'drf_feriaonline.urls'
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
 
 TEMPLATES = [
     {
@@ -112,7 +118,7 @@ DATABASES = {
     'ENGINE': 'django.db.backends.mysql',	
     'NAME': 'dbferia',
         'USER': 'root',
-        'PASSWORD':'',
+        'PASSWORD':'root',
         'HOST': 'localhost',
         'PORT': '3306',
         'OPTIONS': {'init_command': "SET sql_mode = 'STRICT_TRANS_TABLES'"}
@@ -164,10 +170,56 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTHENTICATION_BACKENDS = {
     #Needed to login username in Django admin, regardless of 'allauth'
     'django.contrib.auth.backends.ModelBackend',
-    
     # allauth specific authentication methods, such as login by e-mail 
     'allauth.account.auth_backends.AuthenticationBackend',
 }
 
 
 SITE_ID = 1 # Le decimos a django que utilice el primer sitio como predeterminado
+
+ACCOUNT_EMAIL_VERIFICATION = "none"
+ACCOUNT_AUTHENTICATION_METHOD = "email"
+ACCOUNT_EMAIL_REQUIRED = True
+SOCIALACCOUNT_PROVIDERS = {'google': {'SCOPE': ['profile', 'email']}}
+
+
+
+#LOGIN_REDIRECT_URL ='https://localhost:4200/producto'
+
+# SOCIALACCOUNT_PROVIDERS = {
+#     'google': {
+#         'SCOPE': [
+#             'profile',
+#             'email',
+#         ],
+#         'AUTH_PARAMS': {
+#             'access_type': 'online',
+#         },
+#         'OAUTH_PKCE_ENABLED': True,
+#     }
+# }
+
+SOCIALACCOUNT_PROVIDERS = {
+    "google": {
+        "APP": {
+            "client_id": "",  # replace whit your client_id
+            "secret": "",        # replace whit your secret
+            "key": "",                               # leave empty
+        },
+        "SCOPE": [
+            "profile",
+            "email",
+        ],
+        "AUTH_PARAMS": {
+            "access_type": "online",
+        },
+        "VERIFIED_EMAIL": True,
+    },
+}
+
+
+REST_FRAMEWORK = {
+    "DEFAULT_AUTHENTICATION_CLASSES": [
+        "rest_framework.authentication.TokenAuthentication",
+    ]
+}

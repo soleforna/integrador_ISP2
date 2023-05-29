@@ -26,3 +26,8 @@ class CartDetailsViewSet(viewsets.ModelViewSet):
     queryset = CartDetail.objects.all()
     permission_classes = [permissions.AllowAny]
     serializer_class = CartDetailSerializer
+    
+class ClientViewSet(viewsets.ModelViewSet):
+    queryset = Client.objects.all()
+    permission_classes = [permissions.AllowAny]
+    serializer_class = ClientSerializer
