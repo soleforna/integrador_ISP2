@@ -21,8 +21,8 @@ class ArticleAdmin(admin.ModelAdmin):
 
 @admin.register(Client)
 class ClientAdmin(admin.ModelAdmin):
-    list_display = ('name', 'lastname', Client.getEmail, 'phone', 'address', 'created_at')
-    search_fields = ('name', 'lastname', Client.getEmail, 'phone', 'address')
+    list_display = ('name', Client.getEmail, 'phone', 'address', 'created_at')
+    search_fields = ('name', Client.getEmail, 'phone', 'address')
     readonly_fields = ('created_at',)
     date_hierarchy = 'created_at'
     ordering = ('name', 'created_at')

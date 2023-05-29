@@ -26,7 +26,10 @@ SECRET_KEY = 'django-insecure-1+@!lq-l#bx5bd4_(l&plno(9w^e908&y62p1)1*w$qc!wf#q4
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+#add CORS
+ALLOWED_HOSTS = ['*'] # add 'localhost' for CORS
+CORS_ORIGIN_ALLOW_ALL = False # If this is used then `CORS_ORIGIN_WHITELIST` will not have any effect
+CORS_ORIGIN_WHITELIST = ('http://localhost:4200',) 
 
 # Application definition
 
@@ -62,14 +65,11 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-
-CORS_ORIGIN_ALLOW_ALL = False
-CORS_ORIGIN_WHITELIST = ('http://localhost:4200',)
-
 ROOT_URLCONF = 'drf_feriaonline.urls'
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-MEDIA_URL = '/media/'
+#add MEDIA
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media') 
+MEDIA_URL = '/media/' 
 
 TEMPLATES = [
     {
@@ -143,7 +143,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
 
@@ -155,7 +154,6 @@ USE_I18N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
@@ -164,42 +162,20 @@ STATIC_URL = 'static/'
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-#django all auth settings
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField' #add BigAutoField
 
-AUTHENTICATION_BACKENDS = {
-    #Needed to login username in Django admin, regardless of 'allauth'
-    'django.contrib.auth.backends.ModelBackend',
-    # allauth specific authentication methods, such as login by e-mail 
-    'allauth.account.auth_backends.AuthenticationBackend',
+#para que no agregue la barra al final de la url
+APPEND_SLASH = False 
+
+#add REST
+REST_FRAMEWORK = { 
+    "DEFAULT_AUTHENTICATION_CLASSES": [
+        "rest_framework.authentication.TokenAuthentication",
+    ]
 }
 
-
-SITE_ID = 1 # Le decimos a django que utilice el primer sitio como predeterminado
-
-ACCOUNT_EMAIL_VERIFICATION = "none"
-ACCOUNT_AUTHENTICATION_METHOD = "email"
-ACCOUNT_EMAIL_REQUIRED = True
-SOCIALACCOUNT_PROVIDERS = {'google': {'SCOPE': ['profile', 'email']}}
-
-
-
-#LOGIN_REDIRECT_URL ='https://localhost:4200/producto'
-
-# SOCIALACCOUNT_PROVIDERS = {
-#     'google': {
-#         'SCOPE': [
-#             'profile',
-#             'email',
-#         ],
-#         'AUTH_PARAMS': {
-#             'access_type': 'online',
-#         },
-#         'OAUTH_PKCE_ENABLED': True,
-#     }
-# }
-
-SOCIALACCOUNT_PROVIDERS = {
+#add allauth
+SOCIALACCOUNT_PROVIDERS = { 
     "google": {
         "APP": {
             "client_id": "",  # replace whit your client_id
@@ -217,9 +193,32 @@ SOCIALACCOUNT_PROVIDERS = {
     },
 }
 
+#LOGIN_REDIRECT_URL ='https://localhost:4200/producto'
 
-REST_FRAMEWORK = {
-    "DEFAULT_AUTHENTICATION_CLASSES": [
-        "rest_framework.authentication.TokenAuthentication",
-    ]
+# SOCIALACCOUNT_PROVIDERS = {
+#     'google': {
+#         'SCOPE': [
+#             'profile',
+#             'email',
+#         ],
+#         'AUTH_PARAMS': {
+#             'access_type': 'online',
+#         },
+#         'OAUTH_PKCE_ENABLED': True,
+#     }
+# }
+
+#django all auth settings
+AUTHENTICATION_BACKENDS = {  
+    #Needed to login username in Django admin, regardless of 'allauth'
+    'django.contrib.auth.backends.ModelBackend',
+    # allauth specific authentication methods, such as login by e-mail 
+    'allauth.account.auth_backends.AuthenticationBackend',
 }
+
+SITE_ID = 1 # Le decimos a django que utilice el primer sitio como predeterminado
+
+ACCOUNT_EMAIL_VERIFICATION = "none" # Le decimos a django que no envie un mail de verificacion
+ACCOUNT_AUTHENTICATION_METHOD = "email" # Le decimos a django que el metodo de autenticacion sera el email
+ACCOUNT_EMAIL_REQUIRED = True   # Le decimos a django que el email es requerido
+SOCIALACCOUNT_PROVIDERS = {'google': {'SCOPE': ['profile', 'email']}}   # Le decimos a django que queremos obtener el email y el perfil de google
