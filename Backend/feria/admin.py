@@ -21,11 +21,11 @@ class ArticleAdmin(admin.ModelAdmin):
 
 @admin.register(Client)
 class ClientAdmin(admin.ModelAdmin):
-    list_display = (Client.getFullName, Client.getEmail, 'phone', 'address', 'created_at')
-    search_fields = (Client.getFullName, Client.getEmail, 'phone', 'address')
+    list_display = ('name', Client.getEmail, 'phone', 'address', 'created_at')
+    search_fields = ('name', Client.getEmail, 'phone', 'address')
     readonly_fields = ('created_at',)
     date_hierarchy = 'created_at'
-    ordering = ('created_at',)
+    ordering = ('name', 'created_at')
 
 @admin.register(Review)
 class ReviewAdmin(admin.ModelAdmin):

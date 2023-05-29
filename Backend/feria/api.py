@@ -1,9 +1,12 @@
 from .models import *
 from .serializers import *
+from django.core.exceptions import ValidationError as DjangoValidationError
 from django.contrib.auth.hashers import check_password
+from django.contrib.auth.password_validation import validate_password
 from rest_framework import viewsets, permissions, status
 from rest_framework.response import Response
-from rest_framework.exceptions import ValidationError
+from rest_framework.exceptions import ValidationError as DRFValidationError
+
 
 class ArticleViewSet(viewsets.ModelViewSet):
     queryset = Article.objects.filter(stock__gt=0) #de esta manera solo se muestran los articulos que tienen stock
@@ -37,20 +40,50 @@ class ClientViewSet(viewsets.ModelViewSet):
     serializer_class = ClientSerializer
     lookup_field = 'pk' #para que se pueda buscar por id en la url
     
+    # Sobreescribir el método create para crear los modelos User y Client
+    def create(self, request):
+        serializer = ClientSerializer(data=request.data)
+        user_serializer = UserSerializer(data=request.data)
+
+        if serializer.is_valid() and user_serializer.is_valid():
+            user = user_serializer.save() #guardar el usuario
+            user_fields = ['first_name', 'last_name']
+            for field in user_fields:
+                if field in request.data and request.data[field] != 'null':
+                    setattr(user, field, request.data[field])
+                    user.save()
+            client = serializer.save(user=user) #guardar el cliente
+            
+            response = {
+            'user': user_serializer.data,
+            'client': serializer.data
+            }
+            return Response(response, status=status.HTTP_201_CREATED)
+        else:
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+    # Sobreescribir el método update para actualizar los modelos User y Client
     def update(self, request, pk=None):
         client = self.get_object()
         user = client.user
-
-        user_fields = ['email', 'username', 'first_name', 'last_name', 'password']
+        
+        # Validar y establecer la nueva contraseña utilizando el validador de contraseña de Django Rest Framework
+        if 'password' in request.data:
+            new_password = request.data['password']
+            if check_password(new_password, user.password): # si la contraseña nueva es igual a la actual
+                raise DRFValidationError(detail="La nueva contraseña debe ser diferente a la actual.")
+            try:
+                validate_password(new_password, user=user)
+            except DjangoValidationError as e:
+                raise DRFValidationError(detail=e.messages)
+            user.set_password(new_password)
+            user.save()
+            
+        # Actualizar los campos del modelo User solo si se envían en la solicitud
+        user_fields = ['email', 'username', 'first_name', 'last_name']
         for field in user_fields:
             if field in request.data and request.data[field] != 'null':
-                if field == 'password':
-                    if check_password(request.data[field], user.password):
-                        raise ValidationError("La contraseña es igual a la actual.")
-                    else:
-                        user.set_password(request.data[field])
-                else:
-                    setattr(user, field, request.data[field])
+                setattr(user, field, request.data[field])
 
         # Actualizar los campos del modelo Client solo si se envían en la solicitud
         client_fields = ['phone', 'address', 'avatar']

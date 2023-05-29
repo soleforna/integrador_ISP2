@@ -1,8 +1,10 @@
+from typing import Iterable, Optional
 from django.db import models
-from django.contrib.auth.models import User 
+from django.contrib.auth.models import User
 
 
 # Create your models here.
+
 class Category(models.Model):
     name = models.CharField(max_length=50)
     description = models.CharField(max_length=100)
@@ -25,6 +27,7 @@ class Article(models.Model):
 
 class Client(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
+    name = models.CharField(max_length=100, null=True, blank=True)
     phone = models.CharField(max_length=50)
     address = models.CharField(max_length=100)
     avatar = models.ImageField(upload_to='avatars/', null=True, blank=True)
@@ -33,11 +36,16 @@ class Client(models.Model):
     def getEmail(self):
         return f"{self.user.email}"
     
-    def getFullName(self):
-        return f"{self.user.first_name} {self.user.last_name}"
-
+    def save(self, *args, **kwargs):
+        # Concatenar el primer nombre y el apellido para establecer el campo name
+        self.name = f"{self.user.first_name} {self.user.last_name}"
+        # Llamar al método save del modelo padre para guardar los cambios
+        super().save(*args, **kwargs)
+    
     def __str__(self):
-        return self.name
+            return self.name
+    
+
 
 class Review(models.Model):
     article = models.ForeignKey(Article, on_delete=models.CASCADE)

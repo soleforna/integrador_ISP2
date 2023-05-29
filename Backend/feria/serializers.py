@@ -5,7 +5,14 @@ from .models import *
 class UserSerializer(ModelSerializer):
     class Meta:
         model = User
-        fields = ['first_name', 'last_name', 'username', 'email']
+        fields = ['username','first_name', 'last_name', 'email', 'password']
+        extra_kwargs = {
+            'password': {'write_only': True}
+        }
+
+    def create(self, validated_data):
+        user = User.objects.create_user(**validated_data)
+        return user
 
 
 class CategorySerializer(ModelSerializer):
@@ -29,7 +36,7 @@ class ReviewSerializer(ModelSerializer):
 class ClientSerializer(ModelSerializer):
     class Meta:
         model = Client
-        fields = ['id', 'phone', 'address', 'avatar']
+        fields = ['id', 'name', 'phone', 'address', 'avatar']
         read_only_fields = ('created_at',)
 
 class CartSerializer(ModelSerializer):
