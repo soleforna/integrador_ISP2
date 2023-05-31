@@ -51,6 +51,7 @@ INSTALLED_APPS = [
         'allauth.socialaccount.providers.google', #add allauth
         'dj_rest_auth',
         'dj_rest_auth.registration',
+        'django_rest_passwordreset',
 
 ]
 
@@ -215,6 +216,18 @@ AUTHENTICATION_BACKENDS = {
     # allauth specific authentication methods, such as login by e-mail 
     'allauth.account.auth_backends.AuthenticationBackend',
 }
+
+from decouple import config # esto sirve para que acepte lo de la variable de entorno
+
+# todo esto esta configutado en un .env "variable de entorno"
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST =  config('EMAIL_HOST')  # Dirección del servidor SMTP
+EMAIL_PORT =  config('EMAIL_PORT')  # Puerto del servidor SMTP
+EMAIL_USE_TLS =  True  # Utiliza TLS para una conexión segura
+EMAIL_HOST_USER =  config('EMAIL_HOST_USER')  # Nombre de usuario del servidor SMTP (si es necesario)
+EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')  # Contraseña del servidor SMTP (si es necesario)
+EMAIL_USE_SSL = False
+#EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 SITE_ID = 1 # Le decimos a django que utilice el primer sitio como predeterminado
 
