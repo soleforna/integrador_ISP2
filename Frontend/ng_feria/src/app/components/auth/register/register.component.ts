@@ -16,10 +16,10 @@ export class RegisterComponent {
   last_name: any;
   username: any;
   email: any;
-  password1: any;
+  password: any;
   password2: any;
   phone:any;
-  adress:any;
+  address:any;
   loginError: boolean = false;
 
   constructor(private fb: FormBuilder, public userService: UsersService, public router:Router) {
@@ -120,7 +120,7 @@ export class RegisterComponent {
   register(){
 
 
-    this.userService.register(this.first_name,this.last_name,this.username, this.email, this.password1,this.phone,this.adress)
+    this.userService.register(this.first_name,this.last_name,this.username, this.email, this.password,this.phone,this.address)
       .subscribe(response => {
         console.log(response);
         this.router.navigate(["/iniciar-sesion"]); // Redirecciona a login.
