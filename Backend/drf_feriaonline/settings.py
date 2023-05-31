@@ -165,8 +165,6 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField' #add BigAutoField
 
-#para que no agregue la barra al final de la url
-APPEND_SLASH = False 
 
 #add REST
 REST_FRAMEWORK = { 

@@ -25,7 +25,7 @@ const routes: Routes = [
   {path: 'producto', component: ProductsContainerComponent},
   {path: 'checkout', component: CheckoutComponent},
   {path: 'checkout-card', component: CheckoutCardComponent},
-  {path:'detalle/:category/:id', component:DetailsComponent},
+  {path:'detalle/:id', component:DetailsComponent},
   {path: 'registro', component:RegisterComponent},
   {path: 'token', component:TokenComponent},
   {path: 'enviarCorreo', component:EnviarCorreoComponent}
