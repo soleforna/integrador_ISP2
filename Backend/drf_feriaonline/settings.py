@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 import os
 from pathlib import Path
+from decouple import config # add this line to import config from decouple module 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -27,9 +28,10 @@ SECRET_KEY = 'django-insecure-1+@!lq-l#bx5bd4_(l&plno(9w^e908&y62p1)1*w$qc!wf#q4
 DEBUG = True
 
 #add CORS
-ALLOWED_HOSTS = ['*'] # add 'localhost' for CORS
+ALLOWED_HOSTS = ['*'] # add this line to allow all hosts to access the backend server 
 CORS_ORIGIN_ALLOW_ALL = False # If this is used then `CORS_ORIGIN_WHITELIST` will not have any effect
-CORS_ORIGIN_WHITELIST = ('http://localhost:4200',) 
+# If this is used, then not need to use `CORS_ORIGIN_ALLOW_ALL = True`
+CORS_ORIGIN_WHITELIST = ('http://localhost:4200',) # provide your frontend url here ex: localhost:4200 (Angular)
 
 # Application definition
 
@@ -49,9 +51,9 @@ INSTALLED_APPS = [
         'allauth.account', #add allauth
         'allauth.socialaccount', #add allauth
         'allauth.socialaccount.providers.google', #add allauth
-        'dj_rest_auth',
-        'dj_rest_auth.registration',
-        'django_rest_passwordreset',
+        'dj_rest_auth', #add dj_rest_auth
+        'dj_rest_auth.registration', #add dj_rest_auth
+        'django_rest_passwordreset', #add django_rest_passwordreset
 
 ]
 
@@ -67,10 +69,6 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'drf_feriaonline.urls'
-
-#add MEDIA
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media') 
-MEDIA_URL = '/media/' 
 
 TEMPLATES = [
     {
@@ -160,6 +158,10 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
+#add MEDIA
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media') 
+MEDIA_URL = '/media/' 
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
@@ -178,8 +180,8 @@ SOCIALACCOUNT_PROVIDERS = {
     "google": {
         "APP": {
             "client_id": "",  # replace whit your client_id
-            "secret": "",        # replace whit your secret
-            "key": "",                               # leave empty
+            "secret": "",     # replace whit your secret
+            "key": "",        # leave empty
         },
         "SCOPE": [
             "profile",
@@ -215,17 +217,17 @@ AUTHENTICATION_BACKENDS = {
     'allauth.account.auth_backends.AuthenticationBackend',
 }
 
-from decouple import config # esto sirve para que acepte lo de la variable de entorno
 
 # todo esto esta configutado en un .env "variable de entorno"
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+#EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend' # Backend a utilizar para el envío de correos electrónicos
 EMAIL_HOST =  config('EMAIL_HOST')  # Dirección del servidor SMTP
 EMAIL_PORT =  config('EMAIL_PORT')  # Puerto del servidor SMTP
 EMAIL_USE_TLS =  True  # Utiliza TLS para una conexión segura
 EMAIL_HOST_USER =  config('EMAIL_HOST_USER')  # Nombre de usuario del servidor SMTP (si es necesario)
 EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')  # Contraseña del servidor SMTP (si es necesario)
 EMAIL_USE_SSL = False
-#EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
 
 SITE_ID = 1 # Le decimos a django que utilice el primer sitio como predeterminado
 
