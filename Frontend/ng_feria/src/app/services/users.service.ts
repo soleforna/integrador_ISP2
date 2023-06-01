@@ -35,6 +35,13 @@ export class UsersService {
 
     return this.http.post('http://localhost:8000/api/clients/', formData);
   }
+  enviarCorreo(email: string): Observable<any> {
+    const formdataemail = new FormData();
+    formdataemail.append('email', email);
+   
+
+    return this.http.post('http://localhost:8000/api/password_reset/', formdataemail);
+  }
 
   logout() {
     localStorage.removeItem("token");
