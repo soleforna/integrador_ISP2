@@ -23,14 +23,17 @@ export class UsersService {
 
     //});
   //}
-  register(username: string, email: string, password1: string, password2: string): Observable<any> {
+  register(first_name: string, last_name: string, username: string, email: string, password: string, phone: string, address: string): Observable<any> {
     const formData = new FormData();
+    formData.append('first_name', first_name);
+    formData.append('last_name', last_name);
     formData.append('username', username);
     formData.append('email', email);
-    formData.append('password1', password1);
-    formData.append('password2', password2);
+    formData.append('password', password);
+    formData.append('phone', phone);
+    formData.append('address', address);
 
-    return this.http.post('http://localhost:8000/api/auth/register/', formData);
+    return this.http.post('http://localhost:8000/api/clients/', formData);
   }
 
   logout() {

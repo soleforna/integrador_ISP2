@@ -16,6 +16,8 @@ import { LoginComponent } from './components/auth/login/login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RegisterComponent } from './components/auth/register/register.component';
 import { HttpClientModule } from '@angular/common/http';
+import { TokenComponent } from './components/auth/token/token.component';
+import { EnviarCorreoComponent } from './components/auth/enviarcorreo/enviarCorreo.component';
 
 
 @NgModule({
@@ -32,6 +34,8 @@ import { HttpClientModule } from '@angular/common/http';
     ShopComponent,
     LoginComponent,
     RegisterComponent,
+    TokenComponent,
+    EnviarCorreoComponent
   ],
   imports: [
     BrowserModule,

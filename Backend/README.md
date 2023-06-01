@@ -21,7 +21,7 @@ pip install -r requirements.txt
 ```
 O también pueden instalarlos de la siguiente forma
 ```
-pip install django djangorestframework django-cors-headers mysqlclient pillow django-allauth
+pip install django djangorestframework django-cors-headers mysqlclient pillow django-rest-passwordreset django-allauth python-decouple
 ```
 
 Para poder ejecutar el stack de backend, ademas de contar con Python instalado, es necesario una base de datos MySQL corriendo de nombre "dbferia". Una manera sencilla de tener una base de datos mySQL es mediante Docker, que una vez instaldo solo sera necesario ejecutar el siguiente comandos
