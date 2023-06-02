@@ -18,7 +18,7 @@ constructor( public userService: UsersService,public router:Router ) {
    
 }
 
-enviarCorreo(){
+   enviarCorreo(){
 
   this.userService.enviarCorreo(this.email)
    .subscribe(response => {

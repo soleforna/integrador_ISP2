@@ -13,6 +13,24 @@ import { Router } from "@angular/router";
 
 export class TokenComponent{
 
+  password:any;
+  email:any;
+  tokenError: boolean = false;
+
+
+constructor( public userService: UsersService,public router:Router ) {
+   
 }
 
+  enviarToken(){
+    this.userService.enviarToken(this.email, this.password)
+    .subscribe(response => {
+     console.log(response);
+     this.router.navigate(["/inicio"]); // Redirecciona a token.
+     }, error => {
+        this.tokenError = true;
+     });
 
+  }
+
+}

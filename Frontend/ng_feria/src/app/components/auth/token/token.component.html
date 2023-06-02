@@ -1,21 +1,24 @@
 <app-nav></app-nav>
-  <form class="wrapper" method='POST'>
+  <form class="wrapper" (ngSubmit)="enviarToken()">
     <div class="container-table">
       <br>
       <br>
       <h5>Ingrese su Email</h5>
-       <input type="text" id="correo" name="correo" required
-           minlength="8" maxlength="35" size="40">
-      <br>
+      <input type="text" id="correo" name="correo" required
+      minlength="8" maxlength="35" size="40" [(ngModel)]="email" >
+ <br>
     </div>
     <div class="container-table">
       <h5>Ingrese su clave</h5>
-       <input type="password" id="clave" name="clave" required
-           minlength="8" maxlength="35" size="40">
+       <input type="password" id="password" name="password" required
+           minlength="8" maxlength="35" size="40"  [(ngModel)]="password" >
       <br>
     </div>
     <div class="input-field mt-5">
     <button type="submit" class="submit">Enviar</button>
+    <div *ngIf="tokenError" class="ng-error">
+      <p>Error al enviar Los Datos</p>
+    </div>
 
     <a routerLink="/">Ir a pagina principal</a>
     </div>
