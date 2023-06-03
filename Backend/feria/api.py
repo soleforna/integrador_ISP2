@@ -1,7 +1,7 @@
 from .models import *
 from .serializers import *
 from django.core.exceptions import ValidationError as DjangoValidationError
-from django.contrib.auth.hashers import check_password
+from django.contrib.auth.hashers import check_password, make_password
 from django.contrib.auth.password_validation import validate_password
 from rest_framework import viewsets, permissions, status
 from rest_framework.response import Response
@@ -47,11 +47,13 @@ class ClientViewSet(viewsets.ModelViewSet):
 
         if serializer.is_valid() and user_serializer.is_valid():
             user = user_serializer.save() #guardar el usuario
-            user_fields = ['first_name', 'last_name']
+            password = make_password(request.data['password']) #encriptar la contraseña
+            user_fields = ['first_name', 'last_name', password]
+            
             for field in user_fields:
                 if field in request.data and request.data[field] != 'null':
                     setattr(user, field, request.data[field])
-                    user.save()
+            user.save() #guardar los campos del usuario
             client = serializer.save(user=user) #guardar el cliente
             
             response = {

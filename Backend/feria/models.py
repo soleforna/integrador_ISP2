@@ -5,6 +5,7 @@ from django.dispatch import receiver
 from django.urls import reverse
 from django_rest_passwordreset.signals import reset_password_token_created
 from django.core.mail import send_mail 
+from django.core.validators import MaxValueValidator
 
 
 # Create your models here.
@@ -52,10 +53,11 @@ class Client(models.Model):
 
 
 class Review(models.Model):
-    article = models.ForeignKey(Article, on_delete=models.CASCADE)
-    client = models.ForeignKey(Client, on_delete=models.CASCADE)
-    description = models.CharField(max_length=100)
-    created_at = models.DateTimeField(auto_now_add=True)
+    article = models.ForeignKey(Article, on_delete=models.CASCADE) #relacion de uno a uno con la tabla Article
+    client = models.ForeignKey(Client, on_delete=models.CASCADE) #relacion de uno a uno con la tabla Client
+    description = models.CharField(max_length=140) #maximo 140 caracteres
+    classification = models.IntegerField(validators=[MaxValueValidator(5)], default=1) #solo numeros positivos por defecto 1 y maximo 5
+    created_at = models.DateTimeField(auto_now_add=True) #fecha de creacion
 
     def __str__(self):
         return str(self.id)
