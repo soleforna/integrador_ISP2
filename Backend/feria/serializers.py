@@ -1,5 +1,5 @@
 from django.contrib.auth.models import User
-from rest_framework.serializers import ModelSerializer
+from rest_framework.serializers import ModelSerializer, SerializerMethodField
 from .models import *
 
 class UserSerializer(ModelSerializer):
@@ -28,16 +28,38 @@ class ArticleSerializer(ModelSerializer):
         read_only_fields = ('created_at', )
     
 class ReviewSerializer(ModelSerializer):
+    client_name = SerializerMethodField() #agregar un campo que no existe en el modelo
+    client_avatar = SerializerMethodField() #agregar un campo que no existe en el modelo
+    article_name = SerializerMethodField()
+    
     class Meta:
         model = Review
-        fields = '__all__'
-        read_only_fields = ('created_at',)
+        fields = ('id', 'article_name', 'client_name', 'client_avatar', 'description', 'classification', 'created_at')
+
+    def get_client_name(self, obj): #obtener el nombre del cliente
+        client = obj.client #obtener el cliente
+        if client: #si existe el cliente
+            return client.name #devolver el nombre del cliente
+        return None #si no existe el cliente, devolver None
+
+    def get_client_avatar(self, obj): #obtener el avatar del cliente
+        client = obj.client #obtener el cliente
+        if client and client.avatar: #si existe el cliente y tiene avatar
+            return client.avatar.url #devolver la url del avatar
+        return None #si no existe el cliente o no tiene avatar, devolver None
+    
+    def get_article_name(self, obj):
+        article = obj.article
+        if article:
+            return article.name
+        return None
 
 class ClientSerializer(ModelSerializer):
     class Meta:
         model = Client
         fields = ['id', 'name', 'phone', 'address', 'avatar']
         read_only_fields = ('created_at',)
+
 
 class CartSerializer(ModelSerializer):
     class Meta:
