@@ -28,7 +28,7 @@ const routes: Routes = [
   {path:'detalle/:id', component:DetailsComponent},
   {path: 'registro', component:RegisterComponent},
   {path: 'token', component:TokenComponent},
-  {path: 'enviarCorreo', component:EnviarCorreoComponent}
+  {path: 'enviarCorreo', component:EnviarCorreoComponent},
 ];
 
 @NgModule({

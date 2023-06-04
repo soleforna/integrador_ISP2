@@ -7,6 +7,7 @@ import { UsersService } from "src/app/services/users.service";
   styleUrls: ['./nav.component.css']
 })
 export class NavComponent {
+
   user = JSON.parse(localStorage.getItem("user") || "{}");
   name: string = this.getName(this.user) ;
   isLoggedIn: boolean = false;

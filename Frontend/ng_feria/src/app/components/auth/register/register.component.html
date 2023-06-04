@@ -7,38 +7,39 @@
           <h4>Regístrate!</h4>
           <div class="input-field">
             <input type="text" formControlName="nombre" [class.is-invalid]="nombreNoValido" class="input" id="email" name="first_name" placeholder="Nombre" [(ngModel)]="first_name">
-            <small *ngIf="nombreNoValido" class="text-danger">Ingrese el nombre con el mínimo de 3 letras</small>
+            <p *ngIf="nombreNoValido" class="text-danger">Ingrese el nombre con el mínimo de 3 letras</p>
           </div>
           <div class="input-field">
             <input type="text" formControlName="apellido" [class.is-invalid]="apellidoNoValido" class="input" name="last_name"id="password" placeholder="Apellido" [(ngModel)]="last_name">
-            <small *ngIf="apellidoNoValido" class="text-danger">El apellido es un campo requerido</small>
+            <p *ngIf="apellidoNoValido" class="text-danger">El apellido es un campo requerido</p>
           </div>
-          <div class="input-field">
+          <!-- <div class="input-field">
              <input type="text" formControlName="nombre" [class.is-invalid]="nombreNoValido" class="input" id="email" name="username" placeholder="Usuario" [(ngModel)]="username">
             <small *ngIf="nombreNoValido" class="text-danger">Ingrese el nombre con el mínimo de 3 letras</small>
-          </div>
+          </div> -->
           <div class="input-field">
             <input type="text" formControlName="correo" [class.is-invalid]="correoNoValido" class="input" name="email" id="email" placeholder="Email" [(ngModel)]="email">
-            <small *ngIf="correoNoValido" class="text-danger">Ingrese un email válido</small>
+            <p *ngIf="correoNoValido" class="text-danger">Ingrese un email válido</p>
           </div>
           <div class="input-field">
             <input type="password" formControlName="password1" [class.is-invalid]="password1NoValido" class="input" name="password" id="password" placeholder="Contraseña" [(ngModel)]="password">
             <small *ngIf="password1NoValido" class="text-danger"> 6 caracteres como mínimo</small>
           </div>
 
-          <!-- <div class="input-field">
+          <div class="input-field">
             <input type="password" formControlName="password2" [class.is-invalid]="password2NoValido" class="input" name="password2" id="password" placeholder="Confirmar contraseña" [(ngModel)]="password2">
-            <small *ngIf="password2NoValido" class="text-danger">Las contraseñas no coinciden</small>
-          </div> -->
+            <p *ngIf="password2NoValido" class="text-danger">Las contraseñas no coinciden</p>
+          </div> 
+
           <div class="input-field">
-            <input type="text" formControlName="apellido" [class.is-invalid]="apellidoNoValido" class="input" name="phone" id="password" placeholder="Telefono" [(ngModel)]="phone">
-            <small *ngIf="apellidoNoValido" class="text-danger">El apellido es un campo requerido</small>
+            <input type="text" formControlName="telefono" [class.is-invalid]="apellidoNoValido" class="input" name="phone" id="tel" placeholder="Teléfono" [(ngModel)]="phone">
+            <!-- <small *ngIf="apellidoNoValido" class="text-danger">El apellido es un campo requerido</small> -->
           </div>
           <div class="input-field">
-            <input type="text" formControlName="apellido" [class.is-invalid]="apellidoNoValido" class="input" name="address" id="password" placeholder="Dirección" [(ngModel)]="address">
-            <small *ngIf="apellidoNoValido" class="text-danger">El apellido es un campo requerido</small>
+            <input type="text" formControlName="direccion" [class.is-invalid]="apellidoNoValido" class="input" name="address" id="address" placeholder="Dirección" [(ngModel)]="address">
+            <!-- <small *ngIf="apellidoNoValido" class="text-danger">El apellido es un campo requerido</small> -->
           </div>
-          <div class="input-field mt-5">
+          <div class="input-field mt-3">
             <button type="submit" class="submit">Regístrate</button>
           </div>
           <div *ngIf="loginError" class="ng-error">
@@ -47,7 +48,7 @@
           <div class="login">
             <span>¿Ya tienes una cuenta? <a routerLink="/iniciar-sesion">Iniciar Sesión</a></span>
           </div>
-          <div class="ppal">
+          <div class="ppal mb-3">
             <a routerLink="/">Ir a pagina principal</a>
           </div>
         </div>

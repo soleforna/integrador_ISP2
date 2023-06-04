@@ -1,9 +1,9 @@
 <a #inicio></a>
 <nav class="navbar navbar-expand-md navbar-light bg-white fixed-top border-bottom shadow-sm">
   <div class="container-fluid">
-    <div>
-      <img src="../../../../assets/img/logo.webp" style="max-height: 60px" alt="logo" />
-      <img src="../../../../assets/img/Logo-texto.webp" style="max-height: 60px" alt="logo" />
+    <div class="logo">
+      <img src="../../../../assets/img/logo.webp" class= "logo-img1"  alt="logo" />
+      <img src="../../../../assets/img/Logo-texto.webp" class= "logo-img" alt="logo" />
     </div>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
       aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -11,9 +11,6 @@
     </button>
     <div class="collapse navbar-collapse justify-content-center justify-content-md-end" id="navbarNav">
       <ul class="navbar-nav mb-2 mx-auto mb-md-0 text-uppercase text-center">
-        <li class="nav-item">
-          <a class="nav-link"  (click)='scroll(inicio)'>Inicio</a>
-        </li>
         <li class="nav-item">
           <a class="nav-link" (click)='scroll(ofertas)'>Ofertas</a>
         </li>
