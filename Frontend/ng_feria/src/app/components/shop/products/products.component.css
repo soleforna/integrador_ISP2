@@ -10,19 +10,22 @@
     color: #fff;
     border: none;
   }
-  
+
   .btn-outline-secondary:active{
     background-color: #F49D1A;
   }
-  
+
   .btn-outline-secondary:hover{
     transform: scale(1.1);
   }
-  
+
   @media screen and (max-width: 990px) {
-  
+
     .btn {
       font-size: 0.8rem;
       padding: 0.25rem 0.5rem;
     }
   }
+  .card-img-top{
+    background-image: cover;
+   }
