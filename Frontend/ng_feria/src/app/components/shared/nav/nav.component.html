@@ -26,7 +26,8 @@
           <div class="cart-no">2</div>
         </a>
         <a class="btn btn-outline-secondary me-2" *ngIf="!isLoggedIn" routerLink="/iniciar-sesion">Ingresar</a>
-        <img *ngIf="isLoggedIn" src="../../../../assets/img/user.png" alt="imagen-perfil" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+        <a class="btn btn-outline-secondary me-2" *ngIf="!isLoggedIn" routerLink="/registro">Registrarse</a>
+        <img *ngIf="isLoggedIn" [src]="avatar" alt="imagen-perfil" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
       </div>
     </div>
   </div>
@@ -37,7 +38,7 @@
   </div>
   <div class="container-2">
 <div class="perfil">
-  <img src="../../../../assets/img/user.png" alt="imagen-perfil">
+  <img [src]="avatar" alt="imagen-perfil">
   <h3>{{name}}</h3>
 </div>
 <div class="container-botones">

@@ -268,129 +268,31 @@
       <!-- testimonios contenedor-->
       <div class="testimonios_contenedor">
         <!--BOX 1-->
-        <div class="testimonios_caja">
+        <div class="testimonios_caja" *ngFor="let resena of resenas">
           <div class="caja-top">
             <div class="perfil">
               <div class="perfil_img">
-                <img
-                  src="../../../../assets/img/couple.jpg"
-                  alt="imagen_usuario"
-                />
+                <img [src]="getAvatarImage(resena.client_avatar)" alt="imagen_usuario"/>
+
               </div>
               <!--NOMBRE USUARIO-->
               <div class="name_user">
-                <strong>Martin Suarez</strong>
-                <span>@tinchosuarez12</span>
+                <strong>{{getNombre(resena.client_name)}}</strong>
               </div>
             </div>
             <!--RESEÑAS-->
             <div class="reseñas">
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
+              <i class="fas fa-star" *ngFor="let _ of getEstrellas(resena.classification)" [ngClass]="{ 'filled': resena.classification >= _ }"></i>
+
             </div>
           </div>
           <!--COMENTARIOS-->
           <div class="comentarios_clientes">
-            <p>Muy lindo todo y buen precio, sigan así!</p>
+            <p>{{ resena.description }}</p>
           </div>
         </div>
         <!--end box 1-->
-        <!--BOX 2-->
-        <div class="testimonios_caja">
-          <div class="caja-top">
-            <div class="perfil">
-              <div class="perfil_img">
-                <img
-                  src="../../../../assets/img/bulldog.jpg"
-                  alt="imagen_usuario"
-                />
-              </div>
-              <!--NOMBRE USUARIO-->
-              <div class="name_user">
-                <strong>Liliana Sosa</strong>
-                <span>@lilysosa</span>
-              </div>
-            </div>
-            <!--RESEÑAS-->
-            <div class="reseñas">
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-            </div>
-          </div>
-          <!--COMENTARIOS-->
-          <div class="comentarios_clientes">
-            <p>Muy buena atención me encanto todo.</p>
-          </div>
-        </div>
-        <!--end box 2-->
-        <!--BOX 3-->
-        <div class="testimonios_caja">
-          <div class="caja-top">
-            <div class="perfil">
-              <div class="perfil_img">
-                <img
-                  src="../../../../assets/img/fashion.jpg"
-                  alt="imagen_usuario"
-                />
-              </div>
-              <!--NOMBRE USUARIO-->
-              <div class="name_user">
-                <strong>Laura palacio</strong>
-                <span>@laura797</span>
-              </div>
-            </div>
-            <!--RESEÑAS-->
-            <div class="reseñas">
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-            </div>
-          </div>
-          <!--COMENTARIOS-->
-          <div class="comentarios_clientes">
-            <p>
-              Que decir de esta maravillosa tienda, 5 estrellas.
-            </p>
-          </div>
-        </div>
-        <!--end box 3-->
-        <!--BOX 4-->
-        <div class="testimonios_caja">
-          <div class="caja-top">
-            <div class="perfil">
-              <div class="perfil_img">
-                <img
-                  src="../../../../assets/img/cat.jpg"
-                  alt="imagen_usuario"
-                />
-              </div>
-              <!--NOMBRE USUARIO-->
-              <div class="name_user">
-                <strong>Juan Lopez</strong>
-                <span>@perezado</span>
-              </div>
-            </div>
-            <!--RESEÑAS-->
-            <div class="reseñas">
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star fa-gray"></i>
-            </div>
-          </div>
-          <!--COMENTARIOS-->
-          <div class="comentarios_clientes">
-            <p>Exelente precio y buenos productos!</p>
-          </div>
-        </div>
+
         <!--end box 4-->
       </div>
       <br />
