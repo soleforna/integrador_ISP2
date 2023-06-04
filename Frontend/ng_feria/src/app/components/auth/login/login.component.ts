@@ -10,6 +10,10 @@ import { Router } from "@angular/router";
 export class LoginComponent {
   email: string = "";
   password: string = "";
+  emailInvalid: boolean = false;
+  passwordInvalid: boolean = false;
+  emailTouched: boolean = false;
+  passwordTouched: boolean = false;
 
 
   constructor(public userService: UsersService, public router:Router) {
@@ -18,6 +22,16 @@ export class LoginComponent {
   }
 
   login() {
+
+    this.emailTouched = true;
+    this.passwordTouched = true;
+
+    if (!this.email || !this.password) {
+      this.emailInvalid = !this.email;
+      this.passwordInvalid = !this.password;
+      return;
+    }
+
     const user = { email: this.email, password: this.password };
     this.userService.login(user).subscribe((data: any) => {
       localStorage.setItem("token", data.key);
@@ -27,5 +41,11 @@ export class LoginComponent {
     }, (error: any) => { console.log(error) },
 
     );
+
+    this.emailInvalid = false;
+    this.passwordInvalid = false;
+    this.emailTouched = false;
+    this.passwordTouched = false;
   }
+
 }
