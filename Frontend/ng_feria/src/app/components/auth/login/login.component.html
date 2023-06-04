@@ -8,10 +8,12 @@
           <div class="input-field">
             <span class="details">Correo electrónico</span>
             <input class='inp' type="email" [(ngModel)]="email" name="email" placeholder="Ingrese su correo electrónico" required="required"/>
+            <div class="error-message" *ngIf="emailInvalid && emailTouched">Correo electrónico requerido</div>
           </div>
           <div class="input-field">
             <span class="details">Contraseña</span>
             <input class='inp' type="password" [(ngModel)]="password" name="password" placeholder="Ingrese su contraseña" required="required"/>
+            <div class="error-message" *ngIf="passwordInvalid && passwordTouched">Contraseña requerida</div>
               <!-- <button (click)="loginWithGoogle('google')"><i class="fa-brands fa-google"></i> Iniciar sesión con Google</button> -->
           </div>
           <div class="button-box">
