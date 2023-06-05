@@ -11,6 +11,7 @@ routers.register('api/reviews', ReviewViewSet, 'reviews')
 routers.register('api/clients', ClientViewSet, 'clients')
 routers.register('api/cart', CartViewSet, 'cart')
 routers.register('api/cartdetails', CartDetailsViewSet, 'cartdetails')
+routers.register('api/coments', ComentViewSet, 'coments')
 
 
 
