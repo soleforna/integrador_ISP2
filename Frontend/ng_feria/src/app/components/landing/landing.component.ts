@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { ReseñaService } from "src/app/services/reseñas.service";
+import { ComentService } from "src/app/services/coment.service";
+import { FechaService } from "src/app/services/fecha.service";
 
 @Component({
   selector: 'app-landing',
@@ -8,33 +9,36 @@ import { ReseñaService } from "src/app/services/reseñas.service";
   styleUrls: ['./landing.component.css']
 })
 export class LandingComponent {
-  constructor(private ReseñaService: ReseñaService,){ }
-  resenas: any[] = [];
-  imagenPredefinida = '../../../../assets/img/user.png';
+  constructor(private ComentService: ComentService, private FechaService: FechaService,){ }
+  coments: any[] = [];
+
 
   ngOnInit(): void {
-    this.obtenerReseñas();
+    this.obtenerComentarios();
   }
 
-  obtenerReseñas(): void {
-    this.ReseñaService.getReseñas().subscribe(
-      (resenas) => {
-        this.resenas = resenas;
+  obtenerComentarios(): void {
+    this.ComentService.getComent().subscribe(
+      (comentarios) => {
+        console.log(comentarios);
+        this.coments = comentarios;
       },
       (error) => {
-        // Manejo de errores
+        console.log(error.error.message);
       }
     );
   }
 
-  getEstrellas(clasificacion: number): number[] {
-    return Array(clasificacion).fill(0);
-  }
   getAvatarImage(client_Avatar: string): string { //paso como argumento el client_avatar
     return client_Avatar ? client_Avatar : '../../../../assets/img/user.png'; //retorno la imagen que trae y si no le paso una predefinida
   }
+
   getNombre(client_name: string): string {
     return client_name ? client_name : 'Anónimo';
+  }
+
+  getFecha(fecha: string): string {
+    return this.FechaService.convertirFecha(fecha);
   }
 
 
