@@ -17,15 +17,16 @@ class Category(models.Model):
 
     def __str__(self):
         return self.name
-    
+
+
 class Article(models.Model):
-    name = models.CharField(max_length=50)
-    description = models.CharField(max_length=100)
-    category = models.ForeignKey(Category, on_delete=models.CASCADE)
+    name = models.CharField(max_length=50) #maximo 50 caracteres
+    description = models.CharField(max_length=100) #maximo 100 caracteres
+    category = models.ForeignKey(Category, on_delete=models.CASCADE) #relacion de uno a uno con la tabla Category
     price = models.DecimalField(max_digits=10, decimal_places=0) # maximo 10 digitos y 0 decimales
     stock = models.PositiveIntegerField(default=1) #solo numeros positivos por defecto 1
-    image = models.ImageField(upload_to='images/', null=True, blank=True)
-    created_at = models.DateTimeField(auto_now_add=True)
+    image = models.ImageField(upload_to='images/', null=True, blank=True) #campo para subir imagenes
+    created_at = models.DateTimeField(auto_now_add=True) #fecha de creacion
 
     def __str__(self):
         return self.name
@@ -49,8 +50,6 @@ class Client(models.Model):
     
     def __str__(self):
             return self.name
-    
-
 
 class Review(models.Model):
     article = models.ForeignKey(Article, on_delete=models.CASCADE) #relacion de uno a uno con la tabla Article
@@ -62,6 +61,16 @@ class Review(models.Model):
     def __str__(self):
         return str(self.id)
     
+class Coment(models.Model):
+    client = models.ForeignKey(Client, on_delete=models.CASCADE) #relacion de uno a uno con la tabla Client
+    description = models.CharField(max_length=140) #maximo 140 caracteres
+    classification = models.IntegerField(validators=[MaxValueValidator(5)], default=1) #solo numeros positivos por defecto 1 y maximo 5
+    created_at = models.DateTimeField(auto_now_add=True) #fecha de creacion
+
+    def __str__(self):
+        return str(self.id)
+
+
 class Cart(models.Model):
     client = models.ForeignKey(Client, on_delete=models.DO_NOTHING, null=True, blank=True)
     products = models.ManyToManyField(Article, through='CartDetail') #relacion muchos a muchos con la tabla CartDetail

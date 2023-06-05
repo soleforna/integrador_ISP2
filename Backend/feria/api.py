@@ -24,6 +24,11 @@ class ReviewViewSet(viewsets.ModelViewSet):
     permission_classes = [permissions.AllowAny]
     serializer_class = ReviewSerializer
 
+class ComentViewSet(viewsets.ModelViewSet):
+    queryset = Coment.objects.all()
+    permission_classes = [permissions.AllowAny]
+    serializer_class = ComentSerializer
+
 class CartViewSet(viewsets.ModelViewSet):
     queryset = Cart.objects.all()
     permission_classes = [permissions.AllowAny]
