@@ -268,27 +268,27 @@
       <!-- testimonios contenedor-->
       <div class="testimonios_contenedor">
         <!--BOX 1-->
-        <div class="testimonios_caja" *ngFor="let resena of resenas">
+        <div class="testimonios_caja" *ngFor="let comentarios of coments">
           <div class="caja-top">
             <div class="perfil">
               <div class="perfil_img">
-                <img [src]="getAvatarImage(resena.client_avatar)" alt="imagen_usuario"/>
+                <img [src]="getAvatarImage(comentarios.client_avatar)" alt="imagen_usuario"/>
 
               </div>
               <!--NOMBRE USUARIO-->
               <div class="name_user">
-                <strong>{{getNombre(resena.client_name)}}</strong>
+                <strong>{{getNombre(comentarios.client_name)}}</strong>
               </div>
             </div>
-            <!--RESEÑAS-->
-            <div class="reseñas">
-              <i class="fas fa-star" *ngFor="let _ of getEstrellas(resena.classification)" [ngClass]="{ 'filled': resena.classification >= _ }"></i>
-
+            <!--ESTRELLAS-->
+            <div class="estrellas">
+              <i class="fas fa-star" *ngFor="let index of [].constructor(comentarios.classification -1)"></i>
             </div>
           </div>
           <!--COMENTARIOS-->
           <div class="comentarios_clientes">
-            <p>{{ resena.description }}</p>
+            <p>{{comentarios.description+' '+getFecha(comentarios.created_at)}}</p>
+
           </div>
         </div>
         <!--end box 1-->
