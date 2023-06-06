@@ -63,7 +63,6 @@ class User(AbstractUser): #modelo de usuario personalizado
     def get_short_name(self): 
         return self.first_name
 
-
 class Category(models.Model): #modelo de categoria
     name = models.CharField(max_length=50)
     description = models.CharField(max_length=100)
@@ -71,7 +70,6 @@ class Category(models.Model): #modelo de categoria
 
     def __str__(self):
         return self.name
-
 
 class Article(models.Model): #modelo de articulo
     name = models.CharField(max_length=50) #maximo 50 caracteres
@@ -124,7 +122,6 @@ class Coment(models.Model): #modelo de comentario
     def __str__(self):
         return str(self.id)
 
-
 class Cart(models.Model): #modelo de carrito
     client = models.ForeignKey(Client, on_delete=models.DO_NOTHING, null=True, blank=True)
     products = models.ManyToManyField(Article, through='CartDetail') #relacion muchos a muchos con la tabla CartDetail
@@ -155,8 +152,7 @@ class CartDetail(models.Model): #modelo de detalle de carrito
         self.amount = self.item.price * self.quantity
         super().save(*args, **kwargs)
 
-
-@receiver(reset_password_token_created)
+@receiver(reset_password_token_created) 
 def password_reset_token_created(sender, instance, reset_password_token, *args, **kwargs): #obtiene el token
 
     email_plaintext_message = "{}?token={}".format(reverse('password_reset:reset-password-request'), reset_password_token.key)
