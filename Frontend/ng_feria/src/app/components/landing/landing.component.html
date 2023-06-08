@@ -1,42 +1,5 @@
-<a #inicio></a>
-<nav class="navbar navbar-expand-md navbar-light bg-white fixed-top border-bottom shadow-sm">
-  <div class="container-fluid">
-    <div class="logo">
-      <img src="../../../../assets/img/logo.webp" class= "logo-img1"  alt="logo" />
-      <img src="../../../../assets/img/Logo-texto.webp" class= "logo-img" alt="logo" />
-    </div>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse justify-content-center justify-content-md-end" id="navbarNav">
-      <ul class="navbar-nav mb-2 mx-auto mb-md-0 text-uppercase text-center">
-        <li class="nav-item">
-          <a class="nav-link" (click)='scroll(ofertas)'>Ofertas</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" (click)='scroll(beneficios)'>Beneficios</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" (click)='scroll(preguntas)'>Preguntas</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" (click)='scroll(comentarios)'>Comentarios</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" (click)='scroll(contactos)'>Contactos</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" [routerLink]="['/producto']" routerLinkActive="router-link-active" >Tienda</a>
-        </li>
-      </ul>
-      <div class="d-flex align-items-center justify-content-center">
-        <a class="btn btn-outline-secondary me-2" routerLink="/iniciar-sesion">Ingresar</a>
-        <a class="btn btn-outline-secondary" routerLink="/registro">Registrarse</a>
-      </div>
-    </div>
-  </div>
-</nav>
+<a id="inicio"></a>
+<app-nav></app-nav>
 
 <div id="icon-menu">
   <i class="fa-sharp fa-solid fa-arrow-up"></i>
@@ -69,7 +32,7 @@
     </div>
   </section>
 
-  <section class="slider-section"#ofertas>
+  <section class="slider-section"id="ofertas">
     <div class="container-slider">
       <h1 class="h1-ofertas">Ofertas</h1>
     <div id="carouselExampleIndicators" class="carousel slide">
@@ -93,7 +56,7 @@
         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
         <span class="visually-hidden">Previous</span>
       </button>
-      <a #beneficios></a>
+      <a id="beneficios"></a>
       <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
         <span class="carousel-control-next-icon" aria-hidden="true"></span>
         <span class="visually-hidden">Next</span>
@@ -102,7 +65,7 @@
     </div>
   </section>
 
-  <section id="beneficios" class="hero-section benefits-section" #beneficios>
+  <section id="beneficios" class="hero-section benefits-section" >
     <div class="container">
       <h2 class="text-center mb-5">Beneficios de nuestra página</h2>
       <div class="row">
@@ -145,7 +108,7 @@
       </div>
     </div>
   </section>
-  <a #preguntas></a>
+  <a id="preguntas"></a>
   <section class="faq">
     <div class="container">
       <div class="section-title">
@@ -252,7 +215,7 @@
       <span>comentarios</span>
       <h1>Clientes dicen</h1>
     </div>
-    <div class="contenedor-tb" #comentarios>
+    <div class="contenedor-tb" id="comentarios">
       <div class="input-group-btn">
         <button
           type="submit"
@@ -359,4 +322,4 @@
 </div>
 <br />
 <app-footer></app-footer>
-<a #contactos></a>
+<a id="contactos"></a>
