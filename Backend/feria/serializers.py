@@ -3,12 +3,24 @@ from rest_framework.serializers import ModelSerializer, SerializerMethodField
 from .models import *
 
 class UserSerializer(ModelSerializer):
+    client_avatar = SerializerMethodField()
     class Meta:
         model = User
-        fields = ['username','first_name', 'last_name', 'email', 'password']
+        fields = ['username','first_name', 'last_name', 'email', 'password','client_avatar']
         extra_kwargs = {
             'password': {'write_only': True}
         }
+        
+    def get_client_avatar(self, obj): #obtener el avatar del cliente
+        client = obj.client
+        if client and client.avatar: # Si existe el cliente y tiene avatar
+            request = self.context.get('request')  # Obtener la solicitud actual desde el contexto
+            avatar_url = client.avatar.url
+            if request is not None:
+                return request.build_absolute_uri(avatar_url)  # Construir la URL absoluta utilizando build_absolute_uri()
+            else:
+                return avatar_url  # Si no se proporciona una solicitud, devolver la URL relativa tal como está
+        return None # Si no existe el cliente o no tiene avatar, devolver None
 
     def create(self, validated_data):
         user = User.objects.create_user(**validated_data)
@@ -21,10 +33,18 @@ class CategorySerializer(ModelSerializer):
         read_only_fields = ('created_at', )
 
 class ArticleSerializer(ModelSerializer):
+    reviews = SerializerMethodField()
+    
     class Meta:
         model = Article
         fields = '__all__'
         read_only_fields = ('created_at', )
+        
+    def get_reviews(self, instance):
+        from .serializers import ReviewSerializer  # Importar localmente aquí
+        reviews = instance.reviews.all()
+        serializer = ReviewSerializer(reviews, many=True)
+        return serializer.data
     
 class ReviewSerializer(ModelSerializer):
     client_name = SerializerMethodField() #agregar un campo que no existe en el modelo
