@@ -11,11 +11,6 @@ export class ReseñaService {
 
   constructor(private http: HttpClient) { }
 
-  getReseñas(): Observable<any[]> {
-    return this.http.get<any[]>(this.apiUrl);
-  } // hago un get a la api de reviews
-
-
 
 
 }
