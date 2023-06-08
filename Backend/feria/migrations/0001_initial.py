@@ -47,10 +47,8 @@ class Migration(migrations.Migration):
             name='Client',
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=50)),
-                ('lastname', models.CharField(max_length=50)),
-                ('phone', models.CharField(max_length=50)),
-                ('address', models.CharField(max_length=100)),
+                ('description', models.CharField(max_length=140)),
+                ('classification', models.IntegerField(default=1, validators=[django.core.validators.MaxValueValidator(5)])),
                 ('created_at', models.DateTimeField(auto_now_add=True)),
                 ('user', models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
             ],
@@ -59,10 +57,10 @@ class Migration(migrations.Migration):
             name='Review',
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('description', models.CharField(max_length=100)),
+                ('description', models.CharField(max_length=140)),
+                ('classification', models.IntegerField(default=1, validators=[django.core.validators.MaxValueValidator(5)])),
                 ('created_at', models.DateTimeField(auto_now_add=True)),
-                ('article', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='feria.article')),
-                ('client', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='feria.client')),
+                ('client', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
             ],
         ),
         migrations.CreateModel(
