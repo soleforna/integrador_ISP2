@@ -8,6 +8,7 @@ import { Observable } from 'rxjs';
 export class ComentService {
   private apiUrl = 'http://localhost:8000/api/coments/';
 
+
   constructor(private http: HttpClient) { }
 
   getComent(): Observable<any[]> {

@@ -23,7 +23,7 @@ export class LoginComponent {
 
   login() {
 
-    this.emailTouched = true; 
+    this.emailTouched = true;
     this.passwordTouched = true;
 
     if (!this.email || !this.password) {

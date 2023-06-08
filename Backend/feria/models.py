@@ -1,8 +1,11 @@
 from typing import Iterable, Optional
 from django.db import models
 from django.contrib.auth.models import AbstractUser, BaseUserManager, User
+from django.dispatch import receiver
+from django.urls import reverse
+from django_rest_passwordreset.signals import reset_password_token_created
+from django.core.mail import send_mail 
 from django.core.validators import MaxValueValidator
-from .validators import *
 
 # Create your models here.
 class CustomUserManager(BaseUserManager): #para que el usuario se pueda loguear con el email
@@ -27,16 +30,12 @@ class CustomUserManager(BaseUserManager): #para que el usuario se pueda loguear 
 
         return self.create_user(email, password, **extra_fields) #se crea el superusuario
 
-class Client(AbstractUser): #modelo de usuario personalizado
+class User(AbstractUser): #modelo de usuario personalizado
     username = None #se establece el username en None
     email = models.EmailField(unique=True) #se establece el email como campo unico
-    first_name = models.CharField(max_length=80, validators=[name_valid]) #maximo 100 caracteres y validacion
-    last_name = models.CharField(max_length=80, validators=[name_valid]) #maximo 100 caracteres y validacion
-    phone = models.CharField(max_length=15, null=True, blank=True, validators=[phone_valid]) #maximo 15 caracteres y validacion
-    address = models.CharField(max_length=100, null=True, blank=True, validators=[address_valid]) #maximo 100 caracteres y validacion
-    avatar = models.ImageField(upload_to='avatars/', null=True, blank=True, validators=[validate_image]) #campo para subir imagenes con validacion
-    created_at = models.DateTimeField(auto_now_add=True) #fecha de creacion
-        
+    first_name = models.CharField(max_length=100) #maximo 100 caracteres
+    last_name = models.CharField(max_length=100) #maximo 100 caracteres
+    
     USERNAME_FIELD = 'email' #se establece el email como campo de autenticacion
     REQUIRED_FIELDS = ['first_name', 'last_name'] #se establecen los campos requeridos
     
@@ -46,16 +45,14 @@ class Client(AbstractUser): #modelo de usuario personalizado
         'auth.Group',
         verbose_name='groups',
         blank=True,
+        related_name='feria_users'  # Cambio del related_name
     )
     user_permissions = models.ManyToManyField( #se establece la relacion de muchos a muchos con la tabla Permission
         'auth.Permission',
         verbose_name='user permissions',
         blank=True,
+        related_name='feria_users'  # Cambio del related_name
     )
-    
-    class Meta: #metadatos
-        verbose_name = 'Cliente' #nombre en singular
-        verbose_name_plural = 'Clientes' #nombre en plural
     
     def __str__(self):
         return self.email
@@ -67,32 +64,44 @@ class Client(AbstractUser): #modelo de usuario personalizado
         return self.first_name
 
 class Category(models.Model): #modelo de categoria
-    name = models.CharField(max_length=50, validators=[name_valid]) #maximo 50 caracteres y validacion
-    description = models.CharField(max_length=100) #maximo 100 caracteres
-    created_at = models.DateTimeField(auto_now_add=True) #fecha de creacion
-    
-    class Meta: #metadatos
-        verbose_name = 'Categoría' #nombre en singular
-        verbose_name_plural = 'Categorías' #nombre en plural
+    name = models.CharField(max_length=50)
+    description = models.CharField(max_length=100)
+    created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return self.name
 
 class Article(models.Model): #modelo de articulo
-    name = models.CharField(max_length=50, validators=[name_valid]) #maximo 50 caracteres y validacion
+    name = models.CharField(max_length=50) #maximo 50 caracteres
     description = models.CharField(max_length=100) #maximo 100 caracteres
     category = models.ForeignKey(Category, on_delete=models.CASCADE) #relacion de uno a uno con la tabla Category
     price = models.DecimalField(max_digits=10, decimal_places=0) # maximo 10 digitos y 0 decimales
     stock = models.PositiveIntegerField(default=1) #solo numeros positivos por defecto 1
-    image = models.ImageField(upload_to='images/', null=True, blank=True, validators=[validate_image]) #campo para subir imagenes con validacion
+    image = models.ImageField(upload_to='images/', null=True, blank=True) #campo para subir imagenes
     created_at = models.DateTimeField(auto_now_add=True) #fecha de creacion
 
-    class Meta: #metadatos
-        verbose_name = 'Artículo' #nombre en singular
-        verbose_name_plural = 'Artículos' #nombre en plural
-        
     def __str__(self):
         return self.name
+
+class Client(models.Model): #modelo de cliente
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    name = models.CharField(max_length=100, null=True, blank=True)
+    phone = models.CharField(max_length=15)
+    address = models.CharField(max_length=100)
+    avatar = models.ImageField(upload_to='avatars/', null=True, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def getEmail(self):
+        return f"{self.user.email}"
+    
+    def save(self, *args, **kwargs):
+        # Concatenar el primer nombre y el apellido para establecer el campo name
+        self.name = f"{self.user.first_name} {self.user.last_name}"
+        # Llamar al método save del modelo padre para guardar los cambios
+        super().save(*args, **kwargs)
+    
+    def __str__(self):
+            return self.name
 
 class Review(models.Model): #modelo de review
     article = models.ForeignKey(Article, on_delete=models.CASCADE) #relacion de uno a uno con la tabla Article
@@ -100,10 +109,6 @@ class Review(models.Model): #modelo de review
     description = models.CharField(max_length=140) #maximo 140 caracteres
     classification = models.IntegerField(validators=[MaxValueValidator(5)], default=1) #solo numeros positivos por defecto 1 y maximo 5
     created_at = models.DateTimeField(auto_now_add=True) #fecha de creacion
-    
-    class Meta: #metadatos
-        verbose_name = 'Reseña' #nombre en singular
-        verbose_name_plural = 'Reseñas' #nombre en plural
 
     def __str__(self):
         return str(self.id)
@@ -113,10 +118,6 @@ class Coment(models.Model): #modelo de comentario
     description = models.CharField(max_length=140) #maximo 140 caracteres
     classification = models.IntegerField(validators=[MaxValueValidator(5)], default=1) #solo numeros positivos por defecto 1 y maximo 5
     created_at = models.DateTimeField(auto_now_add=True) #fecha de creacion
-    
-    class Meta: #metadatos
-        verbose_name = 'Comentario' #nombre en singular
-        verbose_name_plural = 'Comentarios' #nombre en plural
 
     def __str__(self):
         return str(self.id)
@@ -151,3 +152,18 @@ class CartDetail(models.Model): #modelo de detalle de carrito
         self.amount = self.item.price * self.quantity
         super().save(*args, **kwargs)
 
+@receiver(reset_password_token_created) 
+def password_reset_token_created(sender, instance, reset_password_token, *args, **kwargs): #obtiene el token
+
+    email_plaintext_message = "{}?token={}".format(reverse('password_reset:reset-password-request'), reset_password_token.key)
+
+    send_mail( #envia el mail
+        # title:
+        "Password Reset for {title}".format(title="Restablecer Contraseña"),#un titulo
+        # message:
+        email_plaintext_message,
+        # from:
+        "feriaonlineispc@gmail.com",
+        # to:
+        [reset_password_token.user.email]
+    )
