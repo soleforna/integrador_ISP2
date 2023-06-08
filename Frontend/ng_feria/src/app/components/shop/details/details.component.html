@@ -2,7 +2,7 @@
 
   <div class= "abs-center details-main-container d-flex flex-column justify-content-center align-items-center ">
     <div class="container shadow-lg detail-conteiner d-flex justify-content-around align-items-center">
-      
+
         <div class="img-card-detail">
           <img [src]="product?.image" alt="{{ product?.name }}" class="img-detail pt-4">
 
@@ -16,9 +16,128 @@
             <button  class="btn btn-outline-secondary" routerLink="">  Agregar </button>
           </div>
         </div>
-      
+
     </div>
   </div>
+  <section class="testimonios">
+    <div class="testimonios_header">
+      <span>Reseñas</span>
+      <h1>Clientes dicen</h1>
+    </div>
+    <div class="contenedor-tb">
+      <div class="input-group-btn">
+        <button
+          type="submit"
+          name="button"
+          class="btn-color btn-notify btn"
+          data-bs-toggle="modal"
+          data-bs-target="#exampleModal"
+        >
+          <i class="fas fa-sun"></i> Agregar Reseña
+          <i class="fas fa-sun"></i>
+        </button>
+      </div>
+      <!-- testimonios contenedor-->
+      <div *ngIf="product" class="testimonios_contenedor">
+         <!-- si existeproduct?.reviews existe y si su longitud es mayor que cero muestra las reviews si no muestra el ngIf-->
+      <div class="testimonios_contenedor" *ngIf="product?.reviews && product.reviews.length > 0">
+
+        <!--BOX 1-->
+        <div class="testimonios_caja" *ngFor="let review of product?.reviews">
+          <div class="caja-top">
+            <div class="perfil">
+              <div class="perfil_img">
+                <img [src]="getAvatarImage(baseUrl + review.client_avatar)" alt="imagen_usuario"/>
+
+              </div>
+              <!--NOMBRE USUARIO-->
+              <div class="name_user">
+                <strong>{{getNombre(review.client_name)}}</strong>
+              </div>
+            </div>
+            <!--ESTRELLAS-->
+            <div class="estrellas">
+              <i class="fas fa-star" *ngFor="let index of [].constructor(review.classification)"></i>
+            </div>
+          </div>
+          <!--COMENTARIOS-->
+          <div class="comentarios_clientes">
+            <p>{{review.description +' '+ getFecha(review.created_at)}}</p>
+
+          </div>
+        </div>
+
+        <!--end box 1-->
+
+        <!--end box 4-->
+      </div>
+      <div *ngIf="!product?.reviews || product.reviews.length === 0"> <!--si no hay nada muestro el ng if-->
+        No hay reseñas que mostrar.
+      </div>
+
+      <br />
+      <br />
+      <button class="btn-color-transparent btn-notify btn" *ngIf="product?.reviews && product.reviews.length > 0">
+        Cargar mas comentarios
+      </button>
+    </div>
+    </div>
+  </section>
+  <div
+    class="modal fade"
+    id="exampleModal"
+    tabindex="-1"
+    aria-labelledby="exampleModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">
+            Agregar Comentario
+          </h1>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="modal-body">
+          <label for="message-text" class="col-form-label">Comentario:</label>
+          <p class="clasificacion">
+            <input id="radio1" type="radio" name="estrellas" value="5" /><!--
+              --><label for="radio1">★</label
+            ><!--
+              --><input id="radio2" type="radio" name="estrellas" value="4" /><!--
+              --><label for="radio2">★</label
+            ><!--
+              --><input id="radio3" type="radio" name="estrellas" value="3" /><!--
+              --><label for="radio3">★</label
+            ><!--
+              --><input id="radio4" type="radio" name="estrellas" value="2" /><!--
+              --><label for="radio4">★</label
+            ><!--
+              --><input id="radio5" type="radio" name="estrellas" value="1" /><!--
+              --><label for="radio5">★</label>
+          </p>
+
+          <textarea
+            class="form-control"
+            id="message-text"
+            placeholder="Ingrese un comentario"
+          ></textarea>
+          <br />
+          <div class="input-btn-modal">
+            <button type="submit" name="button" class="btn-color btn-notify btn">
+              Agregar
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
 
 <app-footer></app-footer>
 

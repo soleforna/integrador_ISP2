@@ -19,6 +19,8 @@ class CategorySerializer(ModelSerializer):
         read_only_fields = ('created_at', )
 
 class ArticleSerializer(ModelSerializer):
+    reviews = SerializerMethodField()
+    
     class Meta:
         model = Article
         fields = '__all__'
