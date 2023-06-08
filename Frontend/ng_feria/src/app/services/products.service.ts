@@ -12,7 +12,6 @@ export class ProductsService {
   url:String = "http://localhost:8000/api/"
   constructor(private http:HttpClient) {
     console.log("Servicio corriendo");
-
   }
 
   obtenerProductos(): Observable <any>{
