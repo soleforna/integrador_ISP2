@@ -1,7 +1,6 @@
 import { Component } from "@angular/core";
 import { UsersService } from "src/app/services/users.service";
 import { Router } from "@angular/router";
-declare const Swal: any; //declaracion para evitar error de typescript
 
 @Component({
   selector: "app-login",
@@ -38,17 +37,7 @@ export class LoginComponent {
       localStorage.setItem("token", data.key);
       this.userService.getUser(); // Obtiene el usuario y lo guarda en el localStorage.
       //TODO: habria que poner un loader
-      Swal.fire({
-        position: 'top-center',
-        icon: 'success',
-        title: 'Ha iniciado sesión correctamente',
-        showConfirmButton: false,
-        timer: 1500
-      }).then(() => {
-        this.router.navigate(['/producto']); // Redirecciona a la página de productos.
-      }).catch((error: any) => {
-        console.log(error);
-      });
+      this.router.navigate(["/producto"]); // Redirecciona a la página de productos.
     }, (error: any) => { console.log(error) },
 
     );

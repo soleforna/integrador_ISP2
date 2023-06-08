@@ -3,16 +3,13 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { ComentService } from "src/app/services/coment.service";
 import { FechaService } from "src/app/services/fecha.service";
 
-
 @Component({
   selector: 'app-landing',
   templateUrl: './landing.component.html',
   styleUrls: ['./landing.component.css']
 })
 export class LandingComponent {
-  constructor(private ComentService: ComentService, private FechaService: FechaService){
-   }
-
+  constructor(private ComentService: ComentService, private FechaService: FechaService,){ }
   coments: any[] = [];
 
 
@@ -33,7 +30,7 @@ export class LandingComponent {
   }
 
   getAvatarImage(client_Avatar: string): string { //paso como argumento el client_avatar
-    return client_Avatar ? client_Avatar : '../../../../assets/img/profile.png'; //retorno la imagen que trae y si no le paso una predefinida
+    return client_Avatar ? client_Avatar : '../../../../assets/img/user.png'; //retorno la imagen que trae y si no le paso una predefinida
   }
 
   getNombre(client_name: string): string {

@@ -9,7 +9,7 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse justify-content-center justify-content-md-end" id="navbarNav">
-      <ul class="navbar-nav mb-2 mx-auto mb-md-0 text-uppercase text-center" *ngIf="isProductsPage()">
+      <ul class="navbar-nav mb-2 mx-auto mb-md-0 text-uppercase text-center">
         <li class="nav-item">
           <a class="nav-link" routerLink="/">Inicio</a>
         </li>
@@ -20,31 +20,6 @@
           <a class="nav-link">Contacto</a>
         </li>
       </ul>
-       <ul class="navbar-nav mb-2 mx-auto mb-md-0 text-uppercase text-center" *ngIf="isLandingPage()">
-        <li class="nav-item">
-        <!--Le pasamos el componente y la seccion y te navega ej: componente inicio seccion ofertas-->
-        <!-- En el componente deceado definimos el id en un div por ej <div id="ofertas"></div>-->
-          <a class="nav-link"href="/inicio#inicio">Inicio</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/inicio#ofertas" fragment="ofertas">Ofertas</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/inicio#beneficios">Beneficios</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/inicio#preguntas">Preguntas</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/inicio#comentarios">Comentarios</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/inicio#contactos">Contactos</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" [routerLink]="['/producto']" routerLinkActive="router-link-active" >Tienda</a>
-        </li>
-      </ul>
       <div class="d-flex align-items-center justify-content-center">
         <a class="position-relative">
           <a href="/checkout">  <i class="fa fa-shopping-cart me-5 fa-2x text-dark"></i></a>
@@ -52,7 +27,7 @@
         </a>
         <a class="btn btn-outline-secondary me-2" *ngIf="!isLoggedIn" routerLink="/iniciar-sesion">Ingresar</a>
         <a class="btn btn-outline-secondary me-2" *ngIf="!isLoggedIn" routerLink="/registro">Registrarse</a>
-        <img *ngIf="isLoggedIn" [src]="getAvatar(user)" alt="imagen-perfil" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+        <img *ngIf="isLoggedIn" [src]="avatar" alt="imagen-perfil" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
       </div>
     </div>
   </div>
@@ -63,7 +38,7 @@
   </div>
   <div class="container-2">
 <div class="perfil">
-  <img [src]="getAvatar(user)" alt="imagen-perfil">
+  <img [src]="avatar" alt="imagen-perfil">
   <h3>{{name}}</h3>
 </div>
 <div class="container-botones">
