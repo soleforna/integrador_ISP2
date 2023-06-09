@@ -31,19 +31,23 @@ class CategoryAdmin(admin.ModelAdmin):
     
 @admin.register(Article)
 class ArticleAdmin(admin.ModelAdmin):
-    list_display = ('name', 'category', 'description', 'price', 'stock', 'created_at')
+    list_display = ('name', 'category', 'description', 'price', 'stock', 'created_at', 'get_reviews_count')
     search_fields = ('name', 'category')
     readonly_fields = ('created_at',)
     date_hierarchy = 'created_at'
     ordering = ('name', 'created_at')
 
+    def get_reviews_count(self, obj):
+        return obj.review.count()
+    get_reviews_count.short_description = 'Cantidad de Reseñas'
+    
 @admin.register(Review)
 class ReviewAdmin(admin.ModelAdmin):
-    list_display = ('article', 'client', 'description', 'created_at')
-    search_fields = ('article', 'client', 'description')
+    list_display = ('client', 'description', 'created_at')
+    search_fields = ('client', 'description')
     readonly_fields = ('created_at',)
     date_hierarchy = 'created_at'
-    ordering = ('article', 'created_at')
+    ordering = ('client', 'created_at')
 
 @admin.register(Coment)
 class ComentAdmin(admin.ModelAdmin):
