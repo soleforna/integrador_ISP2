@@ -12,6 +12,17 @@ class ClientSerializer(ModelSerializer):
         extra_kwargs = {
             'password': {'write_only': True}
         }
+        
+    def get_client_avatar(self, obj): #obtener el avatar del cliente
+        client = obj.client
+        if client and client.avatar: # Si existe el cliente y tiene avatar
+            request = self.context.get('request')  # Obtener la solicitud actual desde el contexto
+            avatar_url = client.avatar.url
+            if request is not None:
+                return request.build_absolute_uri(avatar_url)  # Construir la URL absoluta utilizando build_absolute_uri()
+            else:
+                return avatar_url  # Si no se proporciona una solicitud, devolver la URL relativa tal como está
+        return None # Si no existe el cliente o no tiene avatar, devolver None
 
 class CategorySerializer(ModelSerializer):
     class Meta:
