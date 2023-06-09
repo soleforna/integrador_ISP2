@@ -180,23 +180,23 @@ REST_AUTH_REGISTER_SERIALIZERS = {
 }
 
 #add allauth
-SOCIALACCOUNT_PROVIDERS = { 
-    "google": {
-        "APP": {
-            "client_id": "",  # replace whit your client_id
-            "secret": "",     # replace whit your secret
-            "key": "",        # leave empty
-        },
-        "SCOPE": [
-            "profile",
-            "email",
-        ],
-        "AUTH_PARAMS": {
-            "access_type": "online",
-        },
-        "VERIFIED_EMAIL": True,
-    },
-}
+# SOCIALACCOUNT_PROVIDERS = { 
+#     "google": {
+#         "APP": {
+#             "client_id": "",  # replace whit your client_id
+#             "secret": "",     # replace whit your secret
+#             "key": "",        # leave empty
+#         },
+#         "SCOPE": [
+#             "profile",
+#             "email",
+#         ],
+#         "AUTH_PARAMS": {
+#             "access_type": "online",
+#         },
+#         "VERIFIED_EMAIL": True,
+#     },
+# }
 
 #LOGIN_REDIRECT_URL ='https://localhost:4200/producto'
 
@@ -220,7 +220,6 @@ AUTHENTICATION_BACKENDS = {
     # allauth specific authentication methods, such as login by e-mail 
     'allauth.account.auth_backends.AuthenticationBackend',
 }
-
 
 # todo esto esta configutado en un .env "variable de entorno"
 #EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
