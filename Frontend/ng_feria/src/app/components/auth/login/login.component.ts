@@ -24,21 +24,22 @@ export class LoginComponent {
 
   login() {
 
-    this.emailTouched = true; 
+    this.emailTouched = true;
     this.passwordTouched = true;
 
-    if (!this.email || !this.password) {
-      this.emailInvalid = !this.email;
-      this.passwordInvalid = !this.password;
-      return;
+    if (!this.email || !this.password) { // Verifica que los campos no estén vacíos.
+      this.emailInvalid = !this.email; // Si el campo está vacío, se muestra el mensaje de error.
+      this.passwordInvalid = !this.password; // Si el campo está vacío, se muestra el mensaje de error.
+      return; // Si hay algún campo vacío, no se ejecuta el resto de la función.
     }
 
-    const user = { email: this.email, password: this.password };
-    this.userService.login(user).subscribe((data: any) => {
-      localStorage.setItem("token", data.key);
+    const user = { email: this.email, password: this.password }; // Crea un objeto con los datos del usuario.
+
+    this.userService.login(user).subscribe((data: any) => { // Llama al servicio de login.
+      localStorage.setItem("token", data.key); // Guarda el token en el localStorage.
       this.userService.getUser(); // Obtiene el usuario y lo guarda en el localStorage.
       //TODO: habria que poner un loader
-      Swal.fire({
+      Swal.fire({ // Mensaje de éxito.
         position: 'top-center',
         icon: 'success',
         title: 'Ha iniciado sesión correctamente',
@@ -49,7 +50,17 @@ export class LoginComponent {
       }).catch((error: any) => {
         console.log(error);
       });
-    }, (error: any) => { console.log(error) },
+    }, (error: any) => {
+      if (error.status == 400){
+        Swal.fire({ // Mensaje de error.
+          position: 'center',
+          icon: 'error',
+          title: 'El usuario o la contraseña son incorrectos',
+          showConfirmButton: false,
+          timer: 1500
+        });
+    }
+  }
 
     );
 
