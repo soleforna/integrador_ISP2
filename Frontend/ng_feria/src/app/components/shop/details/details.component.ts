@@ -19,15 +19,17 @@ export class DetailsComponent implements OnInit {
   product: Product | any;
   fecha!: string;
   reviews: any[] = [];
-
-
+  clasf: number = 0;
+  coment: string = '';
+  isLoggedIn: boolean = false;
 
   constructor(
     private route: ActivatedRoute,
     private FechaService: FechaService,
-    private Pr: ProductsService
-  ) {}
-
+    private ProductService: ProductsService
+  ) {
+    this.isLoggedIn = localStorage.getItem('token') !== null;
+  }
 
   getAvatarImage(client_Avatar: string): string {
     //paso como argumento el client_avatar
@@ -42,31 +44,33 @@ export class DetailsComponent implements OnInit {
     return this.FechaService.convertirFecha(fecha);
   }
 
-  //TODO: Agregar el review al producto. falta terminar
-  addReview(coment:string, clasf:number): void {
-    let review = {description: coment, classification: clasf}
-    this.Pr.agregarReview(parseInt(this.idDetail), review).subscribe((data) => {
-      this.reviews.push(data);
-      console.log(data);
+  //agregar review
+  addReview(): void { //llamo al servicio para agregar una review
+    let review = { description: this.coment, classification: this.clasf }; //creo un objeto con los datos de la review
+    this.ProductService.agregarReview( //llamo al servicio para agregar una review
+      parseInt(this.idDetail), //le paso el id del producto
+      review //le paso el objeto con los datos de la review
+    ).subscribe((data) => { //recibo la respuesta
+      this.reviews.push(data); //agrego la review al array de reviews
+      window.location.reload();
     });
   }
-
+  //obtener reviews
   ngOnInit(): void {
     this.idDetail = this.route.snapshot.paramMap.get('id')!;
     const productsS = localStorage.getItem('products');
     if (productsS) {
       const products: Product[] = JSON.parse(productsS);
 
-      this.product = products.find(
-        (product: Product) => product.id.toString() === this.idDetail
+      this.product = products.find( //busco el producto por id
+        (product: Product) => product.id.toString() === this.idDetail //lo convierto a string para comparar
       );
-      this.fecha = this.getFecha(this.product.created_at);
-      this.categoryDetail = this.product.category.name;
+      this.fecha = this.getFecha(this.product.created_at); //llamo a la funcion para convertir la fecha
+      this.categoryDetail = this.product.category.name; //obtengo el nombre de la categoria
 
       if (this.product.review) {
-        this.reviews = this.product.review;
+        this.reviews = this.product.review; //obtengo las reviews del producto
       }
-
     } else {
       console.log(
         'No se encontró ningún producto almacenado en el localStorage.'
@@ -74,4 +78,3 @@ export class DetailsComponent implements OnInit {
     }
   }
 }
-
