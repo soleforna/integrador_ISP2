@@ -1,7 +1,7 @@
-from typing import Iterable, Optional
 from django.db import models
-from django.contrib.auth.models import AbstractUser, BaseUserManager, User
+from django.contrib.auth.models import AbstractUser, BaseUserManager
 from django.core.validators import MaxValueValidator
+ 
 from .validators import *
 
 # Create your models here.
@@ -30,12 +30,9 @@ class CustomUserManager(BaseUserManager): #para que el usuario se pueda loguear 
 class Client(AbstractUser): #modelo de usuario personalizado
     username = None #se establece el username en None
     email = models.EmailField(unique=True) #se establece el email como campo unico
-    first_name = models.CharField(max_length=80, validators=[name_valid]) #maximo 100 caracteres y validacion
-    last_name = models.CharField(max_length=80, validators=[name_valid]) #maximo 100 caracteres y validacion
     phone = models.CharField(max_length=15, null=True, blank=True, validators=[phone_valid]) #maximo 15 caracteres y validacion
     address = models.CharField(max_length=100, null=True, blank=True, validators=[address_valid]) #maximo 100 caracteres y validacion
     avatar = models.ImageField(upload_to='avatars/', null=True, blank=True, validators=[validate_image]) #campo para subir imagenes con validacion
-    created_at = models.DateTimeField(auto_now_add=True) #fecha de creacion
         
     USERNAME_FIELD = 'email' #se establece el email como campo de autenticacion
     REQUIRED_FIELDS = ['first_name', 'last_name'] #se establecen los campos requeridos
@@ -66,6 +63,7 @@ class Client(AbstractUser): #modelo de usuario personalizado
     def get_short_name(self): 
         return self.first_name
 
+
 class Category(models.Model): #modelo de categoria
     name = models.CharField(max_length=50, validators=[name_valid]) #maximo 50 caracteres y validacion
     description = models.CharField(max_length=100) #maximo 100 caracteres
@@ -78,24 +76,7 @@ class Category(models.Model): #modelo de categoria
     def __str__(self):
         return self.name
 
-class Article(models.Model): #modelo de articulo
-    name = models.CharField(max_length=50, validators=[name_valid]) #maximo 50 caracteres y validacion
-    description = models.CharField(max_length=100) #maximo 100 caracteres
-    category = models.ForeignKey(Category, on_delete=models.CASCADE) #relacion de uno a uno con la tabla Category
-    price = models.DecimalField(max_digits=10, decimal_places=0) # maximo 10 digitos y 0 decimales
-    stock = models.PositiveIntegerField(default=1) #solo numeros positivos por defecto 1
-    image = models.ImageField(upload_to='images/', null=True, blank=True, validators=[validate_image]) #campo para subir imagenes con validacion
-    created_at = models.DateTimeField(auto_now_add=True) #fecha de creacion
-
-    class Meta: #metadatos
-        verbose_name = 'Artículo' #nombre en singular
-        verbose_name_plural = 'Artículos' #nombre en plural
-        
-    def __str__(self):
-        return self.name
-
 class Review(models.Model): #modelo de review
-    article = models.ForeignKey(Article, on_delete=models.CASCADE) #relacion de uno a uno con la tabla Article
     client = models.ForeignKey(Client, on_delete=models.CASCADE) #relacion de uno a uno con la tabla Client
     description = models.CharField(max_length=140) #maximo 140 caracteres
     classification = models.IntegerField(validators=[MaxValueValidator(5)], default=1) #solo numeros positivos por defecto 1 y maximo 5
@@ -108,6 +89,23 @@ class Review(models.Model): #modelo de review
     def __str__(self):
         return str(self.id)
     
+class Article(models.Model): #modelo de articulo
+    name = models.CharField(max_length=50, validators=[name_valid]) #maximo 50 caracteres y validacion
+    description = models.CharField(max_length=100) #maximo 100 caracteres
+    category = models.ForeignKey(Category, on_delete=models.CASCADE) #relacion de uno a uno con la tabla Category
+    price = models.DecimalField(max_digits=10, decimal_places=0) # maximo 10 digitos y 0 decimales
+    stock = models.PositiveIntegerField(default=1) #solo numeros positivos por defecto 1
+    image = models.ImageField(upload_to='images/', null=True, blank=True, validators=[validate_image]) #campo para subir imagenes con validacion
+    review = models.ManyToManyField(Review, blank=True) #relacion de muchos a muchos con la tabla Review (opcional)
+    created_at = models.DateTimeField(auto_now_add=True) #fecha de creacion
+
+    class Meta: #metadatos
+        verbose_name = 'Artículo' #nombre en singular
+        verbose_name_plural = 'Artículos' #nombre en plural
+        
+    def __str__(self):
+        return self.name
+
 class Coment(models.Model): #modelo de comentario
     client = models.ForeignKey(Client, on_delete=models.CASCADE) #relacion de uno a uno con la tabla Client
     description = models.CharField(max_length=140) #maximo 140 caracteres
