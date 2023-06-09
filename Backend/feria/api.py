@@ -12,6 +12,19 @@ class ArticleViewSet(viewsets.ModelViewSet):
     permission_classes = [permissions.AllowAny]
     serializer_class = ArticleSerializer
     lookup_field = 'pk' #para que se pueda buscar por id en la url
+    
+    @action(detail=True, methods=['POST'], permission_classes=[permissions.IsAuthenticated])
+    def add_review(self, request, pk=None):
+        article = self.get_object()  # Obtener el artículo
+        serializer = ReviewSerializer(data=request.data)  # Instanciar el serializador de reseñas
+
+        if serializer.is_valid():
+            review = serializer.save(client=request.user)  # Crear la reseña y asociarla al cliente actual
+            article.review.add(review)  # Agregar la reseña al artículo
+
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class CategoryViewSet(viewsets.ModelViewSet):
     queryset = Category.objects.all()
