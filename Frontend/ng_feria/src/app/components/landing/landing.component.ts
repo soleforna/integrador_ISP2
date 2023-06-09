@@ -10,11 +10,9 @@ import { FechaService } from "src/app/services/fecha.service";
   styleUrls: ['./landing.component.css']
 })
 export class LandingComponent {
-  constructor(private ComentService: ComentService, private FechaService: FechaService){
-   }
+  constructor(private ComentService: ComentService, private FechaService: FechaService){}
 
   coments: any[] = [];
-
 
   ngOnInit(): void {
     this.obtenerComentarios();
