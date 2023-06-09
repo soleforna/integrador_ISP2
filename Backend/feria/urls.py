@@ -14,8 +14,6 @@ routers.register('api/cartdetails', CartDetailsViewSet, 'cartdetails')
 routers.register('api/coments', ComentViewSet, 'coments')
 
 
-
 urlpatterns = [
         path('', include(routers.urls)),
-        path('api/clients/<int:pk>/', ClientViewSet.as_view({'put': 'partial_update'}), name='client-update'),
     ] 

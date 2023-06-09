@@ -88,6 +88,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'drf_feriaonline.wsgi.application'
 
+AUTH_USER_MODEL = 'feria.Client' #add User Model
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
@@ -167,32 +168,35 @@ MEDIA_URL = '/media/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField' #add BigAutoField
 
-
 #add REST
 REST_FRAMEWORK = { 
     "DEFAULT_AUTHENTICATION_CLASSES": [
-        "rest_framework.authentication.TokenAuthentication",
+        'feria.authentication.BearerAuthentication', #add BearerAuthentication
     ]
 }
 
-#add allauth
-SOCIALACCOUNT_PROVIDERS = { 
-    "google": {
-        "APP": {
-            "client_id": "",  # replace whit your client_id
-            "secret": "",     # replace whit your secret
-            "key": "",        # leave empty
-        },
-        "SCOPE": [
-            "profile",
-            "email",
-        ],
-        "AUTH_PARAMS": {
-            "access_type": "online",
-        },
-        "VERIFIED_EMAIL": True,
-    },
+REST_AUTH_REGISTER_SERIALIZERS = {
+    'REGISTER_SERIALIZER': 'feria.serializers.RegisterSerializer',  #add RegisterSerializer
 }
+
+#add allauth
+# SOCIALACCOUNT_PROVIDERS = { 
+#     "google": {
+#         "APP": {
+#             "client_id": "",  # replace whit your client_id
+#             "secret": "",     # replace whit your secret
+#             "key": "",        # leave empty
+#         },
+#         "SCOPE": [
+#             "profile",
+#             "email",
+#         ],
+#         "AUTH_PARAMS": {
+#             "access_type": "online",
+#         },
+#         "VERIFIED_EMAIL": True,
+#     },
+# }
 
 #LOGIN_REDIRECT_URL ='https://localhost:4200/producto'
 
@@ -217,7 +221,6 @@ AUTHENTICATION_BACKENDS = {
     'allauth.account.auth_backends.AuthenticationBackend',
 }
 
-
 # todo esto esta configutado en un .env "variable de entorno"
 #EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend' # Backend a utilizar para el envío de correos electrónicos
@@ -233,5 +236,8 @@ SITE_ID = 1 # Le decimos a django que utilice el primer sitio como predeterminad
 
 ACCOUNT_EMAIL_VERIFICATION = "none" # Le decimos a django que no envie un mail de verificacion
 ACCOUNT_AUTHENTICATION_METHOD = "email" # Le decimos a django que el metodo de autenticacion sera el email
-ACCOUNT_EMAIL_REQUIRED = True   # Le decimos a django que el email es requerido
+ACCOUNT_EMAIL_REQUIRED = True # Le decimos a django que el email es requerido
+ACCOUNT_UNIQUE_EMAIL = True  # Le decimos a django que el email debe ser unico
+ACCOUNT_USER_MODEL_USERNAME_FIELD = None  # Le decimos a allauth que no utilice el username
+ACCOUNT_USERNAME_REQUIRED = False # Le decimos a django que el username no es requerido
 SOCIALACCOUNT_PROVIDERS = {'google': {'SCOPE': ['profile', 'email']}}   # Le decimos a django que queremos obtener el email y el perfil de google

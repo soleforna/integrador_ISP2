@@ -1,12 +1,14 @@
-from django.contrib.auth.models import User
-from rest_framework.serializers import ModelSerializer, SerializerMethodField
-from .models import *
+from django.db import models
+from rest_framework.serializers import ModelSerializer, SerializerMethodField, CharField
+from dj_rest_auth.registration.serializers import RegisterSerializer
+from django.contrib.auth import password_validation
+from feria.models import *
 
-class UserSerializer(ModelSerializer):
-    client_avatar = SerializerMethodField()
+class ClientSerializer(ModelSerializer):
+    password = CharField(write_only=True, required=False, validators=[password_validation.validate_password])
     class Meta:
-        model = User
-        fields = ['username','first_name', 'last_name', 'email', 'password','client_avatar']
+        model = Client
+        fields = ['id','first_name', 'last_name', 'email', 'address', 'phone', 'password', 'avatar']
         extra_kwargs = {
             'password': {'write_only': True}
         }
@@ -22,43 +24,26 @@ class UserSerializer(ModelSerializer):
                 return avatar_url  # Si no se proporciona una solicitud, devolver la URL relativa tal como está
         return None # Si no existe el cliente o no tiene avatar, devolver None
 
-    def create(self, validated_data):
-        user = User.objects.create_user(**validated_data)
-        return user
-
 class CategorySerializer(ModelSerializer):
     class Meta:
         model = Category
-        fields = '__all__'
+        fields = 'id','name', 'description',
         read_only_fields = ('created_at', )
 
-class ArticleSerializer(ModelSerializer):
-    reviews = SerializerMethodField()
-    
-    class Meta:
-        model = Article
-        fields = '__all__'
-        read_only_fields = ('created_at', )
-        
-    def get_reviews(self, instance):
-        from .serializers import ReviewSerializer  # Importar localmente aquí
-        reviews = instance.reviews.all()
-        serializer = ReviewSerializer(reviews, many=True)
-        return serializer.data
-    
 class ReviewSerializer(ModelSerializer):
     client_name = SerializerMethodField() #agregar un campo que no existe en el modelo
     client_avatar = SerializerMethodField() #agregar un campo que no existe en el modelo
-    article_name = SerializerMethodField()
-    
+        
     class Meta:
         model = Review
-        fields = ('id', 'article_name', 'client_name', 'client_avatar', 'description', 'classification', 'created_at')
+        fields = ('id', 'client_name', 'client_avatar', 'description', 'classification', 'created_at')
+        read_only_fields = ('created_at', )
+        depth = 1
 
     def get_client_name(self, obj): #obtener el nombre del cliente
         client = obj.client #obtener el cliente
         if client: #si existe el cliente
-            return client.name #devolver el nombre del cliente
+            return client.first_name+' '+client.last_name #devolver el nombre del cliente
         return None #si no existe el cliente, devolver None
 
     def get_client_avatar(self, obj): #obtener el avatar del cliente
@@ -71,13 +56,23 @@ class ReviewSerializer(ModelSerializer):
             else:
                 return avatar_url  # Si no se proporciona una solicitud, devolver la URL relativa tal como está
         return None # Si no existe el cliente o no tiene avatar, devolver None
-    
-    def get_article_name(self, obj): #obtener el nombre del articulo
-        article = obj.article
-        if article:
-            return article.name
-        return None
-    
+
+class ArticleSerializer(ModelSerializer):
+    name = models.CharField() 
+    description = models.CharField()
+    price = models.DecimalField(max_digits=10, decimal_places=2)
+    stock = models.IntegerField()
+    image = models.ImageField()
+    created_at = models.DateTimeField()
+    category = CategorySerializer()
+    review = ReviewSerializer(many=True)
+
+    class Meta:
+        model = Article
+        fields = ('id', 'name', 'description', 'price', 'stock', 'image', 'created_at', 'category', 'review')
+        read_only_fields = ('created_at', )
+        depth = 1 #profundidad de la serializacion
+
 class ComentSerializer(ModelSerializer): 
     client_name = SerializerMethodField() #agregar un campo que no existe en el modelo
     client_avatar = SerializerMethodField() #agregar un campo que no existe en el modelo
@@ -103,14 +98,6 @@ class ComentSerializer(ModelSerializer):
             else:
                 return avatar_url
         return None # Si no existe el cliente o no tiene avatar, devolver None
-    
-
-class ClientSerializer(ModelSerializer):
-    class Meta:
-        model = Client
-        fields = ['id', 'name', 'phone', 'address', 'avatar']
-        read_only_fields = ('created_at',)
-
 
 class CartSerializer(ModelSerializer):
     class Meta:

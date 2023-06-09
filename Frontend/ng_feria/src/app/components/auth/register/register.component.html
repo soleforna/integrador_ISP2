@@ -6,44 +6,47 @@
         <div class="input-box">
           <h4>Regístrate!</h4>
           <div class="input-field">
-            <input type="text" formControlName="nombre" [class.is-invalid]="nombreNoValido" class="input" id="email" name="first_name" placeholder="Nombre" [(ngModel)]="first_name">
-            <p *ngIf="nombreNoValido" class="text-danger">Ingrese el nombre con el mínimo de 3 letras</p>
+            <input type="text" formControlName="first_name" class="input" id="first_name" name="first_name"
+              placeholder="Nombre">
+            <small *ngIf="apiErrors.name" class="text-danger">{{ apiErrors.name[0] }}</small>
           </div>
           <div class="input-field">
-            <input type="text" formControlName="apellido" [class.is-invalid]="apellidoNoValido" class="input" name="last_name"id="password" placeholder="Apellido" [(ngModel)]="last_name">
-            <p *ngIf="apellidoNoValido" class="text-danger">El apellido es un campo requerido</p>
-          </div>
-          <!-- <div class="input-field">
-             <input type="text" formControlName="nombre" [class.is-invalid]="nombreNoValido" class="input" id="email" name="username" placeholder="Usuario" [(ngModel)]="username">
-            <small *ngIf="nombreNoValido" class="text-danger">Ingrese el nombre con el mínimo de 3 letras</small>
-          </div> -->
-          <div class="input-field">
-            <input type="text" formControlName="correo" [class.is-invalid]="correoNoValido" class="input" name="email" id="email" placeholder="Email" [(ngModel)]="email">
-            <p *ngIf="correoNoValido" class="text-danger">Ingrese un email válido</p>
+            <input type="text" formControlName="last_name" class="input" name="last_name" id="last_name"
+              placeholder="Apellido">
+            <small *ngIf="apiErrors.last_name" class="text-danger">{{ apiErrors.last_name[0] }}</small>
           </div>
           <div class="input-field">
-            <input type="password" formControlName="password1" [class.is-invalid]="password1NoValido" class="input" name="password" id="password" placeholder="Contraseña" [(ngModel)]="password">
-            <small *ngIf="password1NoValido" class="text-danger"> 6 caracteres como mínimo</small>
+            <input type="text" formControlName="email" class="input" name="email" id="email" placeholder="Email">
+            <small *ngIf="apiErrors.email" class="text-danger">{{ apiErrors.email[0] }}</small>
+          </div>
+          <div class="input-field">
+            <input type="password" formControlName="password" class="input" name="password" id="password"
+              placeholder="Contraseña">
+            <small *ngIf="apiErrors.password" class="text-danger">{{ apiErrors.password[0] }}</small>
           </div>
 
           <div class="input-field">
-            <input type="password" formControlName="password2" [class.is-invalid]="password2NoValido" class="input" name="password2" id="password" placeholder="Confirmar contraseña" [(ngModel)]="password2">
-            <p *ngIf="password2NoValido" class="text-danger">Las contraseñas no coinciden</p>
-          </div> 
+            <input type="password" formControlName="password2" [class.is-invalid]="password2NoValido" class="input"
+              name="password2" id="password2" placeholder="Confirmar contraseña">
+            <small *ngIf="password2NoValido" class="text-danger">Las contraseñas no coinciden</small>
+          </div>
 
           <div class="input-field">
-            <input type="text" formControlName="telefono" [class.is-invalid]="apellidoNoValido" class="input" name="phone" id="tel" placeholder="Teléfono" [(ngModel)]="phone">
-            <!-- <small *ngIf="apellidoNoValido" class="text-danger">El apellido es un campo requerido</small> -->
+            <input type="text" formControlName="phone" class="input" name="phone" id="tel" placeholder="Teléfono">
+            <small *ngIf="apiErrors.phone" class="text-danger">{{ apiErrors.phone[0] }}</small>
           </div>
+
+
           <div class="input-field">
-            <input type="text" formControlName="direccion" [class.is-invalid]="apellidoNoValido" class="input" name="address" id="address" placeholder="Dirección" [(ngModel)]="address">
-            <!-- <small *ngIf="apellidoNoValido" class="text-danger">El apellido es un campo requerido</small> -->
+            <input type="text" formControlName="address" class="input" name="address" id="address"
+              placeholder="Dirección">
+            <small *ngIf="apiErrors.address" class="text-danger">{{ apiErrors.address[0] }}</small>
           </div>
           <div class="input-field mt-3">
             <button type="submit" class="submit">Regístrate</button>
           </div>
           <div *ngIf="loginError" class="ng-error">
-            <p>Error de Registro. Verifica los datos ingresados.</p>
+            <p>{{apiErrors}}</p>
           </div>
           <div class="login">
             <span>¿Ya tienes una cuenta? <a routerLink="/iniciar-sesion">Iniciar Sesión</a></span>

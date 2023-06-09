@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 export class NavComponent {
 
   user = JSON.parse(localStorage.getItem("user") || "{}");
-  name: string = this.getName(this.user) ;
+  name: string = this.getName(this.user);
   isLoggedIn: boolean = false;
   avatar1 = '../../../../assets/img/profile.png';
 
@@ -23,16 +23,19 @@ export class NavComponent {
   // Obtiene el nombre del usuario.
   getName(user: any) {
     // Si el usuario no tiene nombre, entonces muestra su email.
+    if (!user || user.first_name == null || user.last_name == null) { // Verifica que el usuario no sea nulo.
+      return user.email;
+    }
     if (user.first_name == '' || user.last_name == '' || user.first_name == null || user.last_name == null) {
       return user.email;
     }else{return user.first_name +' '+ user.last_name;} // Si el usuario tiene nombre, entonces muestra su nombre.
   }
 
   getAvatar(user: any) {
-    if (!user.client_avatar || user.client_avatar === '') {
+    if (!user.avatar || user.avatar === '') {
       return this.avatar1; // Si el usuario no tiene avatar, entonces muestra un avatar predefinido.
     } else {
-      return user.client_avatar; // Si el usuario tiene avatar, entonces muestra su avatar.
+      return user.avatar; // Si el usuario tiene avatar, entonces muestra su avatar.
     }
   }
   isProductsPage(): boolean {
