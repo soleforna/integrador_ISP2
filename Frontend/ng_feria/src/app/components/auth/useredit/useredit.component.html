@@ -1,3 +1,77 @@
-<p>
-  useredit works!
-</p>
+<form class="wrapper" (ngSubmit)="submitForm()">
+  <div class="container main">
+    <div class="row g-3">
+      <div class="cabecera">
+        <a href="">
+          <div class="containerUserImg">
+            <img
+              src="../../../../assets/img/user.png"
+              alt="Imagen de perfil"
+              class="userImg rounded-circle img-thumbnail"
+            />
+            <span class="edit-icon"><i class="fas fa-pencil-alt"></i></span>
+          </div>
+        </a>
+        <h4>Perfil de Usuario</h4>
+      </div>
+
+      <div class="col-12">
+        <label for="firstName" class="form-label">Nombre Completo</label>
+        <input type="text" [placeholder]="formData.firstName" class="form-control" id="firstName" />
+      </div>
+      <div class="col-12">
+        <label for="LastName" class="form-label">Apellido</label>
+        <input type="text" [placeholder]="formData.lastName" class="form-control" id="lastName" />
+      </div>
+      <div class="col">
+        <label for="Email" class="form-label">Correo Electrónico</label>
+        <input type="email" [placeholder]="formData.email" class="form-control" id="Email" readonly />
+      </div>
+
+      <div class="col">
+        <label for="inputPassword" class="form-label">Contraseña</label>
+        <input type="password" class="form-control" id="inputPassword" />
+
+        <label for="repeatPassword" class="form-label"
+          >Repetir contraseña</label
+        >
+        <input type="password" class="form-control" id="repeatPassword" />
+      </div>
+      <div class="col-12">
+        <label for="inputAddress" class="form-label">Domicilio</label>
+        <input type="text" class="form-control" id="inputAddress" />
+      </div>
+      <div class="col-12">
+        <label for="phone" class="form-label">Teléfono</label>
+        <input type="text" class="form-control" id="phone" />
+      </div>
+      <div class="col-md-4">
+        <label for="inputState" class="form-label">Provincia</label>
+        <select id="inputState" class="form-select">
+          <option selected>Seleccione una provincia</option>
+          <option>...</option>
+        </select>
+      </div>
+      <div class="col-md-6">
+        <label for="inputCity" class="form-label">Ciudad</label>
+        <select class="form-select" id="inputCity">
+          <option selected>Seleccione una ciudad</option>
+          <option>...</option>
+        </select>
+      </div>
+      <div class="col-md-2">
+        <label for="inputZip" class="form-label">C.P</label>
+        <input type="text" class="form-control" id="inputZip" />
+      </div>
+
+      <div class="col-12">
+        <button
+          type="submit"
+          class="submit position-absolute top-100 start-50 translate-middle"
+        >
+          Guardar
+        </button>
+      </div>
+    </div>
+  </div>
+</form>
