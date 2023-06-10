@@ -14,6 +14,7 @@ import { LoginComponent } from './components/auth/login/login.component';
 import { TokenComponent } from './components/auth/token/token.component';
 import { EnviarCorreoComponent } from './components/auth/enviarcorreo/enviarCorreo.component';
 import { RegisterComponent } from './components/auth/register/register.component';
+import { UsereditComponent } from './components/auth/useredit/useredit.component';
 //import { ProfileComponent } from './components/profile/profile.component';
 
 const routes: Routes = [
@@ -28,7 +29,8 @@ const routes: Routes = [
   {path:'detalle/:id', component:DetailsComponent},
   {path: 'registro', component:RegisterComponent},
   {path: 'token', component:TokenComponent},
-  {path: 'enviarCorreo', component:EnviarCorreoComponent}
+  {path: 'enviarCorreo', component:EnviarCorreoComponent},
+  {path: 'useredit', component:UsereditComponent},
 ];
 
 @NgModule({
