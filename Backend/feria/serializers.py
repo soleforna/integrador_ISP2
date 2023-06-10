@@ -1,6 +1,6 @@
 from django.db import models
 from rest_framework.serializers import ModelSerializer, SerializerMethodField, CharField
-from dj_rest_auth.registration.serializers import RegisterSerializer
+
 from django.contrib.auth import password_validation
 from feria.models import *
 
