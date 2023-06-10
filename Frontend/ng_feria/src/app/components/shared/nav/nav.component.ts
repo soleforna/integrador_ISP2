@@ -1,4 +1,4 @@
-import { Component  } from '@angular/core';
+import { Component,HostListener, ElementRef  } from '@angular/core';
 import { UsersService } from "src/app/services/users.service";
 import { Router } from '@angular/router';
 
@@ -14,8 +14,10 @@ export class NavComponent {
   name: string = this.getName(this.user);
   isLoggedIn: boolean = false;
   avatar1 = '../../../../assets/img/profile.png';
+  isNavVisible = true;
+  lastScrollOffset = 0;
 
-  constructor(public userService: UsersService,private router: Router) {
+  constructor(public userService: UsersService,private router: Router,private elementRef: ElementRef) {
     // Verifica si el usuario está logueado.
     this.isLoggedIn = localStorage.getItem('token') !== null;
   }
@@ -57,8 +59,29 @@ export class NavComponent {
     window.location.reload();// Recarga la página.
   }
 
+  @HostListener('window:scroll', ['$event'])
+  onWindowScroll(event: Event) {
+    const currentScrollOffset = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+
+    if (currentScrollOffset > this.lastScrollOffset) {
+      this.isNavVisible = false;
+    } else {
+      this.isNavVisible = true;
+    }
+
+    this.lastScrollOffset = currentScrollOffset;
+  }
+
+  getNavClasses() {
+    return {
+      'nav-hidden': !this.isNavVisible,
+      'nav-visible': this.isNavVisible
+    };
+  }
+  }
 
 
-}
+
+
 
 
