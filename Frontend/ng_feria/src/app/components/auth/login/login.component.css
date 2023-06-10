@@ -168,6 +168,16 @@ span a:hover {
   border-left: 5px solid red;
 }
 
+.error-message {
+  color: red;
+  font-size: 12px;
+  margin-top: 5px;
+}
+
+.is-invalid {
+  border-color: red;
+}
+
 /* Responsive design */
 @media only screen and (max-width: 768px) {
   .side-image {

@@ -18,6 +18,7 @@ import { RegisterComponent } from './components/auth/register/register.component
 import { HttpClientModule } from '@angular/common/http';
 import { TokenComponent } from './components/auth/token/token.component';
 import { EnviarCorreoComponent } from './components/auth/enviarcorreo/enviarCorreo.component';
+import { FechaService } from './services/fecha.service';
 
 
 @NgModule({
@@ -45,7 +46,7 @@ import { EnviarCorreoComponent } from './components/auth/enviarcorreo/enviarCorr
     HttpClientModule,
 
   ],
-  providers: [],
+  providers: [FechaService], //agregue el servicio de Fecha a los providers
   bootstrap: [AppComponent]
 })
 export class AppModule { }
