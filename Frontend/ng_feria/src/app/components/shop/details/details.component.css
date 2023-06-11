@@ -8,6 +8,7 @@
     background-color: #F49D1A;
     color: #fff;
     border: none;
+    margin: 3px;
 }
 
 .btn-outline-secondary:active{
