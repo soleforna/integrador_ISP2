@@ -42,21 +42,23 @@
       </div>
       <div class="col-md-6">
         <label for="inputCity" class="form-label">Ciudad</label>
-        <select class="form-select" id="inputCity">
-          <option selected>{{ciudad}}</option>
-          <option>...</option>
+        <select id="inputCity" [(ngModel)]="ciudad" [ngModelOptions]="{standalone: true }" class="form-select" >
+          <option *ngFor="let municipio of municipios" [value]="municipio">{{municipio}}</option>
+          
         </select>
+        
       </div>
       <div class="col-md-6">
         <label for="inputState" class="form-label">Provincia</label>
-        <select id="inputState" class="form-select">
-          <option selected>{{provincia}}</option>
-          <option>...</option>
+        <select  id="inputState" [(ngModel)]="provinciaActual" [ngModelOptions]="{ standalone: true }" class="form-select">
+
+            <option *ngFor="let provincia of provincias" [value]="provincia">{{provincia}}</option>
         </select>
+        
       </div>
 
 
-      <div class="col-12">
+      <div class="col-6">
         <button type="submit" class="submit position-absolute top-100 start-50 translate-middle">Guardar</button>
       </div>
     </div>
