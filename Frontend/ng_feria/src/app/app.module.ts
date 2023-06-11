@@ -13,12 +13,14 @@ import { CheckoutCardComponent } from './components/shop/checkout-card/checkout-
 import { DetailsComponent } from './components/shop/details/details.component';
 import { ShopComponent } from './components/shop/shop.component';
 import { LoginComponent } from './components/auth/login/login.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 import { RegisterComponent } from './components/auth/register/register.component';
 import { HttpClientModule } from '@angular/common/http';
 import { TokenComponent } from './components/auth/token/token.component';
 import { EnviarCorreoComponent } from './components/auth/enviarcorreo/enviarCorreo.component';
 import { FechaService } from './services/fecha.service';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 
 
 @NgModule({
@@ -36,7 +38,8 @@ import { FechaService } from './services/fecha.service';
     LoginComponent,
     RegisterComponent,
     TokenComponent,
-    EnviarCorreoComponent
+    EnviarCorreoComponent,
+    
   ],
   imports: [
     BrowserModule,

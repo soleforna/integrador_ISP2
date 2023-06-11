@@ -66,13 +66,14 @@ export class UsersService {
 
   /* Actualizo los datos del usuario */
   actualizarUsuario(datos: any): Observable<any> {
-
-    const url = `http://localhost:8000/api/auth/user/${datos.pk}`;
+    console.log("Estoy en el servicio y esto me llega "+datos)
+    const url = `http://127.0.0.1:8000/api/clients/${datos.id}`;
     const body = JSON.stringify(datos);
 
     return this.http.patch(url, body).pipe(
       catchError((error) => {
         // Manejo de errores
+        console.log("En el servicio "+error)
         throw error;
       })
     );

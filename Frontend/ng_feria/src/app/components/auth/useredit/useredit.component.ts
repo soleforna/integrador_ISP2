@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { UsersService } from 'src/app/services/users.service';
-/* import { Router } from "@angular/router"; */
 
 
 @Component({
@@ -9,24 +7,54 @@ import { UsersService } from 'src/app/services/users.service';
   templateUrl: './useredit.component.html',
   styleUrls: ['./useredit.component.css']
 })
-
 export class UsereditComponent implements OnInit {
-
   formData: any;
-  router: any;
+  calle: string | undefined;
+  ciudad: string | undefined;
+  provincia: string | undefined;
 
-  constructor(private http: HttpClient, private usersService: UsersService) { }
 
-  // Creo una función para tomar los datos del formulario y guardarlos en un objeto
+  constructor(private usersService: UsersService) {}
+
+  ngOnInit() {
+    const storedData = localStorage.getItem('user');
+    if (storedData != null) {
+      this.formData = JSON.parse(storedData);
+      const direccion: string = this.formData.address;
+      const resultado = this.dividirDireccion(direccion);
+      this.calle = resultado.calle;
+      this.ciudad = resultado.ciudad;
+      this.provincia = resultado.provincia;
+    }
+  }
+
+  dividirDireccion(address: string): { calle: string; ciudad: string; provincia: string } {
+    const partes: string[] = address.split(',');
+    const calle: string = partes[0].trim();
+    const ciudad: string = partes[1].trim();
+    const provincia: string = partes[2].trim();
+
+    return {
+      calle: calle,
+      ciudad: ciudad,
+      provincia: provincia
+    };
+  }
+
+
 
   submitForm() {
-    // Armo el string de domicilio+ciudad+provincia
+    console.log("Estoy en submit");
 
-    const domicilio = (document.getElementById('inputAddress') as HTMLInputElement)?.value+", "+(document.getElementById('inputCity') as HTMLSelectElement)?.value+", "+(document.getElementById('inputState') as HTMLSelectElement)?.value
 
-    
+    const domicilio =
+      (document.getElementById('inputAddress') as HTMLInputElement)?.value +
+      ', ' +
+      (document.getElementById('inputCity') as HTMLSelectElement)?.value +
+      ', ' +
+      (document.getElementById('inputState') as HTMLSelectElement)?.value;
+      console.log(domicilio);
 
-    // Crear el objeto de datos a enviar al backend
     const datos = {
       id: localStorage.getItem('user.pk'),
       first_name: (document.getElementById('firstName') as HTMLInputElement)?.value,
@@ -34,33 +62,18 @@ export class UsereditComponent implements OnInit {
       email: (document.getElementById('Email') as HTMLInputElement)?.value,
       password: (document.getElementById('inputPassword') as HTMLInputElement)?.value,
       domicilio: domicilio,
-      telefono: (document.getElementById('phone') as HTMLInputElement)?.value,
-      codigoPostal: (document.getElementById('inputZip') as HTMLInputElement)?.value,
+      telefono: (document.getElementById('phone') as HTMLInputElement)?.value
     };
-
-    // Enviar los datos al servicio
+    console.log(datos);
     this.usersService.actualizarUsuario(datos).subscribe(
       (response) => {
-        this.router.navigate(["/productos"]); // Redirecciona a productos
+        console.log(response);
+        localStorage.setItem("user", JSON.stringify(response));
       },
       (error) => {
         // Manejo de errores
+        console.log(error)
       }
     );
   }
-
-
-  ngOnInit() {
-    /* Obtengo la información del local Storage */
-    const storedData = localStorage.getItem('user');
-    if (storedData != null){
-      this.formData = JSON.parse(storedData);
-    }
-
-
-
-
-
-  }
-
 }
