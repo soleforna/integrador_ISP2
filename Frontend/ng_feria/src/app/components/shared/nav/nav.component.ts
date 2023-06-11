@@ -1,6 +1,7 @@
-import { Component  } from '@angular/core';
+import { Component,HostListener, ElementRef  } from '@angular/core';
 import { UsersService } from "src/app/services/users.service";
 import { Router } from '@angular/router';
+declare const Swal: any; //declaracion para evitar error de typescript
 
 
 @Component({
@@ -14,8 +15,10 @@ export class NavComponent {
   name: string = this.getName(this.user);
   isLoggedIn: boolean = false;
   avatar1 = '../../../../assets/img/profile.png';
+  isNavVisible = true;
+  lastScrollOffset = 0;
 
-  constructor(public userService: UsersService,private router: Router) {
+  constructor(public userService: UsersService,private router: Router,private elementRef: ElementRef) {
     // Verifica si el usuario está logueado.
     this.isLoggedIn = localStorage.getItem('token') !== null;
   }
@@ -50,15 +53,70 @@ export class NavComponent {
   }
 
 
-
-  // Cierra la sesión del usuario.
-  logout() {
-    this.userService.logout();//llama al servicio para cerrar la sesion
-    window.location.reload();// Recarga la página.
+  logout() { // Cierra la sesión del usuario
+    return new Promise<void>((resolve, reject) => {
+      Swal.fire({
+        title: 'Cerrar Sesión',
+        text: '¿Está seguro de que desea cerrar sesión?',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Sí, cerrar sesión',
+      }).then((result: { isConfirmed: any; }) => {
+        if (result.isConfirmed) {
+          this.userService.logout().subscribe( //Llama al servicio cerrar sesión
+            () => {
+              Swal.fire(
+                'Éxito',
+                'Ha cerrado sesión exitosamente.',
+                'success'
+              );
+              setTimeout(() => {
+                window.location.reload();// Recarga la pagina
+                resolve(); // Resuelve la promesa después de recargar la página
+              }, 500); // Espera 1 segundos (1000 milisegundos) antes de recargar la página
+            }
+          );
+        } else {
+          Swal.fire(
+            'Error',
+            'Se canceló el cierre de sesión.',
+            'error'
+          );
+          reject(new Error('Se canceló el cierre de sesión.'));
+        }
+      }).catch((error: any) => {
+        reject(error);
+      });
+    });
   }
 
 
 
-}
+  @HostListener('window:scroll', ['$event']) // Sirve para ocultar y mostrar el nav al hacer scroll
+  onWindowScroll(event: Event) {
+    const currentScrollOffset = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+
+    if (currentScrollOffset > this.lastScrollOffset) {
+      this.isNavVisible = false;
+    } else {
+      this.isNavVisible = true;
+    }
+
+    this.lastScrollOffset = currentScrollOffset;
+  }
+
+  getNavClasses() {
+    return {
+      'nav-hidden': !this.isNavVisible,
+      'nav-visible': this.isNavVisible
+    };
+  }
+  }
+
+
+
+
 
 
