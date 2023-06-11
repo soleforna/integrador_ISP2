@@ -20,7 +20,8 @@ import { TokenComponent } from './components/auth/token/token.component';
 import { EnviarCorreoComponent } from './components/auth/enviarcorreo/enviarCorreo.component';
 import { FechaService } from './services/fecha.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
+import { CommonModule } from '@angular/common';
+import { UsereditComponent } from './components/auth/useredit/useredit.component';
 
 
 @NgModule({
@@ -39,7 +40,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     RegisterComponent,
     TokenComponent,
     EnviarCorreoComponent,
-    
+    UsereditComponent,
+
+
   ],
   imports: [
     BrowserModule,
@@ -47,7 +50,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     FormsModule, //importe el módulo de formularios
     ReactiveFormsModule,
     HttpClientModule,
-
+    CommonModule
   ],
   providers: [FechaService], //agregue el servicio de Fecha a los providers
   bootstrap: [AppComponent]
