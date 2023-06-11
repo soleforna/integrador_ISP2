@@ -111,7 +111,6 @@ a{
   transform: translateY(-100%);
   transition: transform 0.3s;
 }
-
 .nav-visible {
   transform: translateY(0);
   transition: transform 0.3s;
