@@ -46,9 +46,9 @@
         </li>
       </ul>
       <div class="d-flex align-items-center justify-content-center">
-        <a class="position-relative">
-          <a href="/checkout">  <i class="fa fa-shopping-cart me-5 fa-2x text-dark"></i></a>
-          <div class="cart-no">2</div>
+        <a class="position-relative" *ngIf="cartExist">
+          <a href="/checkout"><i class="fa fa-shopping-cart me-5 fa-2x text-dark"></i></a>
+          <div class="cart-no">{{cartCount}}</div>
         </a>
         <a class="btn btn-outline-secondary me-2" *ngIf="!isLoggedIn" routerLink="/iniciar-sesion">Ingresar</a>
         <a class="btn btn-outline-secondary me-2" *ngIf="!isLoggedIn" routerLink="/registro">Registrarse</a>

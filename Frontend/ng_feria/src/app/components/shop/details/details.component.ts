@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Product } from '../../../Interfaces/product.interface';
 import { FechaService } from 'src/app/services/fecha.service';
 import { ProductsService } from 'src/app/services/products.service';
+import { CartService } from 'src/app/services/cart.service';
 
 interface RouteParams {
   id: string;
@@ -26,7 +27,8 @@ export class DetailsComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private FechaService: FechaService,
-    private ProductService: ProductsService
+    private ProductService: ProductsService,
+    private CartService: CartService
   ) {
     this.isLoggedIn = localStorage.getItem('token') !== null;
   }
@@ -55,7 +57,15 @@ export class DetailsComponent implements OnInit {
       window.location.reload();
     });
   }
-  //obtener reviews
+
+  //agregar al carrito
+  addCart(): void {
+    console.log('Agregando al carrito con el siguiente ID de articulo: ' +this.idDetail);
+    this.CartService.addArticleToCart(parseInt(this.idDetail), //le paso el id del producto
+    )
+  }
+
+  //Metodo que se ejecuta al iniciar el componente
   ngOnInit(): void {
     this.idDetail = this.route.snapshot.paramMap.get('id')!;
     const productsS = localStorage.getItem('products');
@@ -77,4 +87,5 @@ export class DetailsComponent implements OnInit {
       );
     }
   }
+
 }

@@ -1,21 +1,23 @@
 <app-nav></app-nav>
 
-
+<section id="productCard">
 <div class="d-flex justify-content-center text-center flex-wrap" id="fondo">
   <div *ngFor="let product of products">
     <div class="card mx-2 my-2" style="width: 18rem;">
 
       <div class="card-header p-0">
-      <img [src]="product.image" alt="{{ product.name }}" class="card-img-top"  height="350px"/>
+        <img [src]="product.image" alt="{{ product.name }}" class="card-img-top" height="350px" />
       </div>
       <div class="card-body">
         <h5 class="card-title">{{ product.name }}</h5>
         <p class="card-text">Precio: $ {{ product.price }}</p>
       </div>
       <div class="card-footer">
-        <button  class="btn btn-primary mx-2 my-2 btn-outline-secondary" routerLink="" >Agregar</button>
-        <button  class="btn btn-primary mx-2 my-2 btn-outline-secondary"  routerLink="../detalle/{{product.id}}">Detalles</button>
-     </div>
+        <button class="btn btn-primary mx-2 my-2 btn-outline-secondary" routerLink="">Agregar</button>
+        <button class="btn btn-primary mx-2 my-2 btn-outline-secondary"
+          routerLink="../detalle/{{product.id}}">Detalles</button>
+      </div>
     </div>
-   </div>
+  </div>
 </div>
+</section>

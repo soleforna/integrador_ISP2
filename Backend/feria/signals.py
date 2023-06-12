@@ -1,7 +1,7 @@
 from django.dispatch import receiver
-from django.db.models.signals import pre_save
+from django.db.models.signals import pre_save, post_save
 from django.contrib.auth.hashers import make_password
-from .models import Client
+from .models import Client, CartDetail
 from django.urls import reverse
 from django.dispatch import receiver
 from django_rest_passwordreset.signals import reset_password_token_created
@@ -26,4 +26,10 @@ def password_reset_token_created(sender, instance, reset_password_token, *args, 
         # to:
         [reset_password_token.user.email]
     )
+
+@receiver(post_save, sender=CartDetail) #señal para el guardado de un detalle de carrito
+def update_cart_amount(sender, instance, created, **kwargs):
+    if created:
+        instance.cart.amount += instance.item.price * instance.quantity
+        instance.cart.save()
 
