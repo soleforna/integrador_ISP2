@@ -6,7 +6,7 @@
     <div class="card mx-2 my-2" style="width: 18rem;">
 
       <div class="card-header p-0">
-        <img [src]="product.image" alt="{{ product.name }}" class="card-img-top" height="350px" />
+      <img [src]="product.image" alt="{{ product.name }}" class="card-img-top"  height="350px"  routerLink="../detalle/{{product.id}}"/>
       </div>
       <div class="card-body">
         <h5 class="card-title">{{ product.name }}</h5>

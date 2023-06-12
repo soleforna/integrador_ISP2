@@ -1,9 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, OnInit,AfterViewInit } from '@angular/core';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { Product } from '../../../Interfaces/product.interface';
 import { FechaService } from 'src/app/services/fecha.service';
 import { ProductsService } from 'src/app/services/products.service';
-import { CartService } from 'src/app/services/cart.service';
 
 interface RouteParams {
   id: string;
@@ -14,7 +13,7 @@ interface RouteParams {
   templateUrl: './details.component.html',
   styleUrls: ['./details.component.css'],
 })
-export class DetailsComponent implements OnInit {
+export class DetailsComponent  implements OnInit, AfterViewInit {
   categoryDetail!: string;
   idDetail!: string;
   product: Product | any;
@@ -27,10 +26,12 @@ export class DetailsComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private FechaService: FechaService,
-    private ProductService: ProductsService,
-    private CartService: CartService
+    private ProductService: ProductsService
   ) {
     this.isLoggedIn = localStorage.getItem('token') !== null;
+  }
+  ngAfterViewInit() {
+    window.scrollTo(0, 0);
   }
 
   getAvatarImage(client_Avatar: string): string {
@@ -46,7 +47,6 @@ export class DetailsComponent implements OnInit {
     return this.FechaService.convertirFecha(fecha);
   }
 
-  //agregar review
   addReview(): void { //llamo al servicio para agregar una review
     let review = { description: this.coment, classification: this.clasf }; //creo un objeto con los datos de la review
     this.ProductService.agregarReview( //llamo al servicio para agregar una review
@@ -86,6 +86,11 @@ export class DetailsComponent implements OnInit {
         'No se encontró ningún producto almacenado en el localStorage.'
       );
     }
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationEnd) {
+        window.scrollTo(0, 0);
+      }
+    });
   }
 
 }

@@ -239,3 +239,6 @@
   label:hover{color:orange;}
   label:hover ~ label{color:orange;}
   input[type = "radio"]:checked ~ label{color:orange;}
+  .card-img-top{
+    cursor: pointer;
+  }
