@@ -66,11 +66,16 @@ export class UsersService {
 
   /* Actualizo los datos del usuario */
   actualizarUsuario(datos: any): Observable<any> {
-    console.log("Estoy en el servicio y esto me llega "+datos)
-    const url = `http://127.0.0.1:8000/api/clients/${datos.id}`;
+
+    const url = `http://127.0.0.1:8000/api/clients/${datos.id}/`;
     const body = JSON.stringify(datos);
 
-    return this.http.patch(url, body).pipe(
+    const headers = new HttpHeaders({
+      'Authorization': 'Bearer ' + localStorage.getItem('token'), // Agrega el token de autenticación al encabezado
+      'Content-Type': 'application/json' // Asegúrate de que el tipo de contenido sea correcto
+    });
+
+    return this.http.patch(url, body, {headers}).pipe(
       catchError((error) => {
         // Manejo de errores
         console.log("En el servicio "+error)
