@@ -1,6 +1,9 @@
 .wrapper {
   background: #ececec;
   padding: 20px 20px 0 20px;
+  width: 100%;
+  
+
 }
 
 .main {
@@ -8,6 +11,7 @@
   justify-content: center;
   align-items: center;
   min-height: 100vh;
+  flex: 1;
 }
 
 .row {
@@ -87,7 +91,7 @@
   background: radial-gradient(circle, rgba(244, 157, 26, 1) 41%, rgba(255, 225, 237, 1) 100%);
   border-radius: 5px;
   transition: .4s;
-  align-self: right;
+  margin-left: 5rem;
 }
 
 .submit:hover {
