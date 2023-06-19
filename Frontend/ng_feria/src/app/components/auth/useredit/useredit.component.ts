@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UsersService } from 'src/app/services/users.service';
 import { DatosgeograficosService } from 'src/app/services/datosgeograficos.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-useredit',
@@ -17,28 +18,33 @@ export class UsereditComponent implements OnInit {
 
   constructor(
     private dg: DatosgeograficosService,
-    private usersService: UsersService
+    private usersService: UsersService,
+    private router: Router
   ) {}
 
   ngOnInit() {
     const storedData = localStorage.getItem('user');
     if (storedData != null) {
       this.formData = JSON.parse(storedData);
+      const pk = this.formData.id;
       const direccion: string = this.formData.address;
       const resultado = this.dividirDireccion(direccion);
       this.calle = resultado.calle;
       this.ciudad = resultado.ciudad;
       this.provinciaActual = resultado.provincia;
-      console.log(this.ciudad)
+      console.log(this.ciudad);
     }
-    
 
+    this.obtenerProvincias();
+    this.obtenerMunicipios();
+  }
+
+  obtenerProvincias() {
     this.dg.obtenerDatosProvincias().subscribe(
       (response) => {
         /* Guardo las provincias en el local storage */
         const provinciasString = JSON.stringify(response);
         localStorage.setItem('provincias', provinciasString);
-        
 
         if (provinciasString) {
           const provinciasObj = JSON.parse(provinciasString);
@@ -47,40 +53,38 @@ export class UsereditComponent implements OnInit {
             (provincia: any) => provincia.nombre
           );
           this.provincias = nombresProvincias;
-
-          if (this.provinciaActual) {
-            
-            this.dg.obtenerDatosMunicipio(this.provinciaActual).subscribe(
-              (response) => {
-                
-                /* Guardo los municipios en el local storage */
-                const municipiosString = JSON.stringify(response);
-                localStorage.setItem('municipios', municipiosString);
-
-                if (municipiosString){
-                  const municipiosObj = JSON.parse(municipiosString);
-                  const nombresMunicipios = municipiosObj.municipios.map(
-                    (municipios:any) => municipios.nombre
-                  );
-                  this.municipios = nombresMunicipios;
-                  console.log(this.municipios) 
-                }
-                
-                 
-
-                console.log(response);
-              },
-              (error) => {
-                console.log(error);
-              }
-            );
-          }
         }
       },
       (error) => {
         console.log(error);
       }
     );
+  }
+
+  obtenerMunicipios() {
+    if (this.provinciaActual) {
+      this.dg.obtenerDatosMunicipio(this.provinciaActual).subscribe(
+        (response) => {
+          /* Guardo los municipios en el local storage */
+          const municipiosString = JSON.stringify(response);
+          localStorage.setItem('municipios', municipiosString);
+
+          if (municipiosString) {
+            const municipiosObj = JSON.parse(municipiosString);
+            const nombresMunicipios = municipiosObj.municipios.map(
+              (municipios: any) => municipios.nombre
+            );
+            this.municipios = nombresMunicipios;
+            console.log(this.municipios);
+          }
+
+          console.log(response);
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
+    }
   }
 
   dividirDireccion(address: string): {
@@ -100,19 +104,23 @@ export class UsereditComponent implements OnInit {
     };
   }
 
-  submitForm() {
-    console.log('Estoy en submit');
+  cambiarProvincia(provincia: string) {
+    provincia.replace(/\s+/g, '_');
+    this.obtenerMunicipios();
+  }
 
+  submitForm() {
     const domicilio =
       (document.getElementById('inputAddress') as HTMLInputElement)?.value +
       ', ' +
       (document.getElementById('inputCity') as HTMLSelectElement)?.value +
       ', ' +
       (document.getElementById('inputState') as HTMLSelectElement)?.value;
-    console.log(domicilio);
+    console.log('Hola');
 
+    const usuarioNuevo = JSON.parse(localStorage.getItem('user') || '{}');
     const datos = {
-      id: localStorage.getItem('user.pk'),
+      id: usuarioNuevo.id,
       first_name: (document.getElementById('firstName') as HTMLInputElement)
         ?.value,
       last_name: (document.getElementById('lastName') as HTMLInputElement)
@@ -123,7 +131,9 @@ export class UsereditComponent implements OnInit {
       domicilio: domicilio,
       telefono: (document.getElementById('phone') as HTMLInputElement)?.value,
     };
-    console.log(datos);
+    console.log("chau")
+    console.log(datos.id)
+
     this.usersService.actualizarUsuario(datos).subscribe(
       (response) => {
         console.log(response);
@@ -134,5 +144,9 @@ export class UsereditComponent implements OnInit {
         console.log(error);
       }
     );
+  }
+
+  cancelar() {
+    this.router.navigate(['/producto']); // Redirecciona a la página de productos.
   }
 }
