@@ -28,6 +28,19 @@ export class UsersService {
     return this.http.post(this.apiUrl + 'clients/', formData);
   }
 
+  sendEmail(email: string): Observable<any> {
+    const formData1 = new FormData();
+    formData1.append('email', email);
+    console.log(formData1);
+    return this.http.post(this.apiUrl + 'password_reset/', formData1);
+  }
+
+  sendToken(token: string): Observable<any> {
+    const formData2 = new FormData();
+    formData2.append('token', token);
+    console.log(formData2);
+    return this.http.post(this.apiUrl + 'password_reset/', formData2);
+  }
 
   logout() {
     localStorage.removeItem("token");

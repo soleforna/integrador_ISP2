@@ -4,6 +4,7 @@ import { of } from 'rxjs';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UsersService } from "src/app/services/users.service";
 import { Router } from "@angular/router";
+declare const Swal: any;
 
 
 @Component({
@@ -102,21 +103,31 @@ export class RegisterComponent {
         if (error.status === 400) {
           this.apiErrors = error.error;
           console.log(this.apiErrors);
+        }else {
+          Swal.fire({
+            position: 'top-center',
+            icon: 'error',
+            title: 'Ha habido un error',
+            showConfirmButton: false,
+            timer: 1500
+          });
         }
         return of(null);
       })
-    ).subscribe((response) => {
-      console.log(response);
+    ).subscribe((response: any) => {
       if (response) {
-      this.router.navigate(["/iniciar-sesion"]); // Redirecciona a login.
+        Swal.fire({
+          position: 'top-center',
+          icon: 'success',
+          title: 'Registro exitoso',
+          showConfirmButton: false,
+          timer: 1500
+        }).then(() => {
+          this.router.navigate(['/iniciar-sesion']); // Redirecciona a login.
+        });
       }
     });
   }
 
+
 }
-
-
-
-
-
-
