@@ -4,6 +4,9 @@ from rest_framework.serializers import ModelSerializer, SerializerMethodField, C
 from django.contrib.auth import password_validation
 from feria.models import *
 
+from rest_framework import serializers
+from .models import Newsletter
+
 class ClientSerializer(ModelSerializer):
     password = CharField(write_only=True, required=False, validators=[password_validation.validate_password])
     class Meta:
@@ -28,7 +31,7 @@ class CategorySerializer(ModelSerializer):
     class Meta:
         model = Category
         fields = 'id','name', 'description',
-        read_only_fields = ('created_at', )
+        read_only_fields = ('created_at',)
 
 class ReviewSerializer(ModelSerializer):
     client_name = SerializerMethodField() #agregar un campo que no existe en el modelo
@@ -128,3 +131,9 @@ class CartDetailSerializer(ModelSerializer):
         cartdetail = CartDetail.objects.create(**validated_data)
         cartdetail.save()
         return cartdetail
+
+class NewsletterSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Newsletter
+        fields = '__all__'
+        read_only_fields = ('created_at',)
