@@ -132,4 +132,8 @@ class CartDetailSerializer(ModelSerializer):
         except IntegrityError:
             raise ValidationError("Este artículo ya existe en el carrito.")
 
-
+class NewsletterSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Newsletter
+        fields = '__all__'
+        read_only_fields = ('created_at',)
