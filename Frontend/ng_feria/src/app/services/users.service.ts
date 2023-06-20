@@ -1,21 +1,18 @@
-
-import { Injectable } from "@angular/core";
-import { HttpClient, HttpHeaders } from "@angular/common/http";
-import { Observable } from "rxjs";
-
+import { Injectable } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable, catchError } from 'rxjs';
 
 @Injectable({
-  providedIn: "root",
+  providedIn: 'root',
 })
 export class UsersService {
   private apiUrl = 'http://localhost:8000/api/';
   constructor(private http: HttpClient) {}
 
-
   login(user: any) {
     return this.http.post(this.apiUrl+"auth/login/", {
       email: user.email,
-      password: user.password
+      password: user.password,
     });
   }
 
@@ -67,8 +64,23 @@ export class UsersService {
     }
   }
 
+  /* Actualizo los datos del usuario */
+  actualizarUsuario(datosModificados: any): Observable<any> {
+
+    const url = `http://127.0.0.1:8000/api/clients/${datosModificados.id}/`;
+    const body = JSON.stringify(datosModificados);
+    console.log(body)
+    const headers = new HttpHeaders({
+      'Authorization': 'Bearer ' + localStorage.getItem('token'), // Agrega el token de autenticación al encabezado
+      'Content-Type': 'application/json' // Asegúrate de que el tipo de contenido sea correcto
+    });
+
+    return this.http.patch(url, body, {headers}).pipe(
+      catchError((error) => {
+        // Manejo de errores
+        console.log("En el servicio "+error)
+        throw error;
+      })
+    );
+  }
 }
-
-
-
-

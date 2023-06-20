@@ -17,7 +17,7 @@ def name_valid(first_name): #validar el nombre
         validate_field(first_name, regex, error_msg) #validar el campo
         
 def address_valid(address): #validar la direccion
-        regex = r'^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ\s\.,#-]{5,}$' #expresion regular para validar la direccion (5 o mas caracteres)
+        regex = r'^[a-zA-ZñÑáéíóúÁÉÍÓÚ0-9\s\.,#-]{5,}$' #expresion regular para validar la direccion (5 o mas caracteres)
         error_msg = 'La dirección debe tener al menos 5 caracteres y solo puede contener letras, números, espacios y los caracteres .,#-' #mensaje de error
         validate_field(address, regex, error_msg) #validar el campo
 
