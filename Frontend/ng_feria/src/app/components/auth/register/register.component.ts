@@ -123,7 +123,7 @@ export class RegisterComponent {
           showConfirmButton: false,
           timer: 1500
         }).then(() => {
-          this.router.navigate(['/iniciar-sesion']);
+          this.router.navigate(['/iniciar-sesion']); // Redirecciona a login.
         });
       }
     });
