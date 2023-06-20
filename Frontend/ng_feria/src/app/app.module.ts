@@ -13,12 +13,15 @@ import { CheckoutCardComponent } from './components/shop/checkout-card/checkout-
 import { DetailsComponent } from './components/shop/details/details.component';
 import { ShopComponent } from './components/shop/shop.component';
 import { LoginComponent } from './components/auth/login/login.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 import { RegisterComponent } from './components/auth/register/register.component';
 import { HttpClientModule } from '@angular/common/http';
 import { TokenComponent } from './components/auth/token/token.component';
 import { EnviarCorreoComponent } from './components/auth/enviarcorreo/enviarCorreo.component';
 import { FechaService } from './services/fecha.service';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { UsereditComponent } from './components/auth/useredit/useredit.component';
 
 
 @NgModule({
@@ -36,7 +39,10 @@ import { FechaService } from './services/fecha.service';
     LoginComponent,
     RegisterComponent,
     TokenComponent,
-    EnviarCorreoComponent
+    EnviarCorreoComponent,
+    UsereditComponent,
+
+
   ],
   imports: [
     BrowserModule,
@@ -44,7 +50,7 @@ import { FechaService } from './services/fecha.service';
     FormsModule, //importe el módulo de formularios
     ReactiveFormsModule,
     HttpClientModule,
-
+    CommonModule
   ],
   providers: [FechaService], //agregue el servicio de Fecha a los providers
   bootstrap: [AppComponent]
