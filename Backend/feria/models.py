@@ -1,7 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser, BaseUserManager
 from django.core.validators import MaxValueValidator
- 
 from .validators import *
 
 # Create your models here.
@@ -63,7 +62,6 @@ class Client(AbstractUser): #modelo de usuario personalizado
     def get_short_name(self): 
         return self.first_name
 
-
 class Category(models.Model): #modelo de categoria
     name = models.CharField(max_length=50, validators=[name_valid]) #maximo 50 caracteres y validacion
     description = models.CharField(max_length=100) #maximo 100 caracteres
@@ -122,6 +120,7 @@ class Coment(models.Model): #modelo de comentario
 class Cart(models.Model): #modelo de carrito
     client = models.ForeignKey(Client, on_delete=models.DO_NOTHING, null=True, blank=True)
     products = models.ManyToManyField(Article, through='CartDetail') #relacion muchos a muchos con la tabla CartDetail
+    amount = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)
     confirm = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
 
@@ -139,13 +138,7 @@ class CartDetail(models.Model): #modelo de detalle de carrito
     item = models.ForeignKey(Article, on_delete=models.CASCADE)
     cart = models.ForeignKey(Cart, on_delete=models.CASCADE)
     quantity = models.PositiveIntegerField(default=1)
-    amount = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)
-    
+        
     def __str__(self):
         return str(self.id)
     
-    #reescribir el metodo save para que se actualice el precio total del pedido cada vez que se agregue un producto
-    def save(self, *args, **kwargs): 
-        self.amount = self.item.price * self.quantity
-        super().save(*args, **kwargs)
-

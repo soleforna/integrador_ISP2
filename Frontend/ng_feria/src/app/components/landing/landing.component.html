@@ -5,7 +5,7 @@
   <i class="fa-sharp fa-solid fa-arrow-up"></i>
 </div>
 
-<main>
+<main class="main">
   <section class="hero-section">
     <div class="container">
       <div class="row align-items-center">
@@ -25,14 +25,18 @@
             gratuito. Regístrate ahora y recibe un cupón de descuento para tu
             primera compra. <br/> <strong>¡Renová tu armario de manera sostenible!</strong>
           </p>
-          <a class="btn btn-outline-secondary" routerLink="/registro"
-            >Registrarse</a>
+
+            <!-- Contenido que se mostrará solo si el usuario está registrado -->
+            <a class="btn btn-outline-secondary" *ngIf="isLoggedIn()" routerLink="/registro">Registrarse</a>
+
+
+
         </div>
       </div>
     </div>
   </section>
 
-  <section class="slider-section"id="ofertas">
+  <section class="slider-section" id="ofertas">
     <div class="container-slider">
       <h1 class="h1-ofertas">Ofertas</h1>
     <div id="carouselExampleIndicators" class="carousel slide">
@@ -41,15 +45,16 @@
         <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
         <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
       </div>
+
       <div class="carousel-inner">
         <div class="carousel-item active">
-          <img src="../../../../assets/img/bulldog.jpg" class="d-block w-100" alt="...">
+          <img src="../../../../assets/img/carrusel01.webp" class="d-block w-100" alt="...">
         </div>
         <div class="carousel-item">
-          <img src="../../../../assets/img/bulldog.jpg" class="d-block w-100" alt="...">
+          <img src="../../../assets/img/carrusel02.jpg" class="d-block w-100" alt="...">
         </div>
         <div class="carousel-item">
-          <img src="../../../../assets/img/bulldog.jpg" class="d-block w-100" alt="...">
+          <img src="../../../assets/img/carrusel03.webp" class="d-block w-100" alt="...">
         </div>
       </div>
       <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">

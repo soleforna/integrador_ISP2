@@ -15,12 +15,16 @@ export class NavComponent {
   name: string = this.getName(this.user);
   isLoggedIn: boolean = false;
   avatar1 = '../../../../assets/img/profile.png';
+  cartExist: boolean = false;
+  cartCount: string = '';
   isNavVisible = true;
   lastScrollOffset = 0;
 
   constructor(public userService: UsersService,private router: Router,private elementRef: ElementRef) {
     // Verifica si el usuario está logueado.
     this.isLoggedIn = localStorage.getItem('token') !== null;
+    this.cartExist = localStorage.getItem('cartId') !== null;
+    this.cartCount = localStorage.getItem('cartCount') || '0';
   }
 
   // Obtiene el nombre del usuario.
@@ -41,6 +45,7 @@ export class NavComponent {
       return user.avatar; // Si el usuario tiene avatar, entonces muestra su avatar.
     }
   }
+
   isProductsPage(): boolean {
     const url = this.router.url;
     return url.includes('producto')  || url.includes('productos')  || url.includes('tienda')  || url.includes('checkout')
