@@ -14,6 +14,7 @@ export class LandingComponent {
 
   coments: any[] = [];
 
+
   ngOnInit(): void {
     this.obtenerComentarios();
   }
@@ -48,6 +49,12 @@ export class LandingComponent {
 
   scroll(el:HTMLElement){
     el.scrollIntoView()
+  }
+
+  isLoggedIn(): boolean {
+    const token = localStorage.getItem('token');
+    console.log(token)
+    return token == null; // No hay token en el local storage
   }
 
 }
