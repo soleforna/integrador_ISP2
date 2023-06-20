@@ -1,9 +1,13 @@
-import { Component, OnInit,AfterViewInit } from '@angular/core';
+import { Component, OnInit,AfterViewInit,ViewChild, ElementRef} from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { Product } from '../../../Interfaces/product.interface';
 import { FechaService } from 'src/app/services/fecha.service';
 import { ProductsService } from 'src/app/services/products.service';
 declare const Swal: any; //declaracion para evitar error de typescript
+import { ChangeDetectorRef } from '@angular/core';
+import { NgForm } from '@angular/forms';
+
+
 
 interface RouteParams {
   id: string;
@@ -15,6 +19,9 @@ interface RouteParams {
   styleUrls: ['./details.component.css'],
 })
 export class DetailsComponent  implements OnInit, AfterViewInit {
+  @ViewChild('closeModal')
+  closeModal!: ElementRef;
+  modalVisible = false;
   categoryDetail!: string;
   idDetail!: string;
   product: Product | any;
@@ -28,13 +35,15 @@ export class DetailsComponent  implements OnInit, AfterViewInit {
     private route: ActivatedRoute,
     private FechaService: FechaService,
     private ProductService: ProductsService,
-    private router: Router
+    private router: Router,
+    private cdRef: ChangeDetectorRef
   ) {
     this.isLoggedIn = localStorage.getItem('token') !== null;
   }
   ngAfterViewInit() {
     window.scrollTo(0, 0);
   }
+
 
   getAvatarImage(client_Avatar: string): string {
     //paso como argumento el client_avatar
@@ -49,15 +58,39 @@ export class DetailsComponent  implements OnInit, AfterViewInit {
     return this.FechaService.convertirFecha(fecha);
   }
 
-  addReview(): void { //llamo al servicio para agregar una review
-    let review = { description: this.coment, classification: this.clasf }; //creo un objeto con los datos de la review
-    this.ProductService.agregarReview( //llamo al servicio para agregar una review
-      parseInt(this.idDetail), //le paso el id del producto
-      review //le paso el objeto con los datos de la review
-    ).subscribe((data) => { //recibo la respuesta
-      this.reviews.push(data); //agrego la review al array de reviews
-      window.location.reload();
-    });
+
+  addReview(reviewForm: NgForm): void {
+    let review = { description: this.coment, classification: this.clasf };
+    this.ProductService.agregarReview(parseInt(this.idDetail), review).subscribe(
+      (data) => {
+        this.reviews.push(data);
+        reviewForm.reset();
+        // Cierra el modal
+        this.closeModal.nativeElement.click() //<-- here
+        this.cdRef.detectChanges();
+
+
+        // Mensaje de éxito
+        Swal.fire({
+          icon: 'success',
+          title: '¡Éxito!',
+          text: 'La reseña se agregó correctamente.',
+          confirmButtonText: 'Aceptar'
+        });
+
+      },
+      (error) => {
+        if (error.status == 400) {
+        // Mensaje de error
+        Swal.fire({
+          icon: 'error',
+          title: 'Error',
+          text: 'Hubo un error al agregar la reseña.',
+          confirmButtonText: 'Aceptar'
+        });
+      }
+    }
+    );
   }
   //obtener reviews
   ngOnInit(): void {
