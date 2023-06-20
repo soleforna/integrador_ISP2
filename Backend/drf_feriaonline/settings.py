@@ -221,6 +221,8 @@ AUTHENTICATION_BACKENDS = {
     'allauth.account.auth_backends.AuthenticationBackend',
 }
 
+PASSWORD_RESET_TIMEOUT_MINUTES = 1 #le colocamos un tiempo de expiracion al token de reset password
+E
 # todo esto esta configutado en un .env "variable de entorno"
 #EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend' # Backend a utilizar para el envío de correos electrónicos
