@@ -68,4 +68,8 @@ class ClientViewSet(viewsets.ModelViewSet):
         serializer = self.get_serializer(request.user)
         return Response(serializer.data)
     
+class NewsletterViewSet(viewsets.ModelViewSet):
+    queryset = Newsletter.objects.all()
+    permission_classes = [permissions.AllowAny]
+    serializer_class = NewsletterSerializer
     
