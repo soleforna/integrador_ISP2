@@ -4,7 +4,7 @@
 <p align="center">
  <a href="https://www.ispc.edu.ar/"><img src="https://user-images.githubusercontent.com/85143329/233746625-17802d1b-3bec-4d9a-9f11-644e342da582.png" style="width: 150px"></a>
 </p>
-<h3 align="center">Instituto Superior Politecnico de Cordoba</h3>
+<h3 align="center">Instituto Superior Politécnico Córdoba</h3>
 <h3 align="center">Tecnicatura Superior en Desarrollo Web y Aplicaciones Digitales</h3>
 <h4 align="center">Proyecto Integrador Módulo Programador Web Ciclo Lectivo 2023 Cohorte 2022</h4>
 
@@ -26,10 +26,11 @@
 
 #
 
-FeriaOnLine es un aplicativo web para un negocio tipo feria americana, será uno plataforma en líneo que permitirá o los clientes comprar productos de manera fácil y seguro desde 10 comodidad de sus hogares. La aplicación contará con una amplia variedad de productos, desde ropa hasta electrodomésticos y juguetes.
-Una característica clave de esto aplicación será su pasarela de pago integrado, que permitirá a los clientes realizar transacciones seguras y rápidas utilizando diferentes métodos de pago, como tarjetas de crédito y débito, transferencias bancarias y billeteras electrónicas.
+FeriaOnLine es una aplicación web para un negocio tipo feria americana. Será una plataforma en línea que permitirá a los clientes comprar productos de manera fácil y segura desde la comodidad de sus hogares. La aplicación contará con una amplia variedad de productos.
 
-En general, el aplicativo web es para una feria americana para mejorar la experiencia de clientes que desean adquirir artículos de segunda mano, aumentar la eficiencia del negocio y expandir su alcance a través de la venta en línea.
+Una característica clave de esta aplicación será su pasarela de pago integrada, que permitirá a los clientes realizar transacciones rápidas y seguras utilizando diferentes métodos de pago, como tarjetas de crédito y débito, transferencias bancarias y billeteras electrónicas.
+
+En general, la aplicación web es para una feria americana con el objetivo de mejorar la experiencia de los clientes que desean adquirir artículos de segunda mano, aumentar la eficiencia del negocio y expandir su alcance a través de la venta en línea.
 
 #
 ### Tecnologias Utilizadas
