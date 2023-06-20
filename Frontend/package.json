@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "ngx-paypal": "^11.0.0"
+  }
+}
