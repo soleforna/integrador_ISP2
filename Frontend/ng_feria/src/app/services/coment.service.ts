@@ -13,6 +13,4 @@ export class ComentService {
   getComent(): Observable<any[]> {
     return this.http.get<any[]>(this.apiUrl); // hago un get a la api de comentarios
   }
-
-
 }
