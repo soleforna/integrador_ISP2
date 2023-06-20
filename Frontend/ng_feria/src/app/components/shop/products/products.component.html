@@ -12,9 +12,8 @@
         <p class="card-text">Precio: $ {{ product.price }}</p>
       </div>
       <div class="card-footer">
-        <button class="btn btn-primary mx-2 my-2 btn-outline-secondary" routerLink="">Agregar</button>
-        <button class="btn btn-primary mx-2 my-2 btn-outline-secondary"
-          routerLink="../detalle/{{product.id}}">Detalles</button>
+        <button class="btn btn-primary mx-2 my-2 btn-outline-secondary" (click)="addCart(product.id)">Agregar</button>
+        <button class="btn btn-primary mx-2 my-2 btn-outline-secondary" routerLink="../detalle/{{product.id}}">Detalles</button>
       </div>
     </div>
   </div>
