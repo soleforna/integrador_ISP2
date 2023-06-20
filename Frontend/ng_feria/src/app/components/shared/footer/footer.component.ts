@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {NewsletterService} from 'src/app/services/newsletter.service'
 
 @Component({
   selector: 'app-footer',
@@ -6,20 +7,28 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./footer.component.css']
 })
 
-export class FooterComponent implements OnInit {
-  correoElectronico = '';
-  esCorreoValido = false;
+export class FooterComponent{
+  mensaje:string = '';
+  error:string = '';
+  correoElectronico:string = '';
 
-  ngOnInit(): void {
-    this.correoElectronico = '';
-  }
+  constructor(private newsletterService: NewsletterService) {}
 
-  validarCorreoElectronico(): void {
-    if (this.correoElectronico.trim() === '') {
-      this.esCorreoValido = false;
-      return;
+  registrarCorreo() {
+    if (this.correoElectronico) {
+      this.newsletterService.postNewsletter(this.correoElectronico).subscribe(
+        () => {
+          this.mensaje = 'Correo registrado exitosamente.';
+          this.correoElectronico = ''; // Limpiar el campo de correo electrónico después de registrar
+        },
+        (error) => {
+          if (error.status === 400) {
+            this.error = 'Error al registrar el correo: ' + error.error.email;
+          } else {
+            this.error = 'Error al registrar el correo: ' + error.error.email;
+          }
+        }
+      );
     }
-    
-    this.esCorreoValido = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(this.correoElectronico.trim());
-  }
+  } 
 }

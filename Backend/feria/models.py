@@ -142,3 +142,13 @@ class CartDetail(models.Model): #modelo de detalle de carrito
     def __str__(self):
         return str(self.id)
     
+class Newsletter(models.Model): #modelo de newsletter
+    email = models.EmailField(unique=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta: #metadatos
+        verbose_name = 'Lista de suscriptores' #nombre en singular
+        verbose_name_plural = 'Lista de suscriptores' #nombre en plural
+
+    def __str__(self):
+        return self.email
