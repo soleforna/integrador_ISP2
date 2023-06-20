@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule,  CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -23,6 +23,12 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { UsereditComponent } from './components/auth/useredit/useredit.component';
 
+/* External */
+import { NgxPayPalModule } from 'ngx-paypal';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgxSpinnerModule } from 'ngx-spinner';
+
+
 
 @NgModule({
   declarations: [
@@ -43,6 +49,7 @@ import { UsereditComponent } from './components/auth/useredit/useredit.component
     UsereditComponent,
 
 
+
   ],
   imports: [
     BrowserModule,
@@ -50,9 +57,13 @@ import { UsereditComponent } from './components/auth/useredit/useredit.component
     FormsModule, //importe el módulo de formularios
     ReactiveFormsModule,
     HttpClientModule,
-    CommonModule
+    CommonModule,
+    NgxPayPalModule,
+    NgbModule,
+    NgxSpinnerModule,
   ],
   providers: [FechaService], //agregue el servicio de Fecha a los providers
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AppModule { }

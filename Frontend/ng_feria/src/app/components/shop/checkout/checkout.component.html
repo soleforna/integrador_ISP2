@@ -48,10 +48,8 @@
         </table>
         </div>
         <div class="container-2 comp">
-
-
-
-        <button class="bt-comprar" (click)="comprarProducts()">Comprar</button>
+        <!-- <button class="bt-comprar" (click)="comprarProducts()">Comprar</button> -->
+        <ngx-paypal [config]="payPalConfig"></ngx-paypal>
 
         </div>
       </div>
