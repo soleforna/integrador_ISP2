@@ -56,3 +56,8 @@ class ComentAdmin(admin.ModelAdmin):
     readonly_fields = ('created_at',)
     date_hierarchy = 'created_at'
     ordering = ('client', 'created_at')
+
+@admin.register(Newsletter)
+class NewsletterAdmin(admin.ModelAdmin):
+    list_display = ("email", "created_at")
+    

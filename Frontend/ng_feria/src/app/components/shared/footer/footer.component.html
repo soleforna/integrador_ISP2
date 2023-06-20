@@ -57,14 +57,13 @@
           <div class="input-group-text" id="btnGroupAddon2">
             <img src="../../../../assets/img/send.svg" alt="">
           </div>
-          <input type="email" class="form-control" placeholder="Suscribite" aria-label="Input group example"
-            aria-describedby="btnGroupAddon2" [(ngModel)]="correoElectronico" (input)="validarCorreoElectronico()">
-          <button class="btn btn-outline-secondary" type="button" id="button-addon2"
-            (click)="validarCorreoElectronico()">Enviar</button>
+          <input type="email" class="form-control" id="inputMail" placeholder="Suscribite" aria-label="Input group example"
+            aria-describedby="btnGroupAddon2" [(ngModel)]="correoElectronico">
+            <button class="btn btn-outline-secondary" type="button" id="button-addon2"
+            (click)="registrarCorreo()">Enviar</button>
         </div>
-        <p *ngIf="esCorreoValido" class="text-success">El correo electrónico es válido.</p>
-        <p *ngIf="!esCorreoValido && correoElectronico !== ''" class="text-danger">El correo electrónico no es válido.
-        </p>
+          <p *ngIf="mensaje" class="text-success">{{ mensaje }}</p>
+          <p *ngIf="error" class="text-danger">{{ error }}</p>
 
       </ul>
     </div>
