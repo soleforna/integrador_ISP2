@@ -1,18 +1,24 @@
 <app-nav></app-nav>
-     <div class="container-table">
-      <h2>Token</h2>
-       <label for="correo"> Ingrese su Correo Electronico </label>
-       <input type="text" id="correo" name="correo" required
-           minlength="8" maxlength="20" size="40">
-      <br>
-    </div>
- 
-    <div class="input-field mt-5">
-      <button type="submit" class="submit">Enviar</button>
-    </div>
-  <a routerLink="/">Ir a pagina principal</a>
-   
- <app-footer></app-footer>
+<form class="wrapper" (ngSubmit)="sendToken()">
+  <div class="container main">
+    <div class="row">
+          <h4>Ingrese el token recibido en su correo electronico para iniciar Sesión</h4>
+          <div class="input-field">
+            <input type="text" id="token" name="token" required
+       [(ngModel)]="token" >
+          </div>
+          <div class="ppal">
+            <button type="submit"  size="40" class="submit">Enviar</button>
+            <div *ngIf="enviarTokenError" class="ng-error">
+              <p>Error al ingresar el token al correo Electronico.</p>
+            <a routerLink="/">Ir a página principal</a>
+          </div>
+        </div>
+<app-footer></app-footer>
+
+
+
+
 
       
       
