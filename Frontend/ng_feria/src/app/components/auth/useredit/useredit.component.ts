@@ -32,7 +32,7 @@ export class UsereditComponent implements OnInit {
       this.calle = resultado.calle;
       this.ciudad = resultado.ciudad;
       this.provinciaActual = resultado.provincia;
-      console.log(this.ciudad);
+
     }
 
     this.obtenerProvincias();
@@ -75,7 +75,7 @@ export class UsereditComponent implements OnInit {
               (municipios: any) => municipios.nombre
             );
             this.municipios = nombresMunicipios;
-            console.log(this.municipios);
+
           }
 
           console.log(response);
@@ -116,28 +116,42 @@ export class UsereditComponent implements OnInit {
       (document.getElementById('inputCity') as HTMLSelectElement)?.value +
       ', ' +
       (document.getElementById('inputState') as HTMLSelectElement)?.value;
-    console.log('Hola');
 
-    const usuarioNuevo = JSON.parse(localStorage.getItem('user') || '{}');
-    const datos = {
-      id: usuarioNuevo.id,
-      first_name: (document.getElementById('firstName') as HTMLInputElement)
-        ?.value,
-      last_name: (document.getElementById('lastName') as HTMLInputElement)
-        ?.value,
-      email: (document.getElementById('Email') as HTMLInputElement)?.value,
-      password: (document.getElementById('inputPassword') as HTMLInputElement)
-        ?.value,
-      domicilio: domicilio,
-      telefono: (document.getElementById('phone') as HTMLInputElement)?.value,
-    };
-    console.log("chau")
-    console.log(datos.id)
 
-    this.usersService.actualizarUsuario(datos).subscribe(
+    const datosAnteriores = JSON.parse(localStorage.getItem('user') || '{}');
+    console.log("Este es el usuario viejo")
+    console.log(datosAnteriores)
+
+
+    const datosModificados: any = {};
+
+    if ((document.getElementById('firstName') as HTMLInputElement)?.value !== datosAnteriores.first_name) {
+      datosModificados.first_name = (document.getElementById('firstName') as HTMLInputElement)?.value;
+    }
+
+    if ((document.getElementById('lastName') as HTMLInputElement)?.value !== datosAnteriores.last_name) {
+      datosAnteriores.last_name = (document.getElementById('lastName') as HTMLInputElement)?.value;
+    }
+
+    if (domicilio !== datosAnteriores.domicilio) {
+      datosModificados.address = domicilio;
+    }
+
+    if ((document.getElementById('phone') as HTMLInputElement)?.value !== datosAnteriores.phone) {
+      datosModificados.phone = (document.getElementById('phone') as HTMLInputElement)?.value;
+    }
+
+    datosModificados.id =datosAnteriores.id;
+
+
+    console.log("Este es el objeto con los campos nuevos")
+    console.log(datosModificados)
+
+    this.usersService.actualizarUsuario(datosModificados).subscribe(
       (response) => {
-        console.log(response);
+        console.log(response)
         localStorage.setItem('user', JSON.stringify(response));
+        this.router.navigate(['/producto']); // Redirecciona a la página de productos.
       },
       (error) => {
         // Manejo de errores
