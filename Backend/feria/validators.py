@@ -22,6 +22,6 @@ def address_valid(address): #validar la direccion
         validate_field(address, regex, error_msg) #validar el campo
 
 def validate_image(image):
-    regex = r'^.*\.(jpg|jpeg|png|gif|JPG|JPEG|PNG|GIF)$'
+    regex = r'^.*\.(jpg|jpeg|png|gif|webp|JPG|JPEG|PNG|GIF|WEBP)$'
     error_msg = 'El archivo no es una imagen válida.'
     validate_field(image.name, regex, error_msg)
