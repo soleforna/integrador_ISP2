@@ -83,7 +83,7 @@ export class CartService {
   //Actualizar el carrito en el local storage solo guarda el ID del carrito y la cantidad de productos
   private updateLocalStorageCart(cartData: any): void {
     localStorage.setItem('cartId', this.cartId.toString());
-    let cartCount = cartData.products.length+1;
+    let cartCount = cartData.products.length === 0 ? cartData.products.length + 1 : cartData.products.length;
     localStorage.setItem('cartCount', cartCount.toString());
   }
 
@@ -130,4 +130,5 @@ export class CartService {
       }
     );
   }
+
 } //fin de clase
