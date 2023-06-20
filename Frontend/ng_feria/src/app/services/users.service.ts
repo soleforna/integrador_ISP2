@@ -65,11 +65,11 @@ export class UsersService {
   }
 
   /* Actualizo los datos del usuario */
-  actualizarUsuario(datos: any): Observable<any> {
+  actualizarUsuario(datosModificados: any): Observable<any> {
 
-    const url = `http://127.0.0.1:8000/api/clients/${datos.id}/`;
-    const body = JSON.stringify(datos);
-
+    const url = `http://127.0.0.1:8000/api/clients/${datosModificados.id}/`;
+    const body = JSON.stringify(datosModificados);
+    console.log(body)
     const headers = new HttpHeaders({
       'Authorization': 'Bearer ' + localStorage.getItem('token'), // Agrega el token de autenticación al encabezado
       'Content-Type': 'application/json' // Asegúrate de que el tipo de contenido sea correcto
