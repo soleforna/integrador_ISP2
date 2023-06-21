@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { CartService } from 'src/app/services/cart.service';
 import { IPayPalConfig, ICreateOrderRequest } from 'ngx-paypal';
 
@@ -11,27 +10,44 @@ import { IPayPalConfig, ICreateOrderRequest } from 'ngx-paypal';
 
 }
 )
-export class CheckoutComponent {
+export class CheckoutComponent implements OnInit{
   iva: number = 0;
   monto: number = 0;
   cart: any[] = [];
   products: any[] = [];
   public payPalConfig?: IPayPalConfig;
 
+  constructor(
+    private cartService: CartService
+  ) { }
+
+  ngOnInit(): void {
+    this.initConfig();
+    const idCart = parseInt(localStorage.getItem('cartId') || '0');
+    this.cartService.getCart(idCart).subscribe(
+      (data) => {
+        this.cart = data;
+        this.products = data.products;
+        this.monto = parseInt(data.amount);
+        this.iva = parseInt(data.amount) * 0.21;
+      });
+  }
+
   private initConfig(): void {
     this.payPalConfig = {
-      currency: 'EUR',
+      currency: 'USD',
       clientId: 'AZUX7uAdkRgGvnX67Uqou1oZW1FhEnCsFtzJKBIrywdP5DZDB0VHaRDpoEpghSFTAFsiNPoLGEBuOE1W',
+
       createOrderOnClient: (data) => <ICreateOrderRequest>{
         intent: 'CAPTURE',
         purchase_units: [{
           amount: {
-            currency_code: 'EUR',
-            value: '9.99',
+            currency_code: 'USD',
+            value: (this.monto + this.iva).toString(),
             breakdown: {
               item_total: {
-                currency_code: 'EUR',
-                value: '9.99'
+                currency_code: 'USD',
+                value: (this.monto + this.iva).toString(),
               }
             }
           },
@@ -40,8 +56,8 @@ export class CheckoutComponent {
             quantity: '1',
             category: 'DIGITAL_GOODS',
             unit_amount: {
-              currency_code: 'EUR',
-              value: '9.99',
+              currency_code: 'USD',
+              value: (this.monto + this.iva).toString(),
             },
           }]
         }]
@@ -78,26 +94,6 @@ export class CheckoutComponent {
       }
     };
   }
-
-  constructor(
-    private cartService: CartService
-  ) { }
-
-  ngOnInit(): void {
-    this.initConfig();
-    const idCart = parseInt(localStorage.getItem('cartId') || '0');
-    this.cartService.getCart(idCart).subscribe(
-      (data) => {
-        this.cart = data;
-        this.products = data.products;
-        this.monto = parseInt(data.amount);
-        this.iva = parseInt(data.amount) * 0.21;
-        console.log(data);
-      });
-
-
-  }
-
 
 }
 
