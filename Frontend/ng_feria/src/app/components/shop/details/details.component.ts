@@ -24,6 +24,7 @@ export class DetailsComponent implements OnInit, AfterViewInit {
   clasf: number = 0;
   coment: string = '';
   isLoggedIn: boolean = false;
+  isAdd: boolean = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -63,11 +64,29 @@ export class DetailsComponent implements OnInit, AfterViewInit {
   }
 
   //metodo para agregar al carrito
-  addCart(): void {
+  addCart(){
     console.log('Agregando al carrito con el siguiente ID de articulo: ' + this.idDetail);
-    this.CartService.addArticleToCart( //llamo al servicio para agregar al carrito
-      parseInt(this.idDetail) //le paso el id del producto
-    );
+    this.CartService.addArticleToCart(parseInt(this.idDetail)).subscribe((data) => {
+      this.isAdd = data; //recibo la respuesta
+    if(this.isAdd){
+      Swal.fire({ //muestro un mensaje de exito
+        title: 'Artículo agregado al carrito',
+        icon: 'success',
+        showConfirmButton: false,
+        timer: 1500,
+      }).then(() => {
+        window.location.reload(); // refrescar la página
+      });
+
+    }else{
+      Swal.fire({ //muestro un mensaje de error
+        title: 'El artículo ya existe en el carrito',
+        icon: 'error',
+        showConfirmButton: false,
+        timer: 1500,
+      });
+    }
+  });
   }
 
   //Metodo que se ejecuta al iniciar el componente
