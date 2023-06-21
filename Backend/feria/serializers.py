@@ -1,6 +1,5 @@
-from django.db import models
+from django.db import models, IntegrityError
 from rest_framework.serializers import ModelSerializer, SerializerMethodField, CharField
-
 from django.contrib.auth import password_validation
 from feria.models import *
 
@@ -74,7 +73,7 @@ class ArticleSerializer(ModelSerializer):
         model = Article
         fields = ('id', 'name', 'description', 'price', 'stock', 'image', 'created_at', 'category', 'review')
         read_only_fields = ('created_at', )
-        depth = 1 #profundidad de la serializacion
+        depth = 1 #profundidad de la serializacion de los objetos relacionados
 
 class ComentSerializer(ModelSerializer): 
     client_name = SerializerMethodField() #agregar un campo que no existe en el modelo
@@ -107,13 +106,14 @@ class CartSerializer(ModelSerializer):
         model = Cart
         fields = '__all__'
         read_only_fields = ('created_at', 'confirm')
+        depth = 1 #profundidad de la serializacion de los objetos relacionados
     
 #    def validate(self, data):
-#        if data['confirm'] == True:
-#            for item in data['products']:
-#                article = Article.objects.get(id=item.id)
-#                article.stock -= item.quantity
-#                article.save()
+#        if data['confirm'] == True: #si el carrito se confirma
+#            for item in data['products']: #recorrer los productos del carrito
+#                article = Article.objects.get(id=item.id) #obtener el articulo
+#                article.stock -= item.quantity #restar la cantidad del producto al stock
+#                article.save() #guardar el articulo
 #        return data
     
     def create(self, validated_data):
@@ -126,11 +126,14 @@ class CartDetailSerializer(ModelSerializer):
         model = CartDetail
         fields = '__all__'
         read_only_fields = ('amount', )
-
+    
     def create(self, validated_data):
-        cartdetail = CartDetail.objects.create(**validated_data)
-        cartdetail.save()
-        return cartdetail
+        try:
+            cartdetail = CartDetail.objects.create(**validated_data)
+            cartdetail.save()
+            return cartdetail
+        except IntegrityError:
+            raise ValidationError("Este artículo ya existe en el carrito.")
 
 class NewsletterSerializer(serializers.ModelSerializer):
     class Meta:

@@ -1,13 +1,6 @@
-
-import {
-  Component,
-  OnInit
-} from '@angular/core';
-import {
-  IPayPalConfig,
-  ICreateOrderRequest
-} from 'ngx-paypal';
-
+import { Component, OnInit } from '@angular/core';
+import { CartService } from 'src/app/services/cart.service';
+import { IPayPalConfig, ICreateOrderRequest } from 'ngx-paypal';
 
 
 @Component({
@@ -17,136 +10,91 @@ import {
 
 }
 )
-export class CheckoutComponent implements OnInit {
-     iva=21;
-     descuento=200;
+export class CheckoutComponent implements OnInit{
+  iva: number = 0;
+  monto: number = 0;
+  cart: any[] = [];
+  products: any[] = [];
+  public payPalConfig?: IPayPalConfig;
 
-     public payPalConfig ? : IPayPalConfig;
+  constructor(
+    private cartService: CartService
+  ) { }
 
-     ngOnInit(): void {
-         this.initConfig();
-     }
-
-     private initConfig(): void {
-      this.payPalConfig = {
-          currency: 'EUR',
-          clientId: 'AZUX7uAdkRgGvnX67Uqou1oZW1FhEnCsFtzJKBIrywdP5DZDB0VHaRDpoEpghSFTAFsiNPoLGEBuOE1W',
-          createOrderOnClient: (data) => < ICreateOrderRequest > {
-              intent: 'CAPTURE',
-              purchase_units: [{
-                  amount: {
-                      currency_code: 'EUR',
-                      value: '9.99',
-                      breakdown: {
-                          item_total: {
-                              currency_code: 'EUR',
-                              value: '9.99'
-                          }
-                      }
-                  },
-                  items: [{
-                      name: 'Enterprise Subscription',
-                      quantity: '1',
-                      category: 'DIGITAL_GOODS',
-                      unit_amount: {
-                          currency_code: 'EUR',
-                          value: '9.99',
-                      },
-                  }]
-              }]
-          },
-          advanced: {
-              commit: 'true'
-          },
-          style: {
-              label: 'paypal',
-              layout: 'vertical'
-          },
-          onApprove: (data: any, actions: any) => {
-            console.log('onApprove - transaction was approved, but not authorized', data, actions);
-            actions.order.get().then((details: any) => {
-              console.log('onApprove - you can get full order details inside onApprove: ', details);
-            });
-          },
-
-
-      
-          onClientAuthorization: (data) => {
-              console.log('onClientAuthorization - you should probably inform your server about completed transaction at this point', data);
-
-          },
-          onCancel: (data, actions) => {
-              console.log('OnCancel', data, actions);
-
-
-          },
-          onError: err => {
-              console.log('OnError', err);
-
-          },
-          onClick: (data, actions) => {
-              console.log('onClick', data, actions);
-
-          }
-      };
+  ngOnInit(): void {
+    this.initConfig();
+    const idCart = parseInt(localStorage.getItem('cartId') || '0');
+    this.cartService.getCart(idCart).subscribe(
+      (data) => {
+        this.cart = data;
+        this.products = data.products;
+        this.monto = parseInt(data.amount);
+        this.iva = parseInt(data.amount) * 0.21;
+      });
   }
 
+  private initConfig(): void {
+    this.payPalConfig = {
+      currency: 'USD',
+      clientId: 'AZUX7uAdkRgGvnX67Uqou1oZW1FhEnCsFtzJKBIrywdP5DZDB0VHaRDpoEpghSFTAFsiNPoLGEBuOE1W',
 
-     products = [
-    {
-      imagen:"../../../../assets/img/remerahombre.jpg",
-      codigo:"00254",
-      nombre:"Remera Hombre",
-      precio:500
-    },
-    {
-      imagen:"../../../../assets/img/zapatoshombre.jpg",
-      codigo:"00452",
-      nombre:"Zapatos Hombre",
-      precio:800
-    },
-    {
-      imagen:"../../../../assets/img/camisahombre.jpg",
-      codigo:"00203",
-      nombre:"Camisa Hombre",
-      precio:600
-    }
-  ];
-  Calculo(): number {
-    let montoProducts = 0;
+      createOrderOnClient: (data) => <ICreateOrderRequest>{
+        intent: 'CAPTURE',
+        purchase_units: [{
+          amount: {
+            currency_code: 'USD',
+            value: (this.monto + this.iva).toString(),
+            breakdown: {
+              item_total: {
+                currency_code: 'USD',
+                value: (this.monto + this.iva).toString(),
+              }
+            }
+          },
+          items: [{
+            name: 'Enterprise Subscription',
+            quantity: '1',
+            category: 'DIGITAL_GOODS',
+            unit_amount: {
+              currency_code: 'USD',
+              value: (this.monto + this.iva).toString(),
+            },
+          }]
+        }]
+      },
+      advanced: {
+        commit: 'true'
+      },
+      style: {
+        label: 'paypal',
+        layout: 'vertical'
+      },
+      onApprove: (data: any, actions: any) => {
+        console.log('onApprove - transaction was approved, but not authorized', data, actions);
+        actions.order.get().then((details: any) => {
+          console.log('onApprove - you can get full order details inside onApprove: ', details);
+        });
+      },
 
-    for (let product of this.products) {
-      montoProducts += product.precio;
+      onClientAuthorization: (data) => {
+        console.log('onClientAuthorization - you should probably inform your server about completed transaction at this point', data);
 
-    }
+      },
+      onCancel: (data, actions) => {
+        console.log('OnCancel', data, actions);
 
-    return montoProducts;
+      },
+      onError: err => {
+        console.log('OnError', err);
+
+      },
+      onClick: (data, actions) => {
+        console.log('onClick', data, actions);
+
+      }
+    };
   }
-  CalculoFinal() {
-    let IVA = 0;
-    let montoFinal = 0;
-    IVA = (this.Calculo() * this.iva) /100;
-    if(this.Calculo()>0){
 
-    montoFinal = this.Calculo() + IVA - this.descuento;
-  }
-  else{
-    montoFinal = 0;
-  }
-
-    return montoFinal;
-  }
-
-
-  comprarProducts(){
-    if(this.products.length === 0){
-     window.location.replace("/products");
-
-    }
-    else{
-      window.location.replace("/checkout-card");
-    }
-  }
 }
 
 

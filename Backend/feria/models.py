@@ -138,10 +138,13 @@ class CartDetail(models.Model): #modelo de detalle de carrito
     item = models.ForeignKey(Article, on_delete=models.CASCADE)
     cart = models.ForeignKey(Cart, on_delete=models.CASCADE)
     quantity = models.PositiveIntegerField(default=1)
+    
+    class Meta:
+        unique_together = ['item', 'cart']
         
     def __str__(self):
         return str(self.id)
-    
+
 class Newsletter(models.Model): #modelo de newsletter
     email = models.EmailField(unique=True)
     created_at = models.DateTimeField(auto_now_add=True)
