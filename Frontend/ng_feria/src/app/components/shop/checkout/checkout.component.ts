@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { CartService } from 'src/app/services/cart.service';
 
 
 
@@ -11,64 +12,42 @@ import { CommonModule } from '@angular/common';
 }
 )
 export class CheckoutComponent {
-     iva=21;
-     descuento=200;
+    iva: number= 0;
+    monto: number = 0;
+    cart: any[] = [];
+    products: any[] = [];
 
-     products = [
-    {
-      imagen:"../../../../assets/img/remerahombre.jpg",
-      codigo:"00254",
-      nombre:"Remera Hombre",
-      precio:500
-    },
-    {
-      imagen:"../../../../assets/img/zapatoshombre.jpg",
-      codigo:"00452",
-      nombre:"Zapatos Hombre",
-      precio:800
-    },
-    {
-      imagen:"../../../../assets/img/camisahombre.jpg",
-      codigo:"00203",
-      nombre:"Camisa Hombre",
-      precio:600
-    }
-  ];
-  Calculo(): number {
-    let montoProducts = 0;
 
-    for (let product of this.products) {
-      montoProducts += product.precio;
 
-    }
+  constructor(
+    private cartService: CartService
+    ) {}
 
-    return montoProducts;
-  }
-  CalculoFinal() {
-    let IVA = 0;
-    let montoFinal = 0;
-    IVA = (this.Calculo() * this.iva) /100;
-    if(this.Calculo()>0){
+  ngOnInit(): void {
+    const idCart = parseInt(localStorage.getItem('cartId') || '0');
+    this.cartService.getCart(idCart).subscribe(
+      (data) => {
+        this.cart = data;
+        this.products = data.products;
+        this.monto = parseInt(data.amount);
+        this.iva = parseInt(data.amount) * 0.21;
+        console.log(data);
+      });
 
-    montoFinal = this.Calculo() + IVA - this.descuento;
-  }
-  else{
-    montoFinal = 0;
-  }
 
-    return montoFinal;
   }
 
 
-  comprarProducts(){
-    if(this.products.length === 0){
-     window.location.replace("/products");
 
-    }
-    else{
-      window.location.replace("/checkout-card");
-    }
-  }
+  // comprarProducts(){
+  //   if(this.products.length === 0){
+  //    window.location.replace("/products");
+
+  //   }
+  //   else{
+  //     window.location.replace("/checkout-card");
+  //   }
+  // }
 }
 
 
