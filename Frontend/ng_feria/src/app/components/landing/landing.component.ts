@@ -22,7 +22,6 @@ export class LandingComponent {
   obtenerComentarios(): void {
     this.ComentService.getComent().subscribe(
       (comentarios) => {
-        console.log(comentarios);
         this.coments = comentarios;
       },
       (error) => {
