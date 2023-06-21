@@ -13,18 +13,19 @@
         <p class="card-text "><small class="text-body-secondary">Categoria: {{ categoryDetail }}</small></p>
         <p class="card-text "><small class="text-body-secondary">Publicado: {{fecha}}</small></p>
         <button class="btn btn-outline-secondary" (click)="addCart()">Agregar</button>
+        <button class="btn btn-outline-secondary" routerLink="/producto">Volver</button>
+        <button type="submit" name="button" class="btn-color btn-notify btn" *ngIf="isLoggedIn" data-bs-toggle="modal"
+        data-bs-target="#ModalReview">
+        <i class="fas fa-sun"></i> Agregar Reseña <i class="fas fa-sun"></i>
+      </button>
+
       </div>
     </div>
   </div>
 </div>
 <section class="testimonios">
   <div class="contenedor-tb">
-    <div class="input-group-btn">
-      <button type="submit" name="button" class="btn-color btn-notify btn" *ngIf="isLoggedIn" data-bs-toggle="modal"
-        data-bs-target="#ModalReview">
-        <i class="fas fa-sun"></i> Agregar Reseña <i class="fas fa-sun"></i>
-      </button>
-    </div>
+
     <!-- testimonios contenedor-->
     <div *ngIf="product" class="testimonios_contenedor">
       <!-- si existeproduct?.reviews existe y si su longitud es mayor que cero muestra las reviews si no muestra el ngIf-->
@@ -60,17 +61,17 @@
   </div>
 </section>
 <!-- Modal Agregar Reseña-->
-<div class="modal fade" id="ModalReview" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" #myModal id="ModalReview" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
         <h1 class="modal-title fs-5" id="exampleModalLabel">Agregar Reseña</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" #closeModal></button>
       </div>
       <div class="modal-body">
         <label for="message-text" class="col-form-label">Reseña:</label>
 
-        <form (submit)="addReview()">
+        <form (submit)="addReview(reviewForm)"  #reviewForm="ngForm">
 
           <p class="clasificacion">
             <input id="radio1" type="radio" name="estrellas" value="5" [(ngModel)]="clasf" name="5" />

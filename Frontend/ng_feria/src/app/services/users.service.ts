@@ -35,11 +35,12 @@ export class UsersService {
     return this.http.post(this.apiUrl + 'password_reset/', formData1);
   }
 
-  sendToken(token: string): Observable<any> {
+  sendToken(password:string,token: string): Observable<any> {
     const formData2 = new FormData();
+    formData2.append('password', password)
     formData2.append('token', token);
     console.log(formData2);
-    return this.http.post(this.apiUrl + 'password_reset/', formData2);
+    return this.http.post(this.apiUrl + 'password_reset/confirm/', formData2);
   }
 
   logout() {
