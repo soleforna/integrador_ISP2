@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import {NewsletterService} from 'src/app/services/newsletter.service'
 
 @Component({
   selector: 'app-footer',
@@ -19,7 +20,5 @@ export class FooterComponent implements OnInit {
       this.esCorreoValido = false;
       return;
     }
-    
-    this.esCorreoValido = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(this.correoElectronico.trim());
   }
 }
