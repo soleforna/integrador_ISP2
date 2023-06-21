@@ -11,8 +11,7 @@ body{
   flex-direction: column;
   justify-content: center;
   min-height: 100vh;
-  background-image:url(../../../../assets/img/polka.jpg);
-  background-size:cover;
+  background-color: #ffe15da1;
 }
 ::selection{
   color: #fff;
@@ -30,7 +29,7 @@ body{
   flex-direction: column;
   align-items: center;
   gap: 20px;
-  
+
 
 }
 
@@ -122,12 +121,12 @@ color:#fff;
   }
   .comp{
     padding:15px 0 30px 0;
-  
+
   }
-  
+
 }
 
- 
+
 
 @media screen and (max-width:775px) {
   .container-monto{
