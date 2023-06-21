@@ -23,7 +23,9 @@ export class UsereditComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+
     const storedData = localStorage.getItem('user');
+
     if (storedData != null) {
       this.formData = JSON.parse(storedData);
       const pk = this.formData.id;
@@ -42,9 +44,9 @@ export class UsereditComponent implements OnInit {
   obtenerProvincias() {
     this.dg.obtenerDatosProvincias().subscribe(
       (response) => {
-        /* Guardo las provincias en el local storage */
+        /* Guardo las provincias en el session storage */
         const provinciasString = JSON.stringify(response);
-        localStorage.setItem('provincias', provinciasString);
+        sessionStorage.setItem('provincias', provinciasString);
 
         if (provinciasString) {
           const provinciasObj = JSON.parse(provinciasString);
@@ -65,9 +67,9 @@ export class UsereditComponent implements OnInit {
     if (this.provinciaActual) {
       this.dg.obtenerDatosMunicipio(this.provinciaActual).subscribe(
         (response) => {
-          /* Guardo los municipios en el local storage */
+          /* Guardo los municipios en el session storage */
           const municipiosString = JSON.stringify(response);
-          localStorage.setItem('municipios', municipiosString);
+          sessionStorage.setItem('municipios', municipiosString);
 
           if (municipiosString) {
             const municipiosObj = JSON.parse(municipiosString);
