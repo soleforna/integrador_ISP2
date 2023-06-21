@@ -65,8 +65,10 @@
             gratuito. Regístrate ahora y recibe un cupón de descuento para tu
             primera compra. <br/> <strong>¡Renová tu armario de manera sostenible!</strong>
           </p>
-          <a class="btn btn-outline-secondary" routerLink="/registro"
-            >Registrarse</a>
+
+            <!-- Contenido que se mostrará solo si el usuario está registrado -->
+            <a class="btn btn-outline-secondary" *ngIf="isLoggedIn()" routerLink="/registro">Registrarse</a>
+
         </div>
       </div>
     </div>
