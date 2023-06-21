@@ -1,7 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { CartService } from 'src/app/services/cart.service';
 import { IPayPalConfig, ICreateOrderRequest } from 'ngx-paypal';
-import { Product } from 'src/app/Interfaces/product.interface';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { CheckoutCardComponent } from '../checkout-card/checkout-card.component';
+
+
+/* import { Product } from 'src/app/Interfaces/product.interface'; */
 
 
 @Component({
@@ -19,12 +23,14 @@ export class CheckoutComponent implements OnInit{
   public payPalConfig?: IPayPalConfig;
 
   constructor(
-    private cartService: CartService
+    private cartService: CartService,
+    private modalService: NgbModal
   ) { }
 
   ngOnInit(): void {
     this.initConfig();
     const idCart = parseInt(localStorage.getItem('cartId') || '0');
+
     this.cartService.getCart(idCart).subscribe(
       (data) => {
         this.cart = data;
@@ -35,7 +41,7 @@ export class CheckoutComponent implements OnInit{
   }
 
   private initConfig(): void {
-
+    const idCart = parseInt(localStorage.getItem('cartId') || '0');
     let listaItems: any[]= this.getItems(this.products)
     this.payPalConfig = {
       currency: 'USD',
@@ -72,8 +78,20 @@ export class CheckoutComponent implements OnInit{
       },
 
       onClientAuthorization: (data) => {
-        console.log('onClientAuthorization - you should probably inform your server about completed transaction at this point', data);
-        /* JSON.stringify(data)  */
+        console.log('onClientAuthorization - you should probably inform your server about completed transaction at this point', JSON.stringify(data));
+
+        /* abrir el checkout-card con la confirmacion de la compra */
+        this.cartService.getCart(idCart).subscribe((cartData) => {
+          const items = cartData.products;
+          const amount = parseInt(cartData.amount);
+          this.openModal(items, amount);
+        });
+         /* this.openModal(
+        dat a.purchase_units[0].items,
+          data.purchase_units[0].amount.value
+        ); */
+        /* this.vaciarCarrito(); */
+        /* vaciar carrito y sacarlo del local storage */
 
       },
       onCancel: (data, actions) => {
@@ -91,11 +109,12 @@ export class CheckoutComponent implements OnInit{
     };
   }
 
+
   getItems( products: any[]): any[] {
     const items: any[] = [];
     /* Convierto cada item del carrito en un item de paypal */
     products.forEach((product: any) => {
-      console.log(product.price);
+
       const item = {
         name: product.name,
         quantity: "1" ,
@@ -108,8 +127,15 @@ export class CheckoutComponent implements OnInit{
 
       items.push(item);
     });
-   
+
     return items
+  }
+
+  openModal(items: any, amount:any):void{
+    const modalRef= this.modalService.open(CheckoutCardComponent);
+    modalRef.componentInstance.items = items;
+    modalRef.componentInstance.amount =amount;
+
   }
 
 }
