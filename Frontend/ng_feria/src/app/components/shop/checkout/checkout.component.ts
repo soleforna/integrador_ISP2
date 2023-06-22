@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CartService } from 'src/app/services/cart.service';
 import { IPayPalConfig, ICreateOrderRequest } from 'ngx-paypal';
-import { Product } from 'src/app/Interfaces/product.interface';
+declare const Swal: any;
 
 
 @Component({
@@ -108,9 +108,36 @@ export class CheckoutComponent implements OnInit{
 
       items.push(item);
     });
-   
+
     return items
   }
+
+  delItem(id: number) {
+    const idCart = parseInt(localStorage.getItem('cartId') || '0');
+    this.cartService.delItemCart(idCart, id).subscribe(
+      (data) => {
+        if (data.message === 'Producto eliminado del carrito correctamente.') {
+          this.cartService.updateLocalStorageCart();
+          Swal.fire({ //muestro un mensaje de error
+            title: 'Lamentablemente no te llevas este producto',
+            icon: 'error',
+            showConfirmButton: false,
+            timer: 1500,
+          }).then(() => {
+            window.location.reload(); // refrescar la página
+          });
+          console.log(data.message);
+        } else {
+          console.error('Error al eliminar el producto:', data.message);
+        }
+      },
+      (error) => {
+        console.error('Error al eliminar el producto:', error);
+      }
+    );
+  }
+
+
 
 }
 
