@@ -21,12 +21,15 @@ export class CheckoutComponent implements OnInit{
   monto: number = 0;
   cart: any[] = [];
   products: any[] = [];
+  isLoggedIn: boolean = false;
   public payPalConfig?: IPayPalConfig;
 
   constructor(
     private cartService: CartService,
     private modalService: NgbModal
-  ) { }
+  ) {
+    this.isLoggedIn = localStorage.getItem('token') !== null;
+  }
 
   ngOnInit(): void {
     this.initConfig();
