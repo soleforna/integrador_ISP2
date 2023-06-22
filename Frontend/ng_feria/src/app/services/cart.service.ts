@@ -60,7 +60,13 @@ export class CartService {
     return this.http.get(this.url + 'cart/' + id + '/');
   }
 
-  private updateLocalStorageCart(): void { // Actualizar carrito en localStorage
+  delItemCart(idCart: number, idItem: number): Observable<any> { // Eliminar producto del carrito
+    return this.http.post(this.url + 'cart/' + idCart + '/remove_product/',{
+        "product_id": idItem
+      });
+  }
+
+  updateLocalStorageCart(): void { // Actualizar carrito en localStorage
     localStorage.setItem('cartId', this.cartId.toString()); // Actualizar ID de carrito en localStorage
     this.getCart(this.cartId).subscribe( // Actualizar cantidad de productos en localStorage
       (cartData: any) => {
@@ -73,6 +79,10 @@ export class CartService {
     );
   }
 
+  removeLocalStorageCart(): void { // Eliminar carrito de localStorage
+    localStorage.removeItem('cartId'); // Eliminar ID de carrito de localStorage
+    localStorage.removeItem('cartCount'); // Eliminar cantidad de productos de localStorage
+  }
 
   private createCart(data: number): Observable<number> { // Crear carrito
     let cart: Observable<any>;
