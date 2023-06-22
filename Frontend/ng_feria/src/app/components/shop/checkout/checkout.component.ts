@@ -84,15 +84,10 @@ export class CheckoutComponent implements OnInit{
         this.cartService.getCart(idCart).subscribe((cartData) => {
           const items = cartData.products;
           const amount = parseInt(cartData.amount);
+          this.cartService.remuveLocalStorageCart();
           this.openModal(items, amount);
         });
-         /* this.openModal(
-        dat a.purchase_units[0].items,
-          data.purchase_units[0].amount.value
-        ); */
-        /* this.vaciarCarrito(); */
-        /* vaciar carrito y sacarlo del local storage */
-
+      
       },
       onCancel: (data, actions) => {
         console.log('OnCancel', data, actions);

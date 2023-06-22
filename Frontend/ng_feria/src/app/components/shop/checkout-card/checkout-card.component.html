@@ -6,7 +6,7 @@
       class="btn-close"
       data-bs-dismiss="modal"
       aria-label="Close"
-      (click)="activeModal.dismiss('Crosss click')"
+      (click)="redirectToProducts()"
     ></button>
   </div>
   <div class="modal-body">
@@ -14,8 +14,8 @@
     <hr />
     <div *ngFor="let item of items" class="detalles">
       <span><b>Detalle: </b>{{ item.name }}</span>
-      <span> <b> Cantidad = 1</b></span>
-      <span ><b>Precio: </b>${{ item.price }}</span>
+      <span> <b> IVA </b>${{ item.price*0.21}}</span>
+      <span ><b>Precio: </b>${{item.price}}</span>
 
     </div>
     <hr />
