@@ -21,7 +21,8 @@
           <td data-productos="nombre">{{product.name}}</td>
           <td data-productos="precio">$ {{product.price}}</td>
           <td data-monto="iva">$ {{product.price * 0.21}}</td>
-          <td data-productos="accion" style="color: red;"><i class="fa-solid fa-trash-can"></i></td>
+          <button (click)="delItem(product.id)" class="text-danger border-0"><i class="fa-solid fa-trash-can"></i></button>
+          <!-- <td data-productos="accion" style="color: red;"><i class="fa-solid fa-trash-can"></i></td> -->
         </tr>
       </tbody>
     </table>
