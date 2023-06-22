@@ -73,7 +73,11 @@ export class CartService {
     );
   }
 
-
+  remuveLocalStorageCart(): void { // Eliminar carrito de localStorage
+    localStorage.removeItem('cartId'); // Eliminar ID de carrito de localStorage
+    localStorage.removeItem('cartCount'); // Eliminar cantidad de productos de localStorage
+  }
+  
   private createCart(data: number): Observable<number> { // Crear carrito
     let cart: Observable<any>;
     if (data > 0) { // Si hay usuario
