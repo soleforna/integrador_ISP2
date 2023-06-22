@@ -15,11 +15,11 @@
     <div *ngFor="let item of items" class="detalles">
       <span><b>Detalle: </b>{{ item.name }}</span>
       <span> <b> Cantidad = 1</b></span>
-      <span><b>Precio: </b>${{ item.unit_amount.value }}</span>
+      <span ><b>Precio: </b>${{ item.price }}</span>
 
     </div>
     <hr />
-    <h3><b>Total:</b>{{ price }}</h3>
+    <h3><b>Total:</b> </h3> <h4 class="text-end">$ {{ amount }}</h4>
   </div>
   <div class="modal-footer">
     <p>¡Gracias por confiar en <b>feriaOnline!</b></p>

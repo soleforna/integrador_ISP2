@@ -132,10 +132,10 @@ export class CheckoutComponent implements OnInit{
   }
 
   openModal(items: any, amount:any):void{
+
     const modalRef= this.modalService.open(CheckoutCardComponent);
     modalRef.componentInstance.items = items;
-    modalRef.componentInstance.amount =amount;
-
+    modalRef.componentInstance.amount = amount+amount*0.21;
   }
 
 }

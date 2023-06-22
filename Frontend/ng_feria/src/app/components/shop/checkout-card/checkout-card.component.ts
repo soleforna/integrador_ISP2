@@ -8,17 +8,14 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./checkout-card.component.css']
 })
 export class CheckoutCardComponent implements OnInit{
-  @Input() price: any;
+  @Input() amount: any;
   @Input() items: any;
 
   constructor(public activeModal: NgbActiveModal){}
 
   ngOnInit(): void {
 
-    console.log('price is ', this.price);
-    console.log(this.items)
-
-  }
+ }
 
 
 }
