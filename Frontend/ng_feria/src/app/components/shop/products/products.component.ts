@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component,Input, OnInit } from '@angular/core';
 import { ProductsService } from 'src/app/services/products.service';
 import { CartService } from 'src/app/services/cart.service';
 declare const Swal: any; //declaracion para evitar error de typescript
@@ -9,7 +9,7 @@ declare const Swal: any; //declaracion para evitar error de typescript
   styleUrls: ['./products.component.css'],
 })
 export class ProductsComponent implements OnInit {
-  products: any[] = [];
+  @Input() products: any[] = [];
   idProduct!: string;
   isAdd: boolean = false;
 

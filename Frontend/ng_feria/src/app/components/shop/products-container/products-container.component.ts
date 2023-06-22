@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import {NewsletterService} from 'src/app/services/newsletter.service'
 declare const Swal: any; //declaracion para evitar error de typescript
 
@@ -7,10 +7,19 @@ declare const Swal: any; //declaracion para evitar error de typescript
   templateUrl: './products-container.component.html',
   styleUrls: ['./products-container.component.css']
 })
-export class ProductsContainerComponent {
+export class ProductsContainerComponent implements OnInit{
   correo : string = "";
 
+  opcionSeleccionada : string="";
+  productosFiltrados: any[]=[];
+
+  categoriesSet: Set<string> = new Set();
+
   constructor(private newsletterService: NewsletterService) {}
+
+  ngOnInit(): void {
+    this.obtenerCategorias();
+  }
 
   registrarCorreo() {
     if (this.correo) {
@@ -39,5 +48,35 @@ export class ProductsContainerComponent {
       );
     }
   }
+
+  // metodo para obtener un array de las categorias
+
+  obtenerCategorias() {
+    
+    const products = JSON.parse(localStorage.getItem('products') ||"");
+    console.log(products)
+  
+    if (products) {
+      
+      products.forEach((p: { category: { name: string; }; }) => {
+        this.categoriesSet.add(p.category.name);
+      });
+      console.log(this.categoriesSet)
+    
+     
+    }
+    
+  }
+
+  //metodo para obtener productos filtrados
+
+  filtrarProductos() {
+    const products = JSON.parse(localStorage.getItem('products') ||"");
+
+    this.productosFiltrados = products.filter((p: { category: { name: string; }; }) => this.opcionSeleccionada.includes(p.category.name));
+
+  }
+
+
 
 }
