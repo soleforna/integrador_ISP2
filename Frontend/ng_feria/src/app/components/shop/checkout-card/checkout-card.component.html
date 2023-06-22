@@ -1,55 +1,27 @@
-<app-nav></app-nav>
-  <body>
-    <div class="container">
-      <h1>Pagar con tarjeta de crédito/débito</h1>
-  <div class="container-table">
-    <br>
-      <h2>Datos de la tarjeta</h2>
-              <label for="cars">Seleccione tipo de tarjeta  </label>
-
-              <select name="tarjeta" id="tarjeta">
-                <option value="volvo">Tarjeta de credito</option>
-                <option value="saab">Tarjeta de debito</option>
-              </select>
-              <br>
-              <label for="cars">Seleccione marca tarjeta  </label>
-              <select name="marcaTarjeta" id="marcaTarjeta">
-                  <option value="volvo">Mastercard</option>
-                  <option value="saab">Visa</option>
-                  <option value="saab">American Express</option>
-                </select>
-                <br>
-             <label for="name"> Nombre en la tarjeta  </label>
-                  <input type="text" id="name" name="name" required
-                  minlength="8" maxlength="20" size="29">
-                  <br>
-              <label for="numero"> Numero de la tarjeta </label>
-                   <input type="text" id="numero" name="numero" required
-                   minlength="8" maxlength="20" size="30">
-                   <br>
-              <label for="expiracion">   Fecha expiracion   </label>
-                   <input type="month" id="expiracion" name="expiracion" required>
-
-              <label for="cvv"> CVV </label>
-                   <input type="text" id="cvv" name="cvv" required
-                   minlength="3" maxlength="3"size="10" >
-                   <br>
-                   <br>
-      </div>
-       <div class="container-2 ">
-              <h2>Realizar Pago</h2>
-              <tr>
-                  <th data-monto="total" scope="col">Monto Total</th>
-                </tr>
-                <tr>
-                  <td data-monto="total">$1099</td>
-                </tr>
-
-              <button class="bt-comprar"> pagar</button>
-          </div>
-
+<div class="">
+  <div class="modal-header">
+    <h5 class="modal-title">Transacción realizada con éxito</h5>
+    <button
+      type="button"
+      class="btn-close"
+      data-bs-dismiss="modal"
+      aria-label="Close"
+      (click)="redirectToProducts()"
+    ></button>
+  </div>
+  <div class="modal-body">
+    <h3>Detalles de la compra</h3>
+    <hr />
+    <div *ngFor="let item of items" class="detalles">
+      <span><b>Detalle: </b>{{ item.name }}</span>
+      <span> <b> IVA </b>${{ item.price*0.21}}</span>
+      <span ><b>Precio: </b>${{item.price}}</span>
 
     </div>
-
-  </body>
- <app-footer></app-footer>
+    <hr />
+    <h3><b>Total:</b> </h3> <h4 class="text-end">$ {{ amount }}</h4>
+  </div>
+  <div class="modal-footer">
+    <p>¡Gracias por confiar en <b>feriaOnline!</b></p>
+  </div>
+</div>
