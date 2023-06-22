@@ -68,8 +68,6 @@ export class DetailsComponent implements OnInit, AfterViewInit {
         // Cierra el modal
         this.closeModal.nativeElement.click() //<-- here
         this.cdRef.detectChanges();
-
-
         // Mensaje de éxito
         Swal.fire({
           icon: 'success',
