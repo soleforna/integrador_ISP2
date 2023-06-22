@@ -1,5 +1,3 @@
-<!--FILTROS-->
-
 <!--PRESENTACIÓN-->
 <div class="container-fluid banner mt-5 ">
     <div class="row">
@@ -23,7 +21,7 @@
         <div class="container text-center">
           <h2> Filtrar por</h2>
             <div class="row">
-               <select [(ngModel)]="opcionSeleccionada" (change)="filtrarProductos()">
+               <select [(ngModel)]="opcionSeleccionada" (change)="filtrarProductos()" class="filter-container mt-3 mb-5 border" >
                  <option *ngFor="let categoria of categoriesSet" [value]="categoria">{{ categoria }}</option>
                </select>
       
