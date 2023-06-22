@@ -3,7 +3,7 @@
 <body>
 
   <div class="container">
-    <h1>Productos</h1>
+    <h1>Carrito de compras</h1>
 <div class="container-table">
     <table class="table">
       <thead>
@@ -21,7 +21,8 @@
           <td data-productos="nombre">{{product.name}}</td>
           <td data-productos="precio">$ {{product.price}}</td>
           <td data-monto="iva">$ {{product.price * 0.21}}</td>
-          <td data-productos="accion" style="color: red;"><i class="fa-solid fa-trash-can"></i></td>
+          <button (click)="delItem(product.id)" class="text-danger border-0"><i class="fa-solid fa-trash-can"></i></button>
+          <!-- <td data-productos="accion" style="color: red;"><i class="fa-solid fa-trash-can"></i></td> -->
         </tr>
       </tbody>
     </table>
@@ -46,7 +47,13 @@
         </table>
         </div>
         <div class="container-2 comp">
-          <ngx-paypal [config]="payPalConfig"></ngx-paypal>
+          <div *ngIf="isLoggedIn">
+            <ngx-paypal [config]="payPalConfig"></ngx-paypal>
+          </div>
+          <div *ngIf="!isLoggedIn">
+            <h6>Para poder finalizar tu compra </h6>
+            <button class="btn btn-outline-secondary me-2" routerLink="/iniciar-sesion">Iniciar sesión</button>
+          </div>
         </div>
       </div>
   </div>
