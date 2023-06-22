@@ -3,7 +3,7 @@
 <body>
 
   <div class="container">
-    <h1>Productos</h1>
+    <h1>Carrito de compras</h1>
 <div class="container-table">
     <table class="table">
       <thead>
@@ -47,7 +47,13 @@
         </table>
         </div>
         <div class="container-2 comp">
-          <ngx-paypal [config]="payPalConfig"></ngx-paypal>
+          <div *ngIf="isLoggedIn">
+            <ngx-paypal [config]="payPalConfig"></ngx-paypal>
+          </div>
+          <div *ngIf="!isLoggedIn">
+            <h6>Para poder finalizar tu compra </h6>
+            <button class="btn btn-outline-secondary me-2" routerLink="/iniciar-sesion">Iniciar sesión</button>
+          </div>
         </div>
       </div>
   </div>
