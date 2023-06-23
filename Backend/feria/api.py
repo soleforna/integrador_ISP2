@@ -5,7 +5,6 @@ from rest_framework import viewsets, permissions, status
 from rest_framework.decorators import action
 from rest_framework.response import Response
 
-
 class ArticleViewSet(viewsets.ModelViewSet):
     queryset = Article.objects.filter(stock__gt=0) #de esta manera solo se muestran los articulos que tienen stock
     permission_classes = [permissions.AllowAny]
@@ -31,14 +30,22 @@ class CategoryViewSet(viewsets.ModelViewSet):
 
 class ReviewViewSet(viewsets.ModelViewSet):
     queryset = Review.objects.all()
-    permission_classes = [permissions.AllowAny]
-    serializer_class = ReviewSerializer
-    lookup_field = 'pk'
+    permission_classes = [permissions.AllowAny] #para que se pueda ver sin estar logueado
+    serializer_class = ReviewSerializer 
+    lookup_field = 'pk' #para que se pueda buscar por id en la url
 
 class ComentViewSet(viewsets.ModelViewSet):
     queryset = Coment.objects.all()
     permission_classes = [permissions.AllowAny]
     serializer_class = ComentSerializer
+    
+    def perform_create(self, serializer):
+        client_id = self.request.data.get('client_id')
+        try:
+            client = Client.objects.get(id=client_id)
+            serializer.save(client=client)
+        except Client.DoesNotExist:
+            raise ValidationError("El cliente especificado no existe.")
 
 class CartViewSet(viewsets.ModelViewSet):
     queryset = Cart.objects.all()
