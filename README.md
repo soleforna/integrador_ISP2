@@ -26,15 +26,15 @@
 
 #
 
-FeriaOnLine es una aplicación web para un negocio tipo feria americana. Será una plataforma en línea que permitirá a los clientes comprar productos de manera fácil y segura desde la comodidad de sus hogares. La aplicación contará con una amplia variedad de productos.
+FeriaOnLine es una aplicación web para un negocio tipo feria americana. Es una plataforma en línea que permite a los clientes comprar productos de manera fácil y segura desde la comodidad de sus hogares. La aplicación cuenta con una amplia variedad de productos.
 
-Una característica clave de esta aplicación será su pasarela de pago integrada, que permitirá a los clientes realizar transacciones rápidas y seguras utilizando diferentes métodos de pago, como tarjetas de crédito y débito, transferencias bancarias y billeteras electrónicas.
+Una característica clave de esta aplicación es su pasarela de pago integrada, que permite a los clientes realizar transacciones rápidas y seguras utilizando diferentes métodos de pago, como tarjetas de crédito y débito, transferencias bancarias y billeteras electrónicas.
 
 En general, la aplicación web es para una feria americana con el objetivo de mejorar la experiencia de los clientes que desean adquirir artículos de segunda mano, aumentar la eficiencia del negocio y expandir su alcance a través de la venta en línea.
 
 #
-### Tecnologias Utilizadas
-
+### Tecnologias Utilizadas 
+Stack DAM (Django-Angular-MySQL)
 * Angular
 * Python 3.11.3
 * Django 
