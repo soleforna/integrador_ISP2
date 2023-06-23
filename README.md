@@ -42,4 +42,8 @@ En general, la aplicación web es para una feria americana con el objetivo de me
 * MySQL
 
 #
-
+ 
+<h2 align="center">Te Invitamos a visitar la documentación de la API en POSTMAN</h2>
+<p align="center">
+<a href="https://documenter.getpostman.com/view/27661915/2s93z5AkBS" target="_blank"><img align="center" alt="POSTMAN DOC"  src="https://img.shields.io/badge/Postman-ApiDoc-orange">
+</a> </p>
