@@ -68,6 +68,23 @@ class CartViewSet(viewsets.ModelViewSet):
         else: # Si no se envió el id del producto
             return Response({'error': 'El producto es obligatorio.'}, status=status.HTTP_400_BAD_REQUEST) # Responder con un error
 
+    @action(detail=True, methods=['post'])
+    def confirm(self, request, pk=None):
+        cart = self.get_object()
+        client_id = request.data.get('client_id')
+
+        if client_id is not None:
+            try:
+                cart.client_id = client_id
+                cart.set_confirm()
+                cart.save()
+                serializer = self.get_serializer(cart)
+                return Response({'message': 'Carrito confirmado.'}, status=status.HTTP_200_OK)
+            except Cart.DoesNotExist:
+                return Response({'error': 'Carrito no encontrado.'}, status=status.HTTP_404_NOT_FOUND)
+        else:
+            return Response({'error': 'client_id es obligatorio.'}, status=status.HTTP_400_BAD_REQUEST)
+
 class CartDetailsViewSet(viewsets.ModelViewSet):
     queryset = CartDetail.objects.all()
     permission_classes = [permissions.AllowAny]

@@ -15,6 +15,7 @@ export class UsereditComponent implements OnInit {
   provinciaActual: string | undefined;
   provincias: string[] = [];
   municipios: any;
+  storedData: any;
 
   constructor(
     private dg: DatosgeograficosService,
@@ -24,21 +25,36 @@ export class UsereditComponent implements OnInit {
 
   ngOnInit() {
 
-    const storedData = localStorage.getItem('user');
+    this.storedData = localStorage.getItem('user');
 
-    if (storedData != null) {
-      this.formData = JSON.parse(storedData);
+    if (this.storedData != null) {
+      this.formData = JSON.parse(this.storedData);
       const pk = this.formData.id;
-      const direccion: string = this.formData.address;
-      const resultado = this.dividirDireccion(direccion);
-      this.calle = resultado.calle;
-      this.ciudad = resultado.ciudad;
-      this.provinciaActual = resultado.provincia;
-
+      let direccion: string = '';
+      if(this.formData.first_name == null || this.formData.first_name == ''){ //si el nombre es null
+        this.formData.first_name = 'Ingrese su nombre';
+      }
+      if(this.formData.last_name == null || this.formData.first_name == ''){ //si el apellido es null
+        this.formData.first_name = 'Ingrese su apellido';
+      }
+      if(this.formData.phone == null){ //si el telefono es null
+        this.formData.phone = 'Ingrese su número de teléfono';
+      }
+      //si la direccion es null o vacia o undefined
+      if (this.formData.address == null || this.formData.address == '' || this.formData.address == undefined) {
+        this.calle = 'Ingrese calle y número';
+        this.ciudad = '';
+        this.provinciaActual = '';
+      } else {
+        direccion = this.formData.address;
+        const resultado = this.dividirDireccion(direccion);
+        this.calle = resultado.calle;
+        this.ciudad = resultado.ciudad;
+        this.provinciaActual = resultado.provincia;
+        this.obtenerMunicipios();
+      }
     }
-
     this.obtenerProvincias();
-    this.obtenerMunicipios();
   }
 
   obtenerProvincias() {
@@ -47,10 +63,8 @@ export class UsereditComponent implements OnInit {
         /* Guardo las provincias en el session storage */
         const provinciasString = JSON.stringify(response);
         sessionStorage.setItem('provincias', provinciasString);
-
-        if (provinciasString) {
+        if (provinciasString) { //si hay provincias
           const provinciasObj = JSON.parse(provinciasString);
-
           const nombresProvincias = provinciasObj.provincias.map(
             (provincia: any) => provincia.nombre
           );
@@ -70,17 +84,14 @@ export class UsereditComponent implements OnInit {
           /* Guardo los municipios en el session storage */
           const municipiosString = JSON.stringify(response);
           sessionStorage.setItem('municipios', municipiosString);
-
-          if (municipiosString) {
+          if (municipiosString) { //si hay municipios
             const municipiosObj = JSON.parse(municipiosString);
             const nombresMunicipios = municipiosObj.municipios.map(
               (municipios: any) => municipios.nombre
             );
             this.municipios = nombresMunicipios;
-
           }
-
-          console.log(response);
+          //console.log(response);
         },
         (error) => {
           console.log(error);
@@ -94,7 +105,7 @@ export class UsereditComponent implements OnInit {
     ciudad: string;
     provincia: string;
   } {
-    const partes: string[] = address.split(',');
+    const partes: string[] = address.split(',') || ['Ingrese su dirección',];
     const calle: string = partes[0].trim();
     const ciudad: string = partes[1].trim();
     const provincia: string = partes[2].trim();
@@ -118,13 +129,7 @@ export class UsereditComponent implements OnInit {
       (document.getElementById('inputCity') as HTMLSelectElement)?.value +
       ', ' +
       (document.getElementById('inputState') as HTMLSelectElement)?.value;
-
-
     const datosAnteriores = JSON.parse(localStorage.getItem('user') || '{}');
-    console.log("Este es el usuario viejo")
-    console.log(datosAnteriores)
-
-
     const datosModificados: any = {};
 
     if ((document.getElementById('firstName') as HTMLInputElement)?.value !== datosAnteriores.first_name) {
@@ -144,10 +149,6 @@ export class UsereditComponent implements OnInit {
     }
 
     datosModificados.id =datosAnteriores.id;
-
-
-    console.log("Este es el objeto con los campos nuevos")
-    console.log(datosModificados)
 
     this.usersService.actualizarUsuario(datosModificados).subscribe(
       (response) => {
