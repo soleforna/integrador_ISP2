@@ -1,3 +1,15 @@
-.items{
-     padding-right: 5px;
+.items {
+  padding-right: 5px;
+}
+
+li {
+  list-style: none;
+  padding: 0px 8px 0px 8px;
+}
+
+li:hover {
+  cursor: pointer;
+  background-color: darkgray;
+  border-radius: 8px;
+  font-style: italic;
 }
