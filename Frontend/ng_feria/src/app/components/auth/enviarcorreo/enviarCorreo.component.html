@@ -1,0 +1,23 @@
+<app-nav></app-nav>
+<form class="wrapper" (ngSubmit)="sendEmail()">
+  <div class="container main">
+    <div class="row">
+          <h4>Ingrese su Email para enviar el token a su correo electronico</h4>
+          <div class="input-field">
+            <input type="text" id="correo" name="correo" required
+            size="40" [(ngModel)]="email" placeholder="Ingrese su mail">
+          </div>
+          <div class="ppal">
+            <button type="submit"  class="submit">Enviar</button>
+            <div *ngIf="enviarCorreoError" class="ng-error">
+              <p> enviando al Correo Electronico.</p>
+            <a routerLink="/">Ir a página principal</a>
+          </div>
+        </div>
+<app-footer></app-footer>
+
+
+
+
+
+

@@ -1,6 +1,6 @@
 .wrapper {
   background: #ececec;
-  padding: 60px 20px 0 20px;  
+  padding: 60px 20px 0 20px;
 }
 
 .main {
@@ -25,7 +25,6 @@
   background-repeat: no-repeat;
   position: relative;
   border-radius: 10px 0 0 10px;
-
 }
 
 img {
@@ -62,7 +61,33 @@ img {
   padding: 0 10px 0 10px;
 }
 
+.button-box {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+  padding: 0 10px 0 10px;
+}
+
+button{
+  border:none;
+  padding: 10px;
+  border-radius: 3px;
+  color: #40414a;
+}
+
+button:hover{
+ background: rgb(190, 187, 187) ;
+}
+
+.fa-google{
+  margin-right: 20px;
+}
+
 .input {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   height: 45px;
   width: 100%;
   background: transparent;
@@ -81,12 +106,29 @@ img {
   transition: .5s;
 }
 
+.details {
+  margin-top: 1em;
+  font-size: 0.8rem;
+  color: #40414a;
+}
+
+.inp{
+  margin: 2px 0 2px 0;
+  border-radius: 5px;
+  border: 1px solid #40414a;
+  outline: none;
+  padding:0.8em;
+}
+
 .input-field .input:focus~label {
   top: -10px;
   font-size: 13px;
 }
 
 .submit {
+  width: 50%;
+  margin: 0 auto;
+  padding: 0 20px 0 20px;
   border: none;
   outline: none;
   height: 45px;
@@ -126,6 +168,17 @@ span a:hover {
   border-left: 5px solid red;
 }
 
+.error-message {
+  color: red;
+  font-size: 12px;
+  margin-top: 5px;
+}
+
+.is-invalid {
+  border-color: red;
+}
+
+/* Responsive design */
 @media only screen and (max-width: 768px) {
   .side-image {
     border-radius: 10px 10px 0 0;

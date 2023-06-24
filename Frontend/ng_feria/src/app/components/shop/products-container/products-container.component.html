@@ -1,57 +1,30 @@
-<!--FILTROS-->
-
 <!--PRESENTACIÓN-->
-<div class="container-fluid banner mt-5 ">
-    <div class="row">
-        <div class="col-1 mt-5">
-            <svg width="40" height="40" >
-                <polygon points="20,0 26,14 40,14 30,24 34,40 20,30 6,40 10,24 0,14 14,14" class="star-desktop"/>
-            </svg>
-        </div>
-        <div class="col-10 text-center">
-            <h1 class="pt-5 fs-1"> {{"Vea nuestro catalogo!!"| uppercase}}
-                <svg width="26.67" height="26.67">
-                    <polygon points="13.33,0 17.53,9.33 26.67,9.33 20,15.6 22.67,26.67 13.33,20 4,26.67 6.67,15.6 0,9.33 9.33,9.33" class="star-mobile"/>
-                </svg>
-            </h1>
-
-            <h3 class="mt-5">Lo mejor en productos de segunda mano.</h3>
-            <p class="lead fw-normal fst-italic mt-4 pt-2 pb-1 ">Elija sus productos, cargelos y paguelos al instante!</p>
-            <a class="btn btn-info p-2 mt-5 mb-5 btn-orden rounded-pill" href="/producto#productCard">Haga su pedido!</a>
-        </div>
-        <!------------------------>
-<div class="container text-center">
-    <h2> Filtrar por</h2>
-    <div class="row">
-      <div class="col">
-        <select class="form-select" aria-label="Default select example">
-            <option selected>Precio</option>
-            <option value="1">Hasta 3000</option>
-            <option value="2">Hasta 5000</option>
-            <option value="3">Hasta 10000</option>
-          </select>
-        </div>
-        <div class="col">
-          <select class="form-select" aria-label="Default select example">
-            <option selected>Categoria</option>
-            <option value="1">Ropa</option>
-            <option value="2">Calzados</option>
-            <option value="3">Accesorios</option>
-          </select>
-        </div>
-        <div class="col">
-          <select class="form-select" aria-label="Default select example">
-            <option selected>Target</option>
-            <option value="1">Hombre</option>
-            <option value="2">Mujer</option>
-            <option value="3">Niño</option>
-          </select>
-        </div>
+<div class="container-fluid banner mt-5" id="main">
+  <div class="row">
+    <div class="col-1 mt-5">
+    </div>
+    <div class="col-10 text-center">
+      <h1 class="pt-5 fs-1"> {{"Vea nuestro catalogo!!"| uppercase}}
+      </h1>
+      <h3 class="mt-4">Lo mejor en productos de segunda mano.</h3>
+      <p class="lead fw-normal fst-italic mt-4 pt-2 pb-1 ">Elija sus productos, cargelos y paguelos al instante!</p>
+      <a class="btn btn-info p-2 mt-4 mb-4 btn-orden rounded-pill" href="/producto#productCard">Haga su pedido!</a>
+    </div>
+    <!-----------FILTROS------------->
+    <div class="container text-center">
+      <h2> Filtrar por</h2>
+      <div class="row">
+        <select [(ngModel)]="opcionSeleccionada" (change)="filtrarProductos()"
+          class="filter-container mt-3 mb-2 border">
+          <option *ngFor="let categoria of categoriesSet" [value]="categoria">{{ categoria }}</option>
+        </select>
       </div>
     </div>
   </div>
 </div>
+
 <app-products id="products"></app-products>
+
 <div class="container">
   <h3 class="fs-1 text-center mt-5">¿Querés vender aquello que ya no necesitas?</h3>
   <h4 class="text-center mt-5 ">Dejanos tu email y nos pondremos en contacto!</h4>

@@ -1,0 +1,26 @@
+<app-nav></app-nav>
+<form class="wrapper" (ngSubmit)="sendToken()">
+  <div class="container main">
+    <div class="row">
+          <h4>Ingrese el token recibido en su correo electronico para iniciar Sesión</h4>
+          <div class="input-field">
+            <input type="text" id="token" name="token" required
+       [(ngModel)]="token" placeholder="Ingrese el token">
+       <input type="password" id="password" name="password" required
+       [(ngModel)]="password" placeholder="Ingrese su nuevo password">
+          </div>
+          <div class="ppal">
+            <button type="submit"  size="40" class="submit">Enviar</button>
+            <div *ngIf="enviarTokenError" class="ng-error">
+              <p>Error al ingresar el token el password.</p>
+            <a routerLink="/">Ir a página principal</a>
+          </div>
+        </div>
+<app-footer></app-footer>
+
+
+
+
+
+
+

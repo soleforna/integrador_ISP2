@@ -26,5 +26,17 @@ Si todo funcionó correctamente, deberías ver la carpeta bootstrap en el direct
 
 
 
+Para evitar que surjan errores por cuestiones horarias debemos intalar la siguiente biblioteca
 
+```
+npm install moment-timezone
+```
+
+Para integrar los elementos necesarios para que funcione la pasarela de pago con el servicio Paypal debemos ingresar los siguientes comandos: 
+```
+ng add @ng-bootstrap/ng-bootstrap
+npm i ngx-paypal
+npm i ngx-spinner
+
+```
 

@@ -1,4 +1,4 @@
-<form class="wrapper" [formGroup]="loginForm">
+<form class="wrapper" method='POST'>
   <div class="container main">
     <div class="row">
       <div class="col-md-6 side-image"></div>
@@ -6,20 +6,27 @@
         <div class="input-box">
           <p>Iniciar Sesión</p>
           <div class="input-field">
-            <input formControlName="email" type="text" class="input" id="email" placeholder="Email">
-          </div>
-    
-          <div class="input-field">
-            <input formControlName="password" type="password" class="input" id="password" placeholder="Contraseña">
+            <span class="details">Correo electrónico</span>
+            <input class='inp' type="email" [(ngModel)]="email" name="email" placeholder="Ingrese su correo electrónico" required="required"/>
+            <div class="error-message" *ngIf="emailInvalid && emailTouched">Correo electrónico requerido</div>
           </div>
           <div class="input-field">
-            <button type="submit" class="submit" >Iniciar Sesión</button>
+            <span class="details">Contraseña</span>
+            <input class='inp' type="password" [(ngModel)]="password" name="password" placeholder="Ingrese su contraseña" required="required"/>
+            <div class="error-message" *ngIf="passwordInvalid && passwordTouched">Contraseña requerida</div>
+              <!-- <button (click)="loginWithGoogle('google')"><i class="fa-brands fa-google"></i> Iniciar sesión con Google</button> -->
           </div>
-          <div class="signup">
-            <span>¿Eres nuevo en este sitio? <a routerLink="/registro">Regístrate</a></span>
+          <div class="button-box">
+            <input class='submit' type="submit" value="Ingresar" (click)="login()" />
           </div>
           <div class="ppal">
-            <a routerLink="/">Ir a pagina principal</a>
+            <a routerLink="/enviarCorreo">Olvide mi contraseña</a>
+            <br>
+             <a routerLink="/registro">Registrarse</a>
+
+          </div>
+          <div class="ppal">
+            <a routerLink="/">Ir a página principal</a>
           </div>
         </div>
       </div>

@@ -13,19 +13,6 @@ border-spacing: 0px;
 .hidden-nav {
   display: none;
 }
-.cart-no {
-  position: absolute;
-  min-height: 25px;
-  min-width: 25px;
-  border-radius: 50%;
-  font-size: 1em;
-  background: #B01E68;
-  color: white;
-  text-align: center;
-  top: -12px;
-  right: 32px ;
-}
-
 .btn-outline-secondary{
   background-color: #F49D1A;
   color: #fff;
@@ -34,42 +21,6 @@ border-spacing: 0px;
 
 .btn-outline-secondary:active{
   background-color: #F49D1A;
-}
-
-.btn-outline-secondary:hover{
-  transform: scale(1.1);
-  color: #fff;
-}
-
-@media screen and (max-width: 990px) {
-  .fa-shopping-cart {
-    font-size: 1.5rem;
-  }
-  .btn {
-    font-size: 0.8rem;
-    padding: 0.25rem 0.5rem;
-  }
-}
-
-.btn.btn-primary.btn-lg {
-  color: #fff;
-  border: none;
-}
-
-.btn-outline-secondary:active{
-  background-color: #F49D1A;
-}
-
-.btn-outline-secondary:hover{
-  transform: scale(1.1);
-}
-
-@media screen and (max-width: 990px) {
-
-  .btn {
-    font-size: 0.8rem;
-    padding: 0.25rem 0.5rem;
-  }
 }
 
 /* Fin estilos de botón */
@@ -93,17 +44,18 @@ h6,
   justify-content: center;
   align-items: center;
   padding: 0vh;
-
-
 }
 
-
 @media screen and (max-width: 768px) {
-
   .row {
     gap: 10px;
   }
+  .imgTop {
+    margin-top: 100px;
+    align-self: center;
+  }
 }
+
 .title-container {
   position: relative;
   overflow: hidden;
@@ -141,7 +93,7 @@ h6,
   margin-right: 5rem;
   margin-left: 5rem;
   margin-top: 0rem;
-  margin-bottom: 5rem;
+  margin-bottom: 1rem;
   display: flex;
   justify-content: center;
 }
@@ -366,7 +318,7 @@ h6,
   color: #979797;
   font-size: 1.1rem;
 }
-.reseñas {
+.estrellas {
   color: #f9d71c;
 }
 .fa-gray {
@@ -483,3 +435,4 @@ input[type = "radio"]{ display:none;}
 label:hover{color:orange;}
 label:hover ~ label{color:orange;}
 input[type = "radio"]:checked ~ label{color:orange;}
+

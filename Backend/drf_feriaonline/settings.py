@@ -10,7 +10,9 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
+import os
 from pathlib import Path
+from decouple import config # add this line to import config from decouple module 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -25,21 +27,34 @@ SECRET_KEY = 'django-insecure-1+@!lq-l#bx5bd4_(l&plno(9w^e908&y62p1)1*w$qc!wf#q4
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
-
+#add CORS
+ALLOWED_HOSTS = ['*'] # add this line to allow all hosts to access the backend server 
+CORS_ORIGIN_ALLOW_ALL = False # If this is used then `CORS_ORIGIN_WHITELIST` will not have any effect
+# If this is used, then not need to use `CORS_ORIGIN_ALLOW_ALL = True`
+CORS_ORIGIN_WHITELIST = ('http://localhost:4200',) # provide your frontend url here ex: localhost:4200 (Angular)
 
 # Application definition
 
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
+    'django.contrib.sites',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
         'feria', #add App_name
         'rest_framework', #add REST
+        'rest_framework.authtoken', #add Token Authentication
         'corsheaders',  #add CORS
+        'allauth', #add allauth
+        'allauth.account', #add allauth
+        'allauth.socialaccount', #add allauth
+        'allauth.socialaccount.providers.google', #add allauth
+        'dj_rest_auth', #add dj_rest_auth
+        'dj_rest_auth.registration', #add dj_rest_auth
+        'django_rest_passwordreset', #add django_rest_passwordreset
+
 ]
 
 MIDDLEWARE = [
@@ -52,10 +67,6 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
-
-
-CORS_ORIGIN_ALLOW_ALL = False
-CORS_ORIGIN_WHITELIST = ('http://localhost:8081',)
 
 ROOT_URLCONF = 'drf_feriaonline.urls'
 
@@ -77,6 +88,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'drf_feriaonline.wsgi.application'
 
+AUTH_USER_MODEL = 'feria.Client' #add User Model
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
@@ -131,25 +143,103 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'es'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'America/Argentina/Buenos_Aires'
 
 USE_I18N = True
 
-USE_TZ = True
-
+USE_TZ = False
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = 'static/'
 
+#add MEDIA
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media') 
+MEDIA_URL = '/media/' 
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField' #add BigAutoField
+
+#add REST
+REST_FRAMEWORK = { 
+    "DEFAULT_AUTHENTICATION_CLASSES": [
+        'feria.authentication.BearerAuthentication', #add BearerAuthentication
+    ]
+}
+
+REST_AUTH_REGISTER_SERIALIZERS = {
+    'REGISTER_SERIALIZER': 'feria.serializers.RegisterSerializer',  #add RegisterSerializer
+}
+
+#add allauth
+# SOCIALACCOUNT_PROVIDERS = { 
+#     "google": {
+#         "APP": {
+#             "client_id": "",  # replace whit your client_id
+#             "secret": "",     # replace whit your secret
+#             "key": "",        # leave empty
+#         },
+#         "SCOPE": [
+#             "profile",
+#             "email",
+#         ],
+#         "AUTH_PARAMS": {
+#             "access_type": "online",
+#         },
+#         "VERIFIED_EMAIL": True,
+#     },
+# }
+
+#LOGIN_REDIRECT_URL ='https://localhost:4200/producto'
+
+# SOCIALACCOUNT_PROVIDERS = {
+#     'google': {
+#         'SCOPE': [
+#             'profile',
+#             'email',
+#         ],
+#         'AUTH_PARAMS': {
+#             'access_type': 'online',
+#         },
+#         'OAUTH_PKCE_ENABLED': True,
+#     }
+# }
+
+#django all auth settings
+AUTHENTICATION_BACKENDS = {  
+    #Needed to login username in Django admin, regardless of 'allauth'
+    'django.contrib.auth.backends.ModelBackend',
+    # allauth specific authentication methods, such as login by e-mail 
+    'allauth.account.auth_backends.AuthenticationBackend',
+}
+
+PASSWORD_RESET_TIMEOUT_MINUTES = 2 #le colocamos un tiempo de expiracion al token de reset password
+
+# todo esto esta configutado en un .env "variable de entorno"
+#EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend' # Backend a utilizar para el envío de correos electrónicos
+EMAIL_HOST =  config('EMAIL_HOST')  # Dirección del servidor SMTP
+EMAIL_PORT =  config('EMAIL_PORT')  # Puerto del servidor SMTP
+EMAIL_USE_TLS =  True  # Utiliza TLS para una conexión segura
+EMAIL_HOST_USER =  config('EMAIL_HOST_USER')  # Nombre de usuario del servidor SMTP (si es necesario)
+EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')  # Contraseña del servidor SMTP (si es necesario)
+EMAIL_USE_SSL = False
+
+
+SITE_ID = 1 # Le decimos a django que utilice el primer sitio como predeterminado
+
+ACCOUNT_EMAIL_VERIFICATION = "none" # Le decimos a django que no envie un mail de verificacion
+ACCOUNT_AUTHENTICATION_METHOD = "email" # Le decimos a django que el metodo de autenticacion sera el email
+ACCOUNT_EMAIL_REQUIRED = True # Le decimos a django que el email es requerido
+ACCOUNT_UNIQUE_EMAIL = True  # Le decimos a django que el email debe ser unico
+ACCOUNT_USER_MODEL_USERNAME_FIELD = None  # Le decimos a allauth que no utilice el username
+ACCOUNT_USERNAME_REQUIRED = False # Le decimos a django que el username no es requerido
+SOCIALACCOUNT_PROVIDERS = {'google': {'SCOPE': ['profile', 'email']}}   # Le decimos a django que queremos obtener el email y el perfil de google

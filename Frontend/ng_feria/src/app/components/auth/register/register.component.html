@@ -1,4 +1,4 @@
-<nav class="wrapper">
+<form class="wrapper" [formGroup]="forma" (ngSubmit)="register()">
   <div class="container main">
     <div class="row">
       <div class="col-md-6 side-image"></div>
@@ -6,28 +6,56 @@
         <div class="input-box">
           <h4>Regístrate!</h4>
           <div class="input-field">
-            <input type="text" class="input" id="email" placeholder="Nombre">
+            <input type="text" formControlName="first_name" class="input" id="first_name" name="first_name"
+              placeholder="Nombre">
+            <small *ngIf="apiErrors.name" class="text-danger">{{ apiErrors.name[0] }}</small>
           </div>
           <div class="input-field">
-            <input type="password" class="input" id="password" placeholder="Apellido">
+            <input type="text" formControlName="last_name" class="input" name="last_name" id="last_name"
+              placeholder="Apellido">
+            <small *ngIf="apiErrors.last_name" class="text-danger">{{ apiErrors.last_name[0] }}</small>
           </div>
           <div class="input-field">
-            <input type="text" class="input" id="email" placeholder="Email">
+            <input type="text" formControlName="email" class="input" name="email" id="email" placeholder="Email">
+            <small *ngIf="apiErrors.email" class="text-danger">{{ apiErrors.email[0] }}</small>
           </div>
           <div class="input-field">
-            <input type="password" class="input" id="password" placeholder="Contraseña">
+            <input type="password" formControlName="password" class="input" name="password" id="password"
+              placeholder="Contraseña">
+            <small *ngIf="apiErrors.password" class="text-danger">{{ apiErrors.password[0] }}</small>
           </div>
+
           <div class="input-field">
+            <input type="password" formControlName="password2" [class.is-invalid]="password2NoValido" class="input"
+              name="password2" id="password2" placeholder="Confirmar contraseña">
+            <small *ngIf="password2NoValido" class="text-danger">Las contraseñas no coinciden</small>
+          </div>
+
+          <div class="input-field">
+            <input type="text" formControlName="phone" class="input" name="phone" id="tel" placeholder="Teléfono">
+            <small *ngIf="apiErrors.phone" class="text-danger">{{ apiErrors.phone[0] }}</small>
+          </div>
+
+
+          <div class="input-field">
+            <input type="text" formControlName="address" class="input" name="address" id="address"
+              placeholder="Dirección">
+            <small *ngIf="apiErrors.address" class="text-danger">{{ apiErrors.address[0] }}</small>
+          </div>
+          <div class="input-field mt-3">
             <button type="submit" class="submit">Regístrate</button>
+          </div>
+          <div *ngIf="loginError" class="ng-error">
+            <p>{{apiErrors}}</p>
           </div>
           <div class="login">
             <span>¿Ya tienes una cuenta? <a routerLink="/iniciar-sesion">Iniciar Sesión</a></span>
           </div>
-          <div class="ppal">
+          <div class="ppal mb-3">
             <a routerLink="/">Ir a pagina principal</a>
           </div>
         </div>
       </div>
     </div>
   </div>
-</nav>
+</form>

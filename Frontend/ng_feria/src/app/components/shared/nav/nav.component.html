@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-md navbar-light bg-white fixed-top border-bottom shadow-sm">
+<nav class="navbar navbar-expand-md navbar-light bg-white fixed-top border-bottom shadow-sm" [ngClass]="getNavClasses()">
   <div class="container-fluid">
     <div>
       <img src="../../../../assets/img/logo.webp" style="max-height: 60px" alt="logo" />
@@ -9,7 +9,7 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse justify-content-center justify-content-md-end" id="navbarNav">
-      <ul class="navbar-nav mb-2 mx-auto mb-md-0 text-uppercase text-center">
+      <ul class="navbar-nav mb-2 mx-auto mb-md-0 text-uppercase text-center" *ngIf="isProductsPage()">
         <li class="nav-item">
           <a class="nav-link" routerLink="/">Inicio</a>
         </li>
@@ -17,17 +17,61 @@
           <a class="nav-link" routerLink="/producto">Tienda</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="#contacto">Contacto</a>
+          <a class="nav-link">Contacto</a>
+        </li>
+      </ul>
+       <ul class="navbar-nav mb-2 mx-auto mb-md-0 text-uppercase text-center" *ngIf="isLandingPage()">
+        <li class="nav-item">
+        <!--Le pasamos el componente y la seccion y te navega ej: componente inicio seccion ofertas-->
+        <!-- En el componente deceado definimos el id en un div por ej <div id="ofertas"></div>-->
+          <a class="nav-link"href="/inicio#inicio">Inicio</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/inicio#ofertas" fragment="ofertas">Ofertas</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/inicio#beneficios">Beneficios</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/inicio#preguntas">Preguntas</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/inicio#comentarios">Comentarios</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/inicio#contactos">Contactos</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/producto']" routerLinkActive="router-link-active" >Tienda</a>
         </li>
       </ul>
       <div class="d-flex align-items-center justify-content-center">
-        <a class="position-relative">
-          <a href="/checkout">  <i class="fa fa-shopping-cart me-5 fa-2x text-dark"></i></a>
-          <div class="cart-no">2</div>
+        <a class="position-relative" *ngIf="cartExist">
+          <a href="/checkout"><i class="fa fa-shopping-cart me-5 fa-2x text-dark"></i></a>
+          <div class="cart-no">{{cartCount}}</div>
         </a>
-        <a class="btn btn-outline-secondary me-2" routerLink="/iniciar-sesion">Ingresar</a>
-        <a class="btn btn-outline-secondary" routerLink="/registro">Registrarse</a>
+        <a class="btn btn-outline-secondary me-2" *ngIf="!isLoggedIn" routerLink="/iniciar-sesion">Ingresar</a>
+        <a class="btn btn-outline-secondary me-2" *ngIf="!isLoggedIn" routerLink="/registro">Registrarse</a>
+        <img *ngIf="isLoggedIn" [src]="getAvatar(user)" alt="imagen-perfil" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
       </div>
     </div>
   </div>
 </nav>
+<div class=" offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+  <div class="close">
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="container-2">
+<div class="perfil">
+  <img [src]="getAvatar(user)" alt="imagen-perfil">
+  <h3>{{name}}</h3>
+</div>
+<div class="container-botones">
+  <!-- Link al componente que permite editar el perfil de usuario -->
+  <button routerLink="/useredit" class="btn-btn">Perfil<i class="fa-solid fa-user"></i></button>
+  <button class="btn-btn">Compras<i class="fa fa-shopping-cart"></i></button>
+  <button (click)="logout()" class="btn-btn">Cerrar Session<i class="fa-solid fa-sign-out"></i></button>
+</div>
+
+</div>
+</div>
