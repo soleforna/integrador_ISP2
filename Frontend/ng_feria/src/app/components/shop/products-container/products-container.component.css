@@ -30,21 +30,18 @@ font-family: "Raleway", sans-serif;
         width: 70%;
         height: 3rem;
         box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
-        border-top-left-radius: 20px;
-        border-bottom-right-radius: 20px;
+        border-radius: 10px;
         padding: 1rem 2rem;
     }
 
     /*ESTILO DE filtros */
     .filter-container{
-        width: 50%;
+        border: none;
+        width: 30%;
         height: 3rem;
         margin: 0 auto;
         box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
-        border-top-left-radius: 20px;
-        border-top-right-radius: 20px;
-        border-bottom-right-radius: 20px;
-        border-bottom-left-radius: 20px;
+        border-radius: 10px;
         background-color: #ffe15da1;
     }
 
