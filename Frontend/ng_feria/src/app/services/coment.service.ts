@@ -8,7 +8,9 @@ import { Observable } from 'rxjs';
 export class ComentService {
   private apiUrl = 'http://localhost:8000/api/coments/';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+    console.log("*** Servicio Comentarios corriendo ***")
+  }
 
   getComent(): Observable<any[]> {
     return this.http.get<any[]>(this.apiUrl); // hago un get a la api de comentarios
