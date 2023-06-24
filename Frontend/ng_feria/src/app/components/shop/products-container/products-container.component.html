@@ -8,14 +8,14 @@
       </h1>
       <h3 class="mt-4">Lo mejor en productos de segunda mano.</h3>
       <p class="lead fw-normal fst-italic mt-4 pt-2 pb-1 ">Elija sus productos, cargelos y paguelos al instante!</p>
-      <a class="btn btn-info p-2 mt-4 mb-4 btn-orden rounded-pill" href="/producto#productCard">Haga su pedido!</a>
+      <a class="btn btn-info p-2 mt-4 mb-4 btn-orden" href="/producto#productCard">Haga su pedido!</a>
     </div>
     <!-----------FILTROS------------->
     <div class="container text-center">
       <h2> Filtrar por</h2>
       <div class="row">
         <select [(ngModel)]="opcionSeleccionada" (change)="filtrarProductos()"
-          class="filter-container mt-3 mb-2 border">
+          class="filter-container mt-3 mb-2">
           <option *ngFor="let categoria of categoriesSet" [value]="categoria">{{ categoria }}</option>
         </select>
       </div>
