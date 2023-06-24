@@ -1,10 +1,8 @@
 <a id="inicio"></a>
 <app-nav></app-nav>
-
 <div id="icon-menu">
   <i class="fa-sharp fa-solid fa-arrow-up"></i>
 </div>
-
 <main class="main">
   <section class="hero-section">
     <div class="container">
@@ -258,49 +256,29 @@
     </div>
   </section>
 </main>
-<div
-  class="modal fade"
-  id="exampleModal"
-  tabindex="-1"
-  aria-labelledby="exampleModalLabel"
-  aria-hidden="true"
->
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">
-          Agregar Comentario
-        </h1>
-        <button
-          type="button"
-          class="btn-close"
-          data-bs-dismiss="modal"
-          aria-label="Close"
-        ></button>
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Agregar Comentario</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
         <label for="message-text" class="col-form-label">Comentario:</label>
         <p class="clasificacion">
-          <input id="radio1" type="radio" name="estrellas" value="5" /><!--
-            --><label for="radio1">★</label
-          ><!--
-            --><input id="radio2" type="radio" name="estrellas" value="4" /><!--
-            --><label for="radio2">★</label
-          ><!--
-            --><input id="radio3" type="radio" name="estrellas" value="3" /><!--
-            --><label for="radio3">★</label
-          ><!--
-            --><input id="radio4" type="radio" name="estrellas" value="2" /><!--
-            --><label for="radio4">★</label
-          ><!--
-            --><input id="radio5" type="radio" name="estrellas" value="1" /><!--
-            --><label for="radio5">★</label>
+          <input id="radio1" type="radio" name="estrellas" value="5"/>
+            <label for="radio1">★</label>
+            <input id="radio2" type="radio" name="estrellas" value="4"/>
+            <label for="radio2">★</label>
+            <input id="radio3" type="radio" name="estrellas" value="3"/>
+            <label for="radio3">★</label>
+            <input id="radio4" type="radio" name="estrellas" value="2"/>
+            <label for="radio4">★</label>
+            <input id="radio5" type="radio" name="estrellas" value="1"/>
+            <label for="radio5">★</label>
         </p>
-        <textarea
-          class="form-control"
-          id="message-text"
-          placeholder="Ingrese un comentario"
-        ></textarea>
+        <textarea class="form-control" id="message-text" placeholder="Ingrese un comentario"></textarea>
         <br />
         <div class="input-btn-modal">
           <button type="submit" name="button" class="btn-color btn-notify btn">
@@ -310,7 +288,6 @@
       </div>
     </div>
   </div>
-</div>
-<br/>
+</div> <!-- Fin Modal -->
 <app-footer></app-footer>
 
