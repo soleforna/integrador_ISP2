@@ -84,17 +84,26 @@ Podemos volver al Bash de MySQL y ejecutar `show tables;` y deberiamos obtener a
 
 ![image](https://user-images.githubusercontent.com/85143329/234153380-fbe92bc0-6d77-43dd-a3d7-ebaf7e6cddf6.png)
 
-Nuevamente en nuestro entorno virtual pasaremos a crear un superusuario con el siguiente comando
+Nuevamente, en nuestro entorno virtual, vamos a crear un superusuario con el siguiente comando:
 
-`py manage.py createsuperuser`, Nos pedira un email, nombre, apellido, un password, y la confirmación del password
+```sh
+py manage.py createsuperuser
+```
 
-Una ves creado el usuario volvemos a activar el servidor, ` py manage.py runserver`, nos dejara una ip con un puerto por defecto y es  `http://127.0.0.1:8000/`, la copiamos y pegamos en el navegador
+Se te pedirá un correo electrónico, nombre, apellido, contraseña y confirmación de la contraseña. Completa la información para crear el superusuario.
 
-Cuando accedemos a la ip por defecto `http://127.0.0.1:8000/ ` veremos que django esta corriendo correctamente
+Una vez creado el usuario, activamos el servidor con el siguiente comando:
+```sh
+py manage.py runserver
+```
 
-Para acceder al panel de django agregamos  `/admin ` a la ip quedaria así,  `http://127.0.0.1:8000/admin `, nos logueamos con el usuario y el password recientemente creados
+El servidor se iniciará en una dirección IP y un puerto por defecto, como por ejemplo: http://127.0.0.1:8000/. Copia esta dirección y pégala en tu navegador.
 
+Cuando accedas a la dirección por defecto http://127.0.0.1:8000/, verás que Django se está ejecutando correctamente.
 
+Para acceder al panel de administración de Django, agrega /admin a la dirección IP, de la siguiente manera: http://127.0.0.1:8000/admin. Inicia sesión con el usuario y la contraseña del superusuario que creaste recientemente.
+
+Si deseas insertar registros en la base de datos, puedes ejecutar un script que se encuentra en la [documentación del repositorio.](https://github.com/soleforna/integrador_ISP2/blob/main/Document/09%20-%20Script%20-%20Registros.sql) 
 
 
 

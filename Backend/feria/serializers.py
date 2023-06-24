@@ -3,9 +3,6 @@ from rest_framework.serializers import ModelSerializer, SerializerMethodField, C
 from django.contrib.auth import password_validation
 from feria.models import *
 
-from rest_framework import serializers
-from .models import Newsletter
-
 class ClientSerializer(ModelSerializer):
     password = CharField(write_only=True, required=False, validators=[password_validation.validate_password])
     class Meta:
@@ -87,7 +84,7 @@ class ComentSerializer(ModelSerializer):
     def get_client_name(self, obj): #obtener el nombre del cliente
         client = obj.client #obtener el cliente
         if client: #si existe el cliente
-            return client.name #devolver el nombre del cliente
+            return client.first_name+' '+client.last_name #devolver el nombre del cliente
         return None #si no existe el cliente, devolver None
     
     def get_client_avatar(self, obj): #obtener el avatar del cliente
@@ -96,11 +93,11 @@ class ComentSerializer(ModelSerializer):
             request = self.context.get('request')  # Obtener la solicitud actual desde el contexto
             avatar_url = client.avatar.url
             if request is not None:
-                return request.build_absolute_uri(avatar_url)
+                return request.build_absolute_uri(avatar_url)  # Construir la URL absoluta utilizando build_absolute_uri()
             else:
-                return avatar_url
+                return avatar_url  # Si no se proporciona una solicitud, devolver la URL relativa tal como está
         return None # Si no existe el cliente o no tiene avatar, devolver None
-
+    
 class CartSerializer(ModelSerializer):
     class Meta:
         model = Cart
@@ -135,7 +132,7 @@ class CartDetailSerializer(ModelSerializer):
         except IntegrityError:
             raise ValidationError("Este artículo ya existe en el carrito.")
 
-class NewsletterSerializer(serializers.ModelSerializer):
+class NewsletterSerializer(ModelSerializer):
     class Meta:
         model = Newsletter
         fields = '__all__'

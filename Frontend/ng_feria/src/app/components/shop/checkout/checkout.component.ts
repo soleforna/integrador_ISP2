@@ -88,8 +88,12 @@ export class CheckoutComponent implements OnInit{
         this.cartService.getCart(idCart).subscribe((cartData) => {
           const items = cartData.products;
           const amount = parseInt(cartData.amount);
-          this.cartService.removeLocalStorageCart();
-          this.openModal(items, amount);
+          this.cartService.confirmCart().subscribe((data) => {
+            if(data){
+              this.openModal(items, amount);
+            }
+            console.log(data);
+          });
         });
 
       },

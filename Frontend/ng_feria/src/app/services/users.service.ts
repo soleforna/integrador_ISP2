@@ -7,7 +7,9 @@ import { Observable, catchError } from 'rxjs';
 })
 export class UsersService {
   private apiUrl = 'http://localhost:8000/api/';
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+    console.log("*** Servicio Usuarios corriendo ***")
+  }
 
   login(user: any) {
     return this.http.post(this.apiUrl+"auth/login/", {

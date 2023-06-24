@@ -3,7 +3,6 @@ from django.contrib.auth.models import AbstractUser, BaseUserManager
 from django.core.validators import MaxValueValidator
 from .validators import *
 
-# Create your models here.
 class CustomUserManager(BaseUserManager): #para que el usuario se pueda loguear con el email
     def create_user(self, email, password=None, **extra_fields):
         if not email:
@@ -86,7 +85,7 @@ class Review(models.Model): #modelo de review
 
     def __str__(self):
         return str(self.id)
-    
+
 class Article(models.Model): #modelo de articulo
     name = models.CharField(max_length=50, validators=[name_valid]) #maximo 50 caracteres y validacion
     description = models.CharField(max_length=100) #maximo 100 caracteres
@@ -128,8 +127,8 @@ class Cart(models.Model): #modelo de carrito
         return str(self.id)
     
     def set_confirm(self, *args, **kwargs):
-        for i in self.products.all():
-            if i.item.stock < i.quantity:
+        for cart_detail in self.cartdetail_set.all():
+            if cart_detail.item.stock < cart_detail.quantity:
                 return False
         self.confirm = True
         super().save(*args, **kwargs)
