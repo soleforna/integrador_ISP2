@@ -1,56 +1,47 @@
 <!-- footer -->
-<div class="container container-fluid container-footer overflow-hidden">
+<div class="container-fluid overflow-hidden">
 
-  <footer class="row row-cols-1 row-cols-sm-2 row-cols-md-5 py-3 my-3">
-    <div class="col m-2">
+  <footer class="row row-cols-sm-2 row-cols-md-4 row-cols-lg-5 py-3 my-3">
+    <div class="col m-4 col-12">
       <h5 class="fw-bold">Navegación</h5>
       <ul class="nav flex-column">
         <li class="nav-item mb-2">
-          <a class="nav-link p-0 text-muted" routerLink="/">Inicio</a>
+          <a class="nav-link p-0 text-muted" href="/inicio#inicio">Inicio</a>
         </li>
         <li class="nav-item mb-2">
-          <a class="nav-link p-0 text-muted" routerLink="/producto">Productos</a>
-        </li>
-        <li class="nav-item mb-2">
-          <a class="nav-link p-0 text-muted" routerLink="#">Contacto</a>
-        </li>
-        <li class="nav-item mb-2">
-          <a class="nav-link p-0 text-muted" routerLink="#">Sobre Nosotros</a>
+          <a class="nav-link p-0 text-muted" href="/producto#main">Productos</a>
         </li>
       </ul>
     </div>
-    <div class="col m-2">
+    <div class="col m-4 col-12">
       <h5 class="fw-bold">Contacto</h5>
       <ul class="nav flex-column">
-
         <li class="nav-item mb-2">
-          <a href="#" class="nav-link p-0 text-muted"><img class="items gx-5"
-              src="../../../../assets/img/envelope-at.svg" alt="">feriaonlieispc@gmail.com</a>
+          <a href="mailto:feriaonlineispc@gmail.com" class="nav-link p-0 text-muted"><img class="items gx-1"
+              src="../../../../assets/img/envelope-at.svg" alt="">feriaonlineispc@gmail.com</a>
         </li>
-
         <li class="nav-item mb-2">
-          <a href="#" class="nav-link p-0 text-muted"><img class="items gx-5" src="../../../../assets/img/whatsapp.svg"
+          <a href="#" class="nav-link p-0 text-muted"><img class="items gx-1" src="../../../../assets/img/whatsapp.svg"
               alt="">+54 223 6058672</a>
         </li>
       </ul>
     </div>
-    <div class="col m-2">
+    <div class="col m-4 col-12">
       <h5 class="fw-bold">Nuestras redes</h5>
       <ul class="nav flex-column">
         <li class="nav-item mb-2">
-          <a class="text-muted" class="nav-link p-0 text-muted" routerLink="/shop">
+          <a href="#" class="text-muted nav-link p-0 text-muted">
             <img src="../../../../assets/img/facebook.svg" alt="">
           </a>
         </li>
         <li class="nav-item mb-2">
-          <a class="text-muted" class="nav-link p-0 text-muted" routerLink="/shop">
+          <a href="#" class="text-muted nav-link p-0 text-muted">
             <img src="../../../../assets/img/instagram.svg" alt="">
           </a>
-
         </li>
       </ul>
     </div>
-    <div class="col m-2">
+    <div class="col m-4 col-12">
       <h5 class="fw-bold">Newsletter</h5>
       <ul class="nav flex-column">
         <div class="input-group">
@@ -59,11 +50,11 @@
           </div>
           <input type="email" class="form-control" id="inputMail" placeholder="Suscribite" aria-label="Input group example"
             aria-describedby="btnGroupAddon2" [(ngModel)]="correoElectronico">
-            <button class="btn btn-outline-secondary" type="button" id="button-addon2"
+          <button class="btn btn-outline-secondary" type="button" id="button-addon2"
             (click)="registrarCorreo()">Enviar</button>
-        </div>
           <p *ngIf="mensaje" class="text-success">{{ mensaje }}</p>
           <p *ngIf="error" class="text-danger">{{ error }}</p>
+        </div>
 
       </ul>
     </div>

@@ -15,7 +15,7 @@ export class FooterComponent{
   constructor(private newsletterService: NewsletterService) {}
 
   registrarCorreo() {
-    if (this.correoElectronico) {
+    if (this.correoElectronico != '' && this.correoElectronico != null) {
       this.newsletterService.postNewsletter(this.correoElectronico).subscribe(
         () => {
           this.mensaje = 'Correo registrado exitosamente.';
@@ -29,6 +29,8 @@ export class FooterComponent{
           }
         }
       );
+    }else{
+      this.error = 'Ingresa tu correo electrónico.';
     }
-  } 
+  }
 }
