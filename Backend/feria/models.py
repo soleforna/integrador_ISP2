@@ -127,8 +127,8 @@ class Cart(models.Model): #modelo de carrito
         return str(self.id)
     
     def set_confirm(self, *args, **kwargs):
-        for i in self.products.all():
-            if i.item.stock < i.quantity:
+        for cart_detail in self.cartdetail_set.all():
+            if cart_detail.item.stock < cart_detail.quantity:
                 return False
         self.confirm = True
         super().save(*args, **kwargs)
