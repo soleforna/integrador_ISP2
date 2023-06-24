@@ -222,16 +222,10 @@
     </div>
     <div class="contenedor-tb" id="comentarios">
       <div class="input-group-btn">
-        <button
-          type="submit"
-          name="button"
-          class="btn-color btn-notify btn"
-          data-bs-toggle="modal"
-          data-bs-target="#exampleModal"
-        >
-          <i class="fas fa-sun"></i> Agregar Comentario
-          <i class="fas fa-sun"></i>
-        </button>
+        <button type="submit" name="button" class="btn-color btn-notify btn" *ngIf="isLoggedIn" data-bs-toggle="modal"
+        data-bs-target="#ModalComent">
+        <i class="fas fa-sun"></i> Agregar Comentario <i class="fas fa-sun"></i>
+      </button>
       </div>
       <!-- testimonios contenedor-->
       <div class="testimonios_contenedor">
@@ -250,7 +244,7 @@
             </div>
             <!--ESTRELLAS-->
             <div class="estrellas">
-              <i class="fas fa-star" *ngFor="let index of [].constructor(comentarios.classification -1)"></i>
+              <i class="fas fa-star" *ngFor="let index of [].constructor(comentarios.classification )"></i>
             </div>
           </div>
           <!--COMENTARIOS-->
@@ -265,19 +259,10 @@
       </div>
       <br />
       <br />
-      <button class="btn-color-transparent btn-notify btn">
-        Cargar mas comentarios
-      </button>
     </div>
   </section>
 </main>
-<div
-  class="modal fade"
-  id="exampleModal"
-  tabindex="-1"
-  aria-labelledby="exampleModalLabel"
-  aria-hidden="true"
->
+<div class="modal fade" #myModal id="ModalComent" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -288,43 +273,47 @@
           type="button"
           class="btn-close"
           data-bs-dismiss="modal"
-          aria-label="Close"
+          aria-label="Close"  #closeModal
         ></button>
       </div>
       <div class="modal-body">
         <label for="message-text" class="col-form-label">Comentario:</label>
+        <form  (submit)="addComent(comentForm)"  #comentForm="ngForm">
         <p class="clasificacion">
-          <input id="radio1" type="radio" name="estrellas" value="5" /><!--
+          <input id="radio1" type="radio" name="estrellas" value="5"  [(ngModel)]="classification"/><!--
             --><label for="radio1">★</label
           ><!--
-            --><input id="radio2" type="radio" name="estrellas" value="4" /><!--
+            --><input id="radio2" type="radio" name="estrellas" value="4"  [(ngModel)]="classification"/><!--
             --><label for="radio2">★</label
           ><!--
-            --><input id="radio3" type="radio" name="estrellas" value="3" /><!--
+            --><input id="radio3" type="radio" name="estrellas" value="3"  [(ngModel)]="classification"/><!--
             --><label for="radio3">★</label
           ><!--
-            --><input id="radio4" type="radio" name="estrellas" value="2" /><!--
+            --><input id="radio4" type="radio" name="estrellas" value="2"  [(ngModel)]="classification"/><!--
             --><label for="radio4">★</label
           ><!--
-            --><input id="radio5" type="radio" name="estrellas" value="1" /><!--
+            --><input id="radio5" type="radio" name="estrellas" value="1"  [(ngModel)]="classification"/><!--
             --><label for="radio5">★</label>
         </p>
 
         <textarea
           class="form-control"
           id="message-text"
-          placeholder="Ingrese un comentario"
+          placeholder="Ingrese un comentario" [(ngModel)]="description" name="description"
         ></textarea>
+
         <br />
         <div class="input-btn-modal">
           <button type="submit" name="button" class="btn-color btn-notify btn">
             Agregar
           </button>
         </div>
+      </form>
       </div>
     </div>
   </div>
 </div>
+
 <br />
 <app-footer></app-footer>
 <a id="contactos"></a>
