@@ -11,7 +11,7 @@ export class CartService {
   cartId: number = parseInt(localStorage.getItem('cartId') || '0');
 
   constructor(private http: HttpClient) {
-    console.log('Servicio Carrito corriendo');
+    console.log('*** Servicio Carrito corriendo ***');
   }
 
   addArticleToCart(id: number): Observable<boolean> { // Agregar producto al carrito
@@ -79,7 +79,25 @@ export class CartService {
     );
   }
 
-  removeLocalStorageCart(): void { // Eliminar carrito de localStorage
+  confirmCart(): Observable<boolean> { // Confirmar carrito
+    const user = JSON.parse(localStorage.getItem('user') || '{}');
+    return this.http.post(this.url + 'cart/' + this.cartId + '/confirm/',
+    {
+      "confirm" : true,
+      "client_id": parseInt(user.id)
+    }).pipe(
+      map((res: any) => {
+        this.removeLocalStorageCart(); // Eliminar carrito de localStorage
+        this.cartId = 0; // Reiniciar ID de carrito
+        return true;
+      }),
+      catchError((error: any) => {
+        return of(false);
+      })
+    );
+  }
+
+  private removeLocalStorageCart(): void { // Eliminar carrito de localStorage
     localStorage.removeItem('cartId'); // Eliminar ID de carrito de localStorage
     localStorage.removeItem('cartCount'); // Eliminar cantidad de productos de localStorage
   }
