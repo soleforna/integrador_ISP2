@@ -10,7 +10,7 @@ export class ProductsService {
   url:String = "http://localhost:8000/api/"
   //constructor
   constructor(private http:HttpClient) {
-    console.log("Servicio Productos corriendo");
+    console.log("*** Servicio Productos corriendo ***");
   }
   //Metodos
   //Obtener productos de la API

@@ -1,10 +1,8 @@
 <a id="inicio"></a>
 <app-nav></app-nav>
-
 <div id="icon-menu">
   <i class="fa-sharp fa-solid fa-arrow-up"></i>
 </div>
-
 <main class="main">
   <section class="hero-section">
     <div class="container">
@@ -12,7 +10,7 @@
         <div class="col-md-6">
           <img
             src="../../../assets/img/camperon.jpg"
-            class="img-fluid imagen"
+            class="img-fluid imagen imgTop"
             alt="Imagen de héroe"
           />
         </div>
@@ -25,12 +23,8 @@
             gratuito. Regístrate ahora y recibe un cupón de descuento para tu
             primera compra. <br/> <strong>¡Renová tu armario de manera sostenible!</strong>
           </p>
-
             <!-- Contenido que se mostrará solo si el usuario está registrado -->
             <a class="btn btn-outline-secondary" *ngIf="isLoggedIn()" routerLink="/registro">Registrarse</a>
-
-
-
         </div>
       </div>
     </div>
@@ -45,7 +39,6 @@
         <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
         <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
       </div>
-
       <div class="carousel-inner">
         <div class="carousel-item active">
           <img src="../../../../assets/img/carrusel01.webp" class="d-block w-100" alt="...">
@@ -61,7 +54,6 @@
         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
         <span class="visually-hidden">Previous</span>
       </button>
-      <a id="beneficios"></a>
       <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
         <span class="carousel-control-next-icon" aria-hidden="true"></span>
         <span class="visually-hidden">Next</span>
@@ -69,7 +61,6 @@
     </div>
     </div>
   </section>
-
   <section id="beneficios" class="hero-section benefits-section" >
     <div class="container">
       <h2 class="text-center mb-5">Beneficios de nuestra página</h2>
@@ -206,9 +197,8 @@
           ></a>
           <div id="faq6" class="collapse" data-bs-parent=".faq-list">
             <p>
-              LPuedes contactar con nosotros en cualquier momento utilizando
-              nuestro formulario de contacto en línea o enviándonos un correo
-              electrónico a la dirección proporcionada en nuestro sitio web.
+              Puedes contactar con nosotros en cualquier momento a nuestro numero de whatsapp
+              o enviándonos un correo electrónico a la dirección feriaonlineispc@gmail.com.
             </p>
           </div>
         </li>
@@ -217,8 +207,7 @@
   </section>
   <section class="testimonios">
     <div class="testimonios_header">
-      <span>comentarios</span>
-      <h1>Clientes dicen</h1>
+      <span>comentarios de nuestros clientes</span>
     </div>
     <div class="contenedor-tb" id="comentarios">
       <div class="input-group-btn">
@@ -228,14 +217,13 @@
       </button>
       </div>
       <!-- testimonios contenedor-->
-      <div class="testimonios_contenedor">
+      <div class="testimonios_contenedor" id="comentarios">
         <!--BOX 1-->
         <div class="testimonios_caja" *ngFor="let comentarios of coments">
           <div class="caja-top">
             <div class="perfil">
               <div class="perfil_img">
                 <img [src]="getAvatarImage(comentarios.client_avatar)" alt="imagen_usuario"/>
-
               </div>
               <!--NOMBRE USUARIO-->
               <div class="name_user">
@@ -250,11 +238,9 @@
           <!--COMENTARIOS-->
           <div class="comentarios_clientes">
             <p>{{comentarios.description+' '+getFecha(comentarios.created_at)}}</p>
-
           </div>
         </div>
         <!--end box 1-->
-
         <!--end box 4-->
       </div>
       <br />
@@ -312,8 +298,7 @@
       </div>
     </div>
   </div>
-</div>
-
-<br />
-<app-footer></app-footer>
+</div> <!-- Fin Modal -->
 <a id="contactos"></a>
+<app-footer></app-footer>
+

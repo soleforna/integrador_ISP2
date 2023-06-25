@@ -8,13 +8,15 @@ import { Observable } from 'rxjs';
 export class NewsletterService {
   private apiUrl = 'http://localhost:8000/api/newsletter/';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+    console.log("*** Servicio Lista de correos corriendo ***")
+  }
 
 // metodo para registrar un nuevo mail
 postNewsletter(mail:string): Observable<any[]> {
-  const formData = new FormData(); // objeto de tipo formdata 
+  const formData = new FormData(); // objeto de tipo formdata
   formData.append('email', mail);
-    return this.http.post<any[]>(this.apiUrl, formData); 
+    return this.http.post<any[]>(this.apiUrl, formData);
   }
 }
 

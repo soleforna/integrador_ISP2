@@ -50,31 +50,19 @@ export class ProductsContainerComponent implements OnInit{
   }
 
   // metodo para obtener un array de las categorias
-
   obtenerCategorias() {
-    
     const products = JSON.parse(localStorage.getItem('products') ||"");
-    console.log(products)
-  
     if (products) {
-      
       products.forEach((p: { category: { name: string; }; }) => {
         this.categoriesSet.add(p.category.name);
       });
-      console.log(this.categoriesSet)
-    
-     
     }
-    
   }
 
   //metodo para obtener productos filtrados
-
   filtrarProductos() {
     const products = JSON.parse(localStorage.getItem('products') ||"");
-
     this.productosFiltrados = products.filter((p: { category: { name: string; }; }) => this.opcionSeleccionada.includes(p.category.name));
-
   }
 
 

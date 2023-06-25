@@ -47,3 +47,10 @@ Stack DAM (Django-Angular-MySQL)
 <p align="center">
 <a href="https://documenter.getpostman.com/view/27661915/2s93z5AkBS" target="_blank"><img align="center" alt="POSTMAN DOC"  src="https://img.shields.io/badge/Postman-ApiDoc-orange">
 </a> </p>
+
+
+#
+ 
+<h2 align="center">Video Presentación</h2>
+<p align="center">
+ <a href="https://drive.google.com/file/d/107YQzezk2lsMpVrRdugszlZjf7umR0jh/view?usp=sharing" target="_blank"><img src="https://lh3.googleusercontent.com/u/0/drive-viewer/AFGJ81r32wjAvm9Fut9npKjbn2LUrPRvIm7yBd-0exkPOblfOoaCgDClC9fywDXVqxogHfdRcv_hm8jozWzpy3QjBGV7bz3qhg=w1326-h618" style="width: 450px"></a> </p>
