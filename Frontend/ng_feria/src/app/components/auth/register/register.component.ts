@@ -32,6 +32,11 @@ export class RegisterComponent {
   register() {
     const { first_name, last_name, email, password, phone, address } = this.forma.value;
 
+    if (!password) { // detiene el proceso de registro si la contraseña está vacía
+      this.apiErrors.password = ["Introduce una contraseña"]; 
+      return; 
+    }
+
     this.userService.register(first_name, last_name, email, password, phone, address).pipe(
       catchError((error) => {
         if (error.status === 400) {
