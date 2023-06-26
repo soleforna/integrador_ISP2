@@ -16,6 +16,8 @@ export class UsereditComponent implements OnInit {
   provincias: string[] = [];
   municipios: any;
   storedData: any;
+  defaultProfile = 'assets/img/perfil.png';
+
 
   constructor(
     private dg: DatosgeograficosService,
@@ -34,8 +36,8 @@ export class UsereditComponent implements OnInit {
       if(this.formData.first_name == null || this.formData.first_name == ''){ //si el nombre es null
         this.formData.first_name = 'Ingrese su nombre';
       }
-      if(this.formData.last_name == null || this.formData.first_name == ''){ //si el apellido es null
-        this.formData.first_name = 'Ingrese su apellido';
+      if(this.formData.last_name == null || this.formData.last_name == ''){ //si el apellido es null
+        this.formData.last_name = 'Ingrese su apellido';
       }
       if(this.formData.phone == null){ //si el telefono es null
         this.formData.phone = 'Ingrese su número de teléfono';

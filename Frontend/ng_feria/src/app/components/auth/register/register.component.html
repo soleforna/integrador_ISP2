@@ -8,7 +8,7 @@
           <div class="input-field">
             <input type="text" formControlName="first_name" class="input" id="first_name" name="first_name"
               placeholder="Nombre">
-            <small *ngIf="apiErrors.name" class="text-danger">{{ apiErrors.name[0] }}</small>
+            <small *ngIf="apiErrors.first_name" class="text-danger">{{ apiErrors.first_name[0] }}</small>
           </div>
           <div class="input-field">
             <input type="text" formControlName="last_name" class="input" name="last_name" id="last_name"
@@ -22,21 +22,12 @@
           <div class="input-field">
             <input type="password" formControlName="password" class="input" name="password" id="password"
               placeholder="Contraseña">
-            <small *ngIf="apiErrors.password" class="text-danger">{{ apiErrors.password[0] }}</small>
+              <small *ngIf="apiErrors.password" class="text-danger">{{ apiErrors.password[0] }}</small>
           </div>
-
-          <div class="input-field">
-            <input type="password" formControlName="password2" [class.is-invalid]="password2NoValido" class="input"
-              name="password2" id="password2" placeholder="Confirmar contraseña">
-            <small *ngIf="password2NoValido" class="text-danger">Las contraseñas no coinciden</small>
-          </div>
-
           <div class="input-field">
             <input type="text" formControlName="phone" class="input" name="phone" id="tel" placeholder="Teléfono">
             <small *ngIf="apiErrors.phone" class="text-danger">{{ apiErrors.phone[0] }}</small>
           </div>
-
-
           <div class="input-field">
             <input type="text" formControlName="address" class="input" name="address" id="address"
               placeholder="Dirección">
