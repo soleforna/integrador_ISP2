@@ -1,62 +1,49 @@
-<form class="wrapper" (ngSubmit)="submitForm()" >
+<form class="wrapper" (ngSubmit)="submitForm()">
   <div class="container main">
-    <div class="row g-3">
+    <div class="row">
       <div class="cabecera">
-        <a href="">
-          <div class="containerUserImg">
-            <img [src]="formData.avatar" alt="imagen-perfil" class="userImg rounded-circle img-thumbnail">
-            <span class="edit-icon"><i class="fas fa-pencil-alt"></i></span>
-          </div>
-        </a>
-        <h4>Perfil de Usuario</h4>
-
+        <div class="containerUserImg mt-5">
+          <img [src]="formData.avatar || defaultProfile" alt="imagen-perfil"
+            class="userImg rounded-circle img-thumbnail">
+          <span class="edit-icon"><i class="fas fa-pencil-alt"></i></span>
+        </div>
       </div>
-
-      <div class="col-12">
-        <label for="firstName" class="form-label">Nombre Completo</label>
+      <h4 class="text-center">Perfil de Usuario</h4>
+      <div class="col-md-6">
+        <label for="firstName" class="form-label">Nombre</label>
         <input type="text" [placeholder]="formData?.first_name" class="form-control" id="firstName" />
       </div>
-      <div class="col-12">
+      <div class="col-md-6">
         <label for="lastName" class="form-label">Apellido</label>
         <input type="text" [placeholder]="formData?.last_name" class="form-control" id="lastName" />
       </div>
-      <div class="col">
+      <div class="col-md-6 mt-2">
         <label for="Email" class="form-label">Correo Electrónico</label>
         <input type="email" [placeholder]="formData?.email" class="form-control" id="Email" readonly />
       </div>
-
-      <!-- <div class="col">
-        <label for="inputPassword" class="form-label">Contraseña</label>
-        <input type="password" class="form-control" id="inputPassword" />
-
-        <label for="repeatPassword" class="form-label">Repetir contraseña</label>
-        <input type="password" class="form-control" id="repeatPassword" />
-      </div> -->
-      <div class="col-12">
+      <div class="col-md-6 mt-2">
         <label for="phone" class="form-label">Teléfono</label>
         <input type="text" [placeholder]="formData?.phone" class="form-control" id="phone" />
       </div>
-      <div class="col-12">
+      <div class="col-12 mt-2">
         <label for="inputAddress" class="form-label">Domicilio</label>
         <input type="text" [placeholder]="calle" class="form-control" id="inputAddress" />
       </div>
-      <div class="col-md-6">
-        <label for="inputCity" class="form-label">Ciudad</label>
-        <select id="inputCity" [(ngModel)]="ciudad" [ngModelOptions]="{standalone: true }" class="form-select" >
-          <option *ngFor="let municipio of municipios" [value]="municipio">{{municipio}}</option>
-
-        </select>
-
-      </div>
-      <div class="col-md-6">
+      <div class="col-md-6 mt-2">
         <label for="inputState" class="form-label">Provincia</label>
-        <select id="inputState" [(ngModel)]="provinciaActual" (change)="provinciaActual && cambiarProvincia(provinciaActual)" [ngModelOptions]="{ standalone: true }" class="form-select">
+        <select id="inputState" [(ngModel)]="provinciaActual"
+          (change)="provinciaActual && cambiarProvincia(provinciaActual)" [ngModelOptions]="{ standalone: true }"
+          class="form-select">
           <option *ngFor="let provincia of provincias" [value]="provincia">{{provincia}}</option>
         </select>
       </div>
-
-
-      <div class="col-12 d-flex">
+      <div class="col-md-6 mt-2">
+        <label for="inputCity" class="form-label">Ciudad</label>
+        <select id="inputCity" [(ngModel)]="ciudad" [ngModelOptions]="{standalone: true }" class="form-select">
+          <option *ngFor="let municipio of municipios" [value]="municipio">{{municipio}}</option>
+        </select>
+      </div>
+      <div class="col-12 d-flex justify-content-around mt-3 mb-5">
         <button type="submit" class="submit">Guardar</button>
         <button type="button" class="submit" (click)="cancelar()">Cancelar</button>
       </div>
