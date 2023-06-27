@@ -1,0 +1,84 @@
+
+<app-nav></app-nav>
+<br>
+<br>
+<br>
+
+    <div class="wrapper">
+        <header class="header-mobile">
+            <h1 class="logo">Mis Compras</h1>
+            <button class="open-menu" id="open-menu">
+                <i class="bi bi-list"></i>
+            </button>
+        </header>
+        <aside>
+            <button class="close-menu" id="close-menu">
+                <i class="bi bi-x"></i>
+            </button>
+            <header>
+                <h1 class="logo">Mis Compras</h1>
+            </header>
+            <nav>
+                <ul>
+
+                    <li>
+                        <a class="boton-menu boton-carrito active" routerLink="/producto">
+                            <i class="bi bi-cart-fill"></i> Atras
+                        </a>
+                    </li>
+
+                </ul>
+            </nav>
+            <footer>
+                <p class="texto-footer">© 2023 FeriaOnline</p>
+            </footer>
+        </aside>
+        <main>
+            <h2 class="titulo-principal">Todas las compras</h2>
+            <div class="cont-date-padre">
+              <div class="cont-date"><span>Desde</span><input type="date" [(ngModel)]="fromDate" (ngModelChange)="updateFilter()"  [disabled]="!dataLoaded"></div>
+              <div class="cont-date"><span>Hasta</span><input type="date" [(ngModel)]="toDate" (ngModelChange)="updateFilter()"  [disabled]="!dataLoaded">  <button class="carrito-acciones-comprar" (click)="resetFilter()">Resetear</button></div>
+            
+          </div>
+            
+            <div class="contenedor-carrito">
+              <div *ngIf="noResults" class="mensaje-no-resultados">
+                No se encontraron resultados.
+              </div>
+
+                <div id="carrito-productos" class="carrito-productos">
+                   <div class="carrito-producto"  *ngFor="let shopp of filteredShopping"> <img class="carrito-producto-imagen"   src="../../../assets/img/paper.png" alt="">
+                    <div class="carrito-producto-titulo">
+                        <small>#</small>
+                        <h3>{{shopp.id}}</h3>
+                    </div>
+                    <div class="carrito-producto-cantidad">
+                        <small>Fecha</small>
+                        <p>{{getFecha(shopp.created_at)}}</p>
+                    </div>
+                    <div class="carrito-producto-precio">
+                        <small>Total</small>
+                        <p>{{shopp.amount}}$</p>
+                    </div>
+                    <div class="carrito-producto-subtotal">
+                        <a routerLink="/shopping-details/{{shopp.id}}">Detalle</a>
+
+                    </div>
+                    <div *ngIf="!shopp || shopp.length === 0">
+                      <!--si no hay nada muestro el ng if-->
+                      <p>No tiene compras, caundo relices una compra se visualizara aquí!</p>
+                    </div>
+                </div>
+
+
+                </div>
+
+
+
+                <p id="carrito-comprado" class="carrito-comprado disabled">Muchas gracias por tu compra. <i class="bi bi-emoji-laughing"></i></p>
+
+            </div>
+        </main>
+    </div>
+    <app-footer></app-footer>
+  
