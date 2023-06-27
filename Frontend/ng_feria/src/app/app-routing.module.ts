@@ -15,6 +15,8 @@ import { TokenComponent } from './components/auth/token/token.component';
 import { EnviarCorreoComponent } from './components/auth/enviarcorreo/enviarCorreo.component';
 import { RegisterComponent } from './components/auth/register/register.component';
 import { UsereditComponent } from './components/auth/useredit/useredit.component';
+import { ShoppingComponent } from './components/shop/shopping/shopping.component';
+import { ShoppingDetailsComponent } from './components/shop/shopping-details/shopping-details.component';
 //import { ProfileComponent } from './components/profile/profile.component';
 
 const routes: Routes = [
@@ -31,6 +33,8 @@ const routes: Routes = [
   {path: 'token', component:TokenComponent},
   {path: 'enviarCorreo', component:EnviarCorreoComponent},
   {path: 'useredit', component:UsereditComponent},
+  {path: 'shopping', component: ShoppingComponent },
+  {path: 'shopping-details/:id', component: ShoppingDetailsComponent }
 ];
 
 @NgModule({
