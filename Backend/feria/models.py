@@ -26,6 +26,7 @@ class CustomUserManager(BaseUserManager): #para que el usuario se pueda loguear 
         return self.create_user(email, password, **extra_fields) #se crea el superusuario
 
 class Client(AbstractUser): #modelo de usuario personalizado
+    first_name = models.CharField(max_length=30,null=True, blank=True,validators=[name_valid])# al menos 3 caracteres y solo puede contener letras y espacios
     username = None #se establece el username en None
     email = models.EmailField(unique=True) #se establece el email como campo unico
     phone = models.CharField(max_length=15, null=True, blank=True, validators=[phone_valid]) #maximo 15 caracteres y validacion

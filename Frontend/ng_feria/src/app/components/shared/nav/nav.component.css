@@ -99,8 +99,7 @@ align-items: center;
   background:#f9ad3c;
 }
 .d-flex img{
-  width: 40px;
-  height: 40px;
+  height: 4em;
   border-radius: 80px;
   cursor: pointer;
 }
