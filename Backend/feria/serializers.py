@@ -2,6 +2,7 @@ from django.db import models, IntegrityError
 from rest_framework.serializers import ModelSerializer, SerializerMethodField, CharField
 from django.contrib.auth import password_validation
 from feria.models import *
+from rest_framework import serializers
 
 class ClientSerializer(ModelSerializer):
     password = CharField(write_only=True, required=False, validators=[password_validation.validate_password])
@@ -98,7 +99,8 @@ class ComentSerializer(ModelSerializer):
                 return avatar_url  # Si no se proporciona una solicitud, devolver la URL relativa tal como está
         return None # Si no existe el cliente o no tiene avatar, devolver None
     
-class CartSerializer(ModelSerializer):
+class CartSerializer(serializers.ModelSerializer):
+    client = serializers.PrimaryKeyRelatedField(queryset=Client.objects.all(), source="client_id")
     class Meta:
         model = Cart
         fields = '__all__'

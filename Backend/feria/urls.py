@@ -2,6 +2,8 @@
 from django.urls import include, path
 from rest_framework import routers
 from .api import *
+from .api import ConfirmedCartsView
+
 
 
 routers = routers.DefaultRouter()
@@ -17,7 +19,9 @@ routers.register('api/newsletter', NewsletterViewSet, 'newsletter')
 
 
 
+
 urlpatterns = [
     path('', include(routers.urls)),
     path('api/cart/<int:pk>/remove_product/', CartViewSet.as_view({'post': 'remove_product'}), name='cart-remove-product'),
+    path('api/confirmed-carts/', ConfirmedCartsView.as_view(), name='confirmed-carts'),
 ]
