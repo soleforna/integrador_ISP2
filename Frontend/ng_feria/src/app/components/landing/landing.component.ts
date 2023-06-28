@@ -1,7 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,ViewChild, ElementRef } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ComentService } from "src/app/services/coment.service";
 import { FechaService } from "src/app/services/fecha.service";
+declare const Swal: any; //declaracion para evitar error de typescript
+import { ChangeDetectorRef } from '@angular/core';
+import { NgForm } from '@angular/forms';
 
 
 @Component({
@@ -10,10 +13,19 @@ import { FechaService } from "src/app/services/fecha.service";
   styleUrls: ['./landing.component.css']
 })
 export class LandingComponent {
-  constructor(private ComentService: ComentService, private FechaService: FechaService){}
+
 
   coments: any[] = [];
-
+  classification: number = 0;
+  description: string = '';
+  @ViewChild('closeModal')
+  closeModal!: ElementRef;
+  modalVisible = false;
+  constructor(
+    private ComentService: ComentService,
+    private FechaService: FechaService,
+    private cdRef: ChangeDetectorRef
+     ){}
 
   ngOnInit(): void {
     this.obtenerComentarios();
@@ -53,6 +65,36 @@ export class LandingComponent {
   isLoggedIn(): boolean {
     const token = localStorage.getItem('token');
     return token == null; // No hay token en el local storage
+  }
+  addComent(comentForm: NgForm): void {
+
+
+    this.ComentService.sendComents(this.description,this.classification)
+      .subscribe((response: any) => {
+
+        console.log(response);
+        this.coments.push(response);
+        comentForm.reset();
+        // Cierra el modal
+        this.closeModal.nativeElement.click() //<-- here
+        this.cdRef.detectChanges();
+        Swal.fire({
+          icon: 'success',
+          title: '¡Éxito!',
+          text: 'Comentario añadido correctamente.',
+
+        });
+      }, (error: { status: number; }) => {
+
+        if (error.status == 400) {
+          Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'Hubo un error al cargar el comentario.',
+            confirmButtonText: 'Aceptar'
+          });
+        }
+      });
   }
 
 }

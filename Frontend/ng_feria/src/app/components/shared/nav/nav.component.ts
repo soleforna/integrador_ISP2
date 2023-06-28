@@ -49,7 +49,8 @@ export class NavComponent {
   isProductsPage(): boolean {
     const url = this.router.url;
     return url.includes('producto')  || url.includes('productos')  || url.includes('tienda')  || url.includes('checkout')
-      || url.includes('detalle')  || url.includes('checkout-card'); //llamo a los componentes
+      || url.includes('detalle')  || url.includes('checkout-card')|| url.includes('shopping')|| url.includes('shoping-details');
+       //llamo a los componentes
        // si esta en estos componentes muestra los enlases de la tienda
   }
 
