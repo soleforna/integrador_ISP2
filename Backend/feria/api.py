@@ -2,8 +2,9 @@
 from .models import *
 from .serializers import *
 from rest_framework import viewsets, permissions, status
-from rest_framework.decorators import action
+from rest_framework.decorators import action,APIView
 from rest_framework.response import Response
+from django.contrib.auth.models import User
 
 class ArticleViewSet(viewsets.ModelViewSet):
     queryset = Article.objects.filter(stock__gt=0) #de esta manera solo se muestran los articulos que tienen stock
@@ -121,3 +122,16 @@ class NewsletterViewSet(viewsets.ModelViewSet):
     permission_classes = [permissions.AllowAny]
     serializer_class = NewsletterSerializer
     
+class ConfirmedCartsView(APIView):
+    permission_classes = [permissions.IsAuthenticated]
+    
+    def get(self, request):
+        user = request.user  # Obtener el usuario logueado
+        
+        confirmed_carts = Cart.objects.filter(client=user, confirm=True)  # O Cart.objects.filter(client_id=user.id, confirm=True)
+        
+        if not confirmed_carts:
+            return Response({'error': 'No se encontraron carritos confirmados para el usuario logueado'}, status=status.HTTP_404_NOT_FOUND)
+        
+        serializer = CartSerializer(confirmed_carts, many=True)
+        return Response(serializer.data)

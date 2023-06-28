@@ -27,6 +27,8 @@ import { UsereditComponent } from './components/auth/useredit/useredit.component
 import { NgxPayPalModule } from 'ngx-paypal';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { ShoppingComponent } from './components/shop/shopping/shopping.component';
+import { ShoppingDetailsComponent } from './components/shop/shopping-details/shopping-details.component';
 
 
 
@@ -47,6 +49,8 @@ import { NgxSpinnerModule } from 'ngx-spinner';
     TokenComponent,
     EnviarCorreoComponent,
     UsereditComponent,
+    ShoppingComponent,
+    ShoppingDetailsComponent,
 
 
 
