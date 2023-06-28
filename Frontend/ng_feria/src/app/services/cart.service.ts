@@ -133,7 +133,6 @@ export class CartService {
 
     return this.http.post(this.url + 'cartdetails/', cartDetailsData).pipe(
       map((res: any) => {
-        console.log('Detalle Carrito Creado:', res);
         this.updateLocalStorageCart();
         return true;
       }),
