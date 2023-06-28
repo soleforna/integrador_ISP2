@@ -78,9 +78,19 @@ class CartViewSet(viewsets.ModelViewSet):
             try:
                 cart.client_id = client_id
                 cart.set_confirm()
+
+                # Reducción de stock al confirmar el carrito
+                if cart.confirm:
+                    for cart_detail in cart.cartdetail_set.all():
+                        if cart_detail.item.stock < cart_detail.quantity:
+                            error_message = f"No hay stock suficiente para el artículo '{cart_detail.item.name}'."
+                            return Response({'error': error_message}, status=status.HTTP_400_BAD_REQUEST)
+                        cart_detail.item.stock -= cart_detail.quantity
+                        cart_detail.item.save()
+
                 cart.save()
                 serializer = self.get_serializer(cart)
-                return Response({'message': 'Carrito confirmado.'}, status=status.HTTP_200_OK)
+                return Response({'message': 'Compra confirmada.', 'cart': serializer.data}, status=status.HTTP_200_OK)
             except Cart.DoesNotExist:
                 return Response({'error': 'Carrito no encontrado.'}, status=status.HTTP_404_NOT_FOUND)
         else:

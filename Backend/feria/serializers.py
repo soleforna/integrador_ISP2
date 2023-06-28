@@ -107,14 +107,6 @@ class CartSerializer(serializers.ModelSerializer):
         read_only_fields = ('created_at', 'confirm')
         depth = 1 #profundidad de la serializacion de los objetos relacionados
     
-#    def validate(self, data):
-#        if data['confirm'] == True: #si el carrito se confirma
-#            for item in data['products']: #recorrer los productos del carrito
-#                article = Article.objects.get(id=item.id) #obtener el articulo
-#                article.stock -= item.quantity #restar la cantidad del producto al stock
-#                article.save() #guardar el articulo
-#        return data
-    
     def create(self, validated_data):
         cart = Cart.objects.create(**validated_data)
         cart.save()

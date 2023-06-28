@@ -1,5 +1,5 @@
 from django.dispatch import receiver
-from django.db.models.signals import pre_save, post_save
+from django.db.models.signals import pre_save, post_save, pre_delete
 from django.contrib.auth.hashers import make_password
 from .models import Client, CartDetail
 from django.urls import reverse
@@ -33,3 +33,7 @@ def update_cart_amount(sender, instance, created, **kwargs):
         instance.cart.amount += instance.item.price * instance.quantity
         instance.cart.save()
 
+@receiver(pre_delete, sender=CartDetail)
+def subtract_item_price(sender, instance, **kwargs):
+    instance.cart.amount -= instance.item.price * instance.quantity
+    instance.cart.save()
