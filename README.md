@@ -20,7 +20,6 @@
 * [Joana Gisela Martinez](https://github.com/JoanaGM44)
 * [Leonel Ezequiel Casi](https://github.com/leocas1)
 * [Lautaro Palacio](https://github.com/Pala797)
-* [Valeriya Lysikova](https://github.com/vlysi)
 * [Adrian Edgardo Camus](https://github.com/acamus79)
 
 
